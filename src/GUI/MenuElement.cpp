@@ -5,11 +5,11 @@
 #include "MenuElement.h"
 
 
-Uint8 MenuElement::getId() const {
+uint8_t MenuElement::getId() const {
     return id;
 }
 
-MenuElement::MenuElement(Uint8 id, const std::string &text, const SDL_Rect &verticesPosition)
+MenuElement::MenuElement(uint8_t id, const std::string &text, const SDL_Rect &verticesPosition)
         :id(id), text(text), verticesPosition(
         verticesPosition) {
     this->selected = false;
@@ -19,7 +19,7 @@ bool MenuElement::isSelected() const {
     return selected;
 }
 
-const std::string &MenuElement::getText() const {
+const std::string MenuElement::getText() const {
     return text;
 }
 
@@ -29,4 +29,8 @@ const SDL_Rect &MenuElement::getVerticesPosition() const {
 
 void MenuElement::setSelected(bool selected) {
     this->selected = selected;
+}
+
+MenuElement::~MenuElement() {
+
 }

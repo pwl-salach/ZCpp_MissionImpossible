@@ -8,12 +8,17 @@
 
 #include "Window.h"
 #include "MenuElement.h"
+#include "../Logic/Settings.h"
+#include "SettingElement.h"
 #include <vector>
 #include <map>
 
 class StartWindow : public Window{
 public:
-    StartWindow(Uint16 resX, Uint16 resY);
+    StartWindow(uint16_t resX, uint16_t resY, Settings *pSettings);
+
+    virtual ~StartWindow();
+
     void show() override;
     void disappear() override;
 
@@ -21,18 +26,17 @@ private:
     enum MenuButtons{
         START_GAME = 0,
         SETTINGS = 1,
-        NUMBER_OF_AGENTS = 2,
-        RANGE_OF_VIEW = 3,
-        ANGLE_OF_VIEW = 4,
-        DEBUG = 5,
-        ACCEPT = 6,
+        MAP_NUMBER = 2,
+        NUMBER_OF_AGENTS = 3,
+        RANGE_OF_VIEW = 4,
+        ANGLE_OF_VIEW = 5,
+        DEBUG = 6,
         CANCEL = 7,
-        QUIT = 8
+        ACCEPT = 8,
+        QUIT = 9
     };
     void prepareMainMenuElements();
     void prepareSettingsMenuElements();
-    std::vector<SDL_Rect> calculateMenuElementsCoordinates(std::map<Uint8, std::string> &elementsTexts, Uint16 martinTop,
-                                                           Uint16 marginBottom);
     void loop() override;
     void renderFrame() override;
     void handleKeyboardEvent(SDL_Event &event) override;
@@ -41,23 +45,39 @@ private:
     void chooseOption();
     void goToSettings();
     void goToMainMenu();
+    void selectFirstElement();
+    void clearSelection();
+    void handleLeftKeyboardButton();
+    void handleRightKeyboardButton();
+    void saveSettings();
+    void cancelChanges();
+
+    template <typename T> T getSettingValueAndApproveIt(uint8_t settingElementID){
+        int index = 0;
+        for(auto element : this->settingsMenuElements){
+            if (element->getId() == settingElementID)
+                break;
+            index++;
+        }
+        SettingElement<T> *element = this->castMenuElementToSetting<T>(this->settingsMenuElements.at(index));
+        element->saveChanges();
+        return element->getSetting();
+    }
+
+    template <typename T> SettingElement<T>* castMenuElementToSetting(MenuElement *element) {
+        return dynamic_cast<SettingElement<T>*>(element);
+    }
+
     SDL_Texture *logoTexture;
     ImageElement *logo;
+    Settings *settings;
     std::vector<MenuElement*> mainMenuElements;
     std::vector<MenuElement*> settingsMenuElements;
     std::vector<MenuElement*> *visibleElements;
-    Uint8 selectedElementIndex;
+    uint8_t selectedElementIndex;
     TTF_Font *font;
 
-    Uint16 getElementWidth(std::string text, Uint16 elementHeight);
-
-    void selectFirstElement();
-
-    void saveSettings();
-
-    void prepareRegularMenuPart(std::vector<MenuElement *> &menuElements,
-                                    std::map<Uint8, std::string> &elementsBasicData, Uint16 &bottomMargin,
-                                    Uint16 &topMargin);
+    void startGame();
 };
 
 

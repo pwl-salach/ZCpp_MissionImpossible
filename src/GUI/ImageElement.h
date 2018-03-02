@@ -11,23 +11,21 @@
 
 class ImageElement {
 public:
+    ImageElement();
     ImageElement(const char *resourceFilePath, const SDL_Rect &verticesPosition, double angel = 0);
-private:
-    void calculateCenter();
-    SDL_Rect verticesPosition;
-    SDL_Surface *surface;
-public:
-    void move();
-    void rotate();
-    const SDL_Rect &getverticesPosition() const;
     SDL_Surface *getSurface() const;
-    const SDL_Point &getCenter() const;
-    double getAngel() const;
 
-private:
+    virtual const SDL_Point &getCenter();
+    virtual const SDL_Rect &getVerticesPosition();
+    virtual double getAngel() const;
+
+protected:
+    void calculateCenter();
+    SDL_Surface *surface;
+    SDL_Rect verticesPosition;
     SDL_Point center;
+private:
     double angel;
-
 };
 
 

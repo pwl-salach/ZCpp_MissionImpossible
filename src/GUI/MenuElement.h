@@ -10,18 +10,22 @@
 
 class MenuElement {
 public:
-    MenuElement(Uint8 id, const std::string &text, const SDL_Rect &verticesPosition);
-    Uint8 getId() const;
+    MenuElement(uint8_t id, const std::string &text, const SDL_Rect &verticesPosition);
+
+    virtual ~MenuElement();
+
+    uint8_t getId() const;
     bool isSelected() const;
-    const std::string &getText() const;
+
+    virtual const std::string getText() const;
     const SDL_Rect &getVerticesPosition() const;
     void setSelected(bool selected);
 
-private:
+protected:
     std::string text;
     SDL_Rect verticesPosition;
     bool selected;
-    Uint8 id;
+    uint8_t id;
 };
 
 

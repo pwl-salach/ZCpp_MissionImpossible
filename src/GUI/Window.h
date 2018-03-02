@@ -7,6 +7,9 @@
 
 #include "SDL2/SDL.h"
 #include <SDL2/SDL_ttf.h>
+#include <string>
+#include <map>
+#include <vector>
 
 class Window {
 public:
@@ -19,13 +22,16 @@ protected:
     void initSDL();
     void quitSDL();
     void enforceFrameRate(Uint32 frameBeginning, Uint32 frameActionsEnd);
+    std::vector<SDL_Rect> calculateMenuElementsCoordinates(std::map<uint8_t, std::string> &elementsTexts, uint16_t martinTop,
+                                                           uint16_t marginBottom);
+    uint16_t getElementWidth(std::string text, uint16_t elementHeight);
 
     SDL_Window *window;
     SDL_Renderer *renderer;
     bool visible;
-    Uint8 frameRate;
-    Uint16 resolutionX;
-    Uint16 resolutionY;
+    uint8_t frameRate;
+    uint16_t resolutionX;
+    uint16_t resolutionY;
 };
 
 

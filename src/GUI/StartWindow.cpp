@@ -5,19 +5,67 @@
 #include <iostream>
 #include <map>
 #include "StartWindow.h"
-#include "../Utils/Dictionary.h"
+#include "../Utils/FileManager.h"
+#include "GameWindow.h"
 
-StartWindow::StartWindow(Uint16 resX, Uint16 resY) {
+StartWindow::StartWindow(uint16_t resX, uint16_t resY, Settings *pSettings) {
     this->initSDL();
     this->resolutionX = resX;
     this->resolutionY = resY;
     this->frameRate = 60;
     this->prepareMainMenuElements();
+    this->settings = pSettings;
     this->prepareSettingsMenuElements();
-    this->goToMainMenu();
     SDL_Rect logoPos {this->resolutionX/4, this->resolutionY/8, this->resolutionX/2, this->resolutionY/4};
-    this->logo = new ImageElement("../resources/logo.png", logoPos);
-    this->font = TTF_OpenFont("../resources/KarmaFuture.ttf", 16);
+    this->logo = new ImageElement("logo.png", logoPos);
+    this->font = FileManager::loadFont("KarmaFuture.ttf", 16);
+}
+
+void StartWindow::prepareMainMenuElements() {
+    uint16_t topMargin = uint16_t(this->resolutionY / 2);
+    uint16_t bottomMargin = uint16_t(this->resolutionY / 8);
+    std::map<uint8_t, std::string> elementsBasicData {
+            {MenuButtons::START_GAME, Dictionary::START_GAME},
+            {MenuButtons::SETTINGS, Dictionary::SETTINGS},
+            {MenuButtons::QUIT, Dictionary::QUIT}
+    };
+    std::vector<SDL_Rect> menuElementsPositions = this->calculateMenuElementsCoordinates(elementsBasicData, topMargin, bottomMargin);
+    uint8_t i = 0;
+    for (auto &pair : elementsBasicData) {
+        this->mainMenuElements.push_back(
+                new MenuElement(pair.first, pair.second, menuElementsPositions.at(i)));
+        i++;
+    }
+}
+
+void StartWindow::prepareSettingsMenuElements() {
+    uint16_t topMargin = uint16_t(2 * this->resolutionY / 5);
+    uint16_t bottomMargin = uint16_t(this->resolutionY / 4);
+    std::map<uint8_t, std::string> elementsBasicData{
+            {MenuButtons::MAP_NUMBER, Dictionary::MAP_NUMBER},
+            {MenuButtons::NUMBER_OF_AGENTS, Dictionary::NUMBER_OF_AGENTS},
+            {MenuButtons::RANGE_OF_VIEW,    Dictionary::RANGE_OF_VIEW},
+            {MenuButtons::ANGLE_OF_VIEW,    Dictionary::ANGLE_OF_VIEW},
+            {MenuButtons::DEBUG,            Dictionary::DEBUG}
+    };
+    std::vector<SDL_Rect> menuElementsPositions = this->calculateMenuElementsCoordinates(elementsBasicData, topMargin, bottomMargin);
+    this->settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::MAP_NUMBER, Dictionary::MAP_NUMBER, menuElementsPositions.at(0), this->settings->getMapNumber()));
+    this->settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::NUMBER_OF_AGENTS, Dictionary::NUMBER_OF_AGENTS, menuElementsPositions.at(1), this->settings->getNumberOfAgents()));
+    this->settingsMenuElements.push_back(new SettingElement<uint16_t>(MenuButtons::RANGE_OF_VIEW, Dictionary::RANGE_OF_VIEW, menuElementsPositions.at(2), this->settings->getRangeOfView()));
+    this->settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::ANGLE_OF_VIEW, Dictionary::ANGLE_OF_VIEW, menuElementsPositions.at(3), this->settings->getAngleOfView()));
+    this->settingsMenuElements.push_back(new SettingElement<bool>(MenuButtons::DEBUG, Dictionary::DEBUG, menuElementsPositions.at(4), this->settings->isDebug()));
+
+    uint16_t elementHeight = uint16_t(this->settingsMenuElements.at(0)->getVerticesPosition().h);
+    uint16_t acceptWidth = this->getElementWidth(Dictionary::ACCEPT, elementHeight);
+    uint16_t cancelWidth = this->getElementWidth(Dictionary::CANCEL, elementHeight);
+    uint16_t horizontalSpace = uint16_t(this->resolutionX / 10);
+    uint16_t elementsYCoord = uint16_t(this->resolutionY - bottomMargin + elementHeight);
+    uint16_t acceptXCoord = uint16_t((this->resolutionX + horizontalSpace) / 2);
+    uint16_t cancelXCoord = uint16_t((this->resolutionX - horizontalSpace) / 2 - cancelWidth);
+    this->settingsMenuElements.push_back(
+            new MenuElement(MenuButtons::CANCEL, Dictionary::CANCEL, {cancelXCoord, elementsYCoord, cancelWidth, elementHeight}));
+    this->settingsMenuElements.push_back(
+            new MenuElement(MenuButtons::ACCEPT, Dictionary::ACCEPT, {acceptXCoord, elementsYCoord, acceptWidth, elementHeight}));
 }
 
 void StartWindow::show() {
@@ -31,6 +79,7 @@ void StartWindow::show() {
     this->renderer = SDL_CreateRenderer(this->window, -1, 0);
     this->logoTexture = SDL_CreateTextureFromSurface(this->renderer, this->logo->getSurface());
     this->visible = true;
+    this->goToMainMenu();
     this->loop();
 }
 
@@ -60,6 +109,17 @@ void StartWindow::loop() {
     }
 }
 
+void StartWindow::renderFrame() {
+    //SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
+    SDL_RenderCopy(this->renderer, this->logoTexture, NULL, &this->logo->getVerticesPosition());
+    for (MenuElement *menuElement : *this->visibleElements){
+        SDL_Color color = ( menuElement->isSelected() ? SDL_Color{255, 255, 255, 0}: SDL_Color{180, 180, 180, 0});
+        SDL_Surface *textSurface = TTF_RenderText_Solid(this->font, menuElement->getText().c_str(), color);
+        SDL_Texture* textTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
+        SDL_RenderCopy(this->renderer, textTexture, NULL, &menuElement->getVerticesPosition());
+    }
+}
+
 void StartWindow::handleKeyboardEvent(SDL_Event &event) {
     switch (event.key.keysym.sym){
         case SDLK_DOWN:
@@ -71,127 +131,46 @@ void StartWindow::handleKeyboardEvent(SDL_Event &event) {
         case SDLK_RETURN:
             this->chooseOption();
             break;
+        case SDLK_LEFT:
+            this->handleLeftKeyboardButton();
+            break;
+        case SDLK_RIGHT:
+            this->handleRightKeyboardButton();
+            break;
         default:
             break;
     }
 
 }
 
-void StartWindow::disappear() {
-    this->visible = false;
-    SDL_DestroyWindow(this->window);
-}
-
-void StartWindow::renderFrame() {
-    //SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
-    SDL_RenderCopy(this->renderer, this->logoTexture, NULL, &this->logo->getverticesPosition());
-    for (MenuElement *menuElement : *this->visibleElements){
-        SDL_Color color = ( menuElement->isSelected() ? SDL_Color{255, 255, 255, 0}: SDL_Color{180, 180, 180, 0});
-        SDL_Surface *textSurface = TTF_RenderText_Solid(this->font, menuElement->getText().c_str(), color);
-        SDL_Texture* textTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
-        SDL_RenderCopy(this->renderer, textTexture, NULL, &menuElement->getVerticesPosition());
-    }
-}
-
-void StartWindow::prepareMainMenuElements() {
-    Uint16 topMargin = Uint16(this->resolutionY / 2);
-    Uint16 bottomMargin = Uint16(this->resolutionY / 8);
-    std::map<Uint8, std::string> elementsBasicData {
-            {MenuButtons::START_GAME, Dictionary::START_GAME},
-            {MenuButtons::SETTINGS, Dictionary::SETTINGS},
-            {MenuButtons::QUIT, Dictionary::QUIT}
-    };
-    this->prepareRegularMenuPart(this->mainMenuElements, elementsBasicData, bottomMargin, topMargin);
-}
-
-void StartWindow::prepareSettingsMenuElements() {
-    Uint16 topMargin = Uint16(this->resolutionY / 2);
-    Uint16 bottomMargin = Uint16(this->resolutionY / 4);
-    std::map<Uint8, std::__cxx11::string> elementsBasicData{
-            {NUMBER_OF_AGENTS, Dictionary::NUMBER_OF_AGENTS},
-            {RANGE_OF_VIEW,    Dictionary::RANGE_OF_VIEW},
-            {ANGLE_OF_VIEW,    Dictionary::ANGLE_OF_VIEW},
-            {DEBUG,            Dictionary::DEBUG}
-    };
-    this->prepareRegularMenuPart(this->settingsMenuElements, elementsBasicData, bottomMargin, topMargin);
-    Uint16 elementHeight = Uint16(this->settingsMenuElements.at(0)->getVerticesPosition().h);
-    Uint16 acceptWidth = this->getElementWidth(Dictionary::ACCEPT, elementHeight);
-    Uint16 cancelWidth = this->getElementWidth(Dictionary::CANCEL, elementHeight);
-    Uint16 horisontalSpace = Uint16(this->resolutionX / 10);
-    Uint16 elementsYCoord = Uint16(this->resolutionY - bottomMargin + elementHeight);
-    Uint16 acceptXCoord = Uint16((this->resolutionX + horisontalSpace) / 2);
-    Uint16 cancelXCoord = Uint16((this->resolutionX - horisontalSpace) / 2 - cancelWidth);
-    this->settingsMenuElements.push_back(
-            new MenuElement(MenuButtons::ACCEPT, Dictionary::ACCEPT, {acceptXCoord, elementsYCoord, acceptWidth, elementHeight}));
-    this->settingsMenuElements.push_back(
-            new MenuElement(MenuButtons::CANCEL, Dictionary::CANCEL, {cancelXCoord, elementsYCoord, cancelWidth, elementHeight}));
-}
-
-void StartWindow::prepareRegularMenuPart(std::vector<MenuElement *> &menuElements,
-                                         std::map<Uint8, std::string> &elementsBasicData, Uint16 &bottomMargin,
-                                         Uint16 &topMargin) {
-    std::vector<SDL_Rect> menuElementsPositions = this->calculateMenuElementsCoordinates(elementsBasicData, topMargin, bottomMargin);
-    Uint8 i = 0;
-    for (auto &pair : elementsBasicData) {
-        menuElements.push_back(
-                new MenuElement(pair.first, pair.second, menuElementsPositions.at(i)));
-        i++;
-    }
-}
-
-std::vector<SDL_Rect> StartWindow::calculateMenuElementsCoordinates(std::map<Uint8, std::string> &elementsBasicData,
-                                                                    Uint16 martinTop,
-                                                                    Uint16 marginBottom) {
-    int elementsCount = elementsBasicData.size();
-    std::vector<SDL_Rect> ret;
-    Uint8 elementSpaceProportions = 2;
-    Uint16 space = this->resolutionY - martinTop - marginBottom;
-    Uint16 elementsHeight = Uint16(space/(elementsCount + (elementsCount - 1)/elementSpaceProportions));
-    Uint16 verticalSpace = elementsHeight / elementSpaceProportions;
-    Uint16 tempElementYCoord = martinTop;
-    for (auto const &pair : elementsBasicData) {
-        std::string text = pair.second;
-        Uint16 elementsWidth = this->getElementWidth(text, elementsHeight);
-        Uint16 elementsXCoord = Uint16((this->resolutionX - elementsWidth) / 2);
-        SDL_Rect tempRect = {elementsXCoord, tempElementYCoord, elementsWidth, elementsHeight};
-        tempElementYCoord += elementsHeight + verticalSpace;
-        ret.push_back(tempRect);
-    }
-    return ret;
-}
-
-Uint16 StartWindow::getElementWidth(std::string text, Uint16 elementHeight){
-    return static_cast<Uint16>(text.length() * elementHeight * 0.75);
-}
-
 void StartWindow::moveCursorUp() {
-    Uint8 temp = this->selectedElementIndex;
+    this->clearSelection();
     if(this->selectedElementIndex == 0){
-        this->selectedElementIndex = Uint8(this->visibleElements->size() - 1);
+        this->selectedElementIndex = uint8_t(this->visibleElements->size() - 1);
     } else {
         this->selectedElementIndex--;
     }
-    this->visibleElements->at(temp)->setSelected(false);
     this->visibleElements->at(this->selectedElementIndex)->setSelected(true);
 }
 
 void StartWindow::moveCursorDown() {
-    Uint8 temp = this->selectedElementIndex;
+    this->clearSelection();
     if (this->selectedElementIndex == this->visibleElements->size() - 1){
         this->selectedElementIndex = 0;
     } else {
         this->selectedElementIndex++;
     }
-    this->visibleElements->at(temp)->setSelected(false);
     this->visibleElements->at(this->selectedElementIndex)->setSelected(true);
 }
 
 void StartWindow::chooseOption() {
     switch (this->visibleElements->at(this->selectedElementIndex)->getId()){
         case MenuButtons::START_GAME :
+            this->disappear();
+            this->startGame();
             break;
         case MenuButtons::SETTINGS :
-            this->visibleElements->at(this->selectedElementIndex)->setSelected(false);
+            this->clearSelection();
             this->goToSettings();
             break;
         case MenuButtons::QUIT :
@@ -199,10 +178,12 @@ void StartWindow::chooseOption() {
             this->quitSDL();
             break;
         case MenuButtons::CANCEL:
-            this->visibleElements->at(this->selectedElementIndex)->setSelected(false);
+            this->cancelChanges();
+            this->clearSelection();
             this->goToMainMenu();
             break;
         case MenuButtons::ACCEPT:
+            this->clearSelection();
             this->saveSettings();
             this->goToMainMenu();
             break;
@@ -226,6 +207,85 @@ void StartWindow::selectFirstElement(){
     this->visibleElements->at(this->selectedElementIndex)->setSelected(true);
 }
 
-void StartWindow::saveSettings() {
+void StartWindow::clearSelection() {
+    this->visibleElements->at(this->selectedElementIndex)->setSelected(false);
+}
 
+void StartWindow::saveSettings() {
+    this->settings->setNumberOfAgents(this->getSettingValueAndApproveIt<uint8_t>(MenuButtons::MAP_NUMBER));
+    this->settings->setNumberOfAgents(this->getSettingValueAndApproveIt<uint8_t>(MenuButtons::NUMBER_OF_AGENTS));
+    this->settings->setRangeOfView(this->getSettingValueAndApproveIt<uint16_t>(MenuButtons::RANGE_OF_VIEW));
+    this->settings->setAngleOfView(this->getSettingValueAndApproveIt<uint8_t>(MenuButtons::ANGLE_OF_VIEW));
+    this->settings->setDebug(this->getSettingValueAndApproveIt<bool>(MenuButtons::DEBUG));
+}
+
+void StartWindow::cancelChanges(){
+    this->castMenuElementToSetting<uint8_t>(this->settingsMenuElements.at(0))->resetValue();
+    this->castMenuElementToSetting<uint8_t>(this->settingsMenuElements.at(1))->resetValue();
+    this->castMenuElementToSetting<uint16_t>(this->settingsMenuElements.at(2))->resetValue();
+    this->castMenuElementToSetting<uint8_t>(this->settingsMenuElements.at(3))->resetValue();
+    this->castMenuElementToSetting<bool>(this->settingsMenuElements.at(4))->resetValue();
+}
+
+void StartWindow::handleLeftKeyboardButton() {
+    MenuElement *element = this->visibleElements->at(this->selectedElementIndex);
+    switch (element->getId()){
+        case MenuButtons::MAP_NUMBER :
+            this->castMenuElementToSetting<uint8_t>(element)->decreaseSettingValue(this->settings->getMinManNumber());
+            break;
+        case MenuButtons::NUMBER_OF_AGENTS :
+            this->castMenuElementToSetting<uint8_t>(element)->decreaseSettingValue(this->settings->getMinNumberOfAgents());
+            break;
+        case MenuButtons::RANGE_OF_VIEW :
+            this->castMenuElementToSetting<uint16_t>(element)->decreaseSettingValue(this->settings->getMinRangeOfView());
+            break;
+        case MenuButtons::ANGLE_OF_VIEW :
+            this->castMenuElementToSetting<uint8_t>(element)->decreaseSettingValue(this->settings->getMinAngleOfView());
+            break;
+        case MenuButtons::DEBUG :
+            this->castMenuElementToSetting<bool>(element)->decreaseSettingValue(false);
+            break;
+        default:
+            this->moveCursorUp();
+            break;
+    }
+}
+
+void StartWindow::handleRightKeyboardButton() {
+    MenuElement *element = this->visibleElements->at(this->selectedElementIndex);
+    switch (element->getId()){
+        case MenuButtons::MAP_NUMBER :
+            this->castMenuElementToSetting<uint8_t>(element)->increaseSettingValue(this->settings->getMaxManNumber());
+            break;
+        case MenuButtons::NUMBER_OF_AGENTS :
+            this->castMenuElementToSetting<uint8_t>(element)->increaseSettingValue(this->settings->getMaxNumberOfAgents());
+            break;
+        case MenuButtons::ANGLE_OF_VIEW :
+            this->castMenuElementToSetting<uint16_t>(element)->increaseSettingValue(this->settings->getMaxRangeOfView());
+            break;
+        case MenuButtons::RANGE_OF_VIEW :
+            this->castMenuElementToSetting<uint8_t>(element)->increaseSettingValue(this->settings->getMaxAngleOfView());
+            break;
+        case MenuButtons::DEBUG :
+            this->castMenuElementToSetting<bool>(element)->increaseSettingValue(true);
+            break;
+        default:
+            this->moveCursorDown();
+            break;
+    }
+}
+
+void StartWindow::disappear() {
+    this->visible = false;
+    //delete this->visibleElements;
+    SDL_DestroyWindow(this->window);
+}
+
+void StartWindow::startGame() {
+    Game *game = new Game(this->settings);
+    GameWindow *gameWindow = new GameWindow(game);
+}
+
+StartWindow::~StartWindow() {
+    this->quitSDL();
 }

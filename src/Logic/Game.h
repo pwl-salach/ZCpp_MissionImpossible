@@ -5,17 +5,26 @@
 #ifndef ZCPP_MISSIONIMPOSSIBLE_GAME_H
 #define ZCPP_MISSIONIMPOSSIBLE_GAME_H
 
-#include "GUI/StartWindow.h"
+#include "../GUI/StartWindow.h"
+#include "Map.h"
 
 class Game {
 
 public:
-    Game();
+    Game(Settings *settings);
     virtual ~Game();
     void start();
     void quit();
+
+    Player *getPlayer() const;
+
+    Map *getMap() const;
+
 private:
-    StartWindow *startWindow;
+    Player* player;
+    Settings *settings;
+    Map *map;
+
 };
 
 

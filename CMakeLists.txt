@@ -32,8 +32,8 @@ add_executable(ZCpp_MissionImpossible
         src/GUI/StartWindow.h
         src/GUI/Window.cpp
         src/GUI/Window.h
-        src/Game.cpp
-        src/Game.h src/GUI/ImageElement.cpp src/GUI/ImageElement.h src/GUI/MenuElement.cpp src/GUI/MenuElement.h src/Utils/Dictionary.h src/Utils/Dictionary.cpp)
+        src/Logic/Game.cpp
+        src/Logic/Game.h src/GUI/ImageElement.cpp src/GUI/ImageElement.h src/GUI/MenuElement.cpp src/GUI/MenuElement.h src/Utils/Dictionary.h src/Utils/Dictionary.cpp src/Logic/Settings.cpp src/Logic/Settings.h src/GUI/SettingElement.h src/GUI/GameWindow.cpp src/GUI/GameWindow.h src/Logic/Map.cpp src/Logic/Map.h src/Logic/Player.cpp src/Logic/Player.h src/Logic/Agent.cpp src/Logic/Agent.h src/Logic/Headquarters.cpp src/Logic/Headquarters.h src/Logic/PhysicalObject.cpp src/Logic/PhysicalObject.h src/Utils/FileManager.cpp src/Utils/FileManager.h src/Logic/FieldOfView.cpp src/Logic/FieldOfView.h src/Logic/Box.cpp src/Logic/Box.h src/Logic/Lake.cpp src/Logic/Lake.h src/Logic/Person.cpp src/Logic/Person.h src/Logic/Obstacle.cpp src/Logic/Obstacle.h src/GUI/Sprite.cpp src/GUI/Sprite.h)
 
 target_link_libraries(
         ZCpp_MissionImpossible

@@ -1,0 +1,14 @@
+//
+// Created by salach on 3/1/18.
+//
+
+#ifndef ZCPP_MISSIONIMPOSSIBLE_HEADQUARTERS_H
+#define ZCPP_MISSIONIMPOSSIBLE_HEADQUARTERS_H
+
+
+class Headquarters {
+
+};
+
+
+#endif //ZCPP_MISSIONIMPOSSIBLE_HEADQUARTERS_H
