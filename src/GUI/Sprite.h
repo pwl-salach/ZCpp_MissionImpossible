@@ -12,16 +12,16 @@
 
 class Sprite : public ImageElement{
 public:
-    Sprite(PhysicalObject *pObject, std::string fileName);
+    Sprite(PhysicalObject *pObject, const std::string &fileName);
 
     const SDL_Point & getCenter() override;
 
-    const SDL_Rect & getVerticesPosition() override;
+    const SDL_Rect & getVerticesPositions() override;
 
-    double getAngel() const override;
+    double getAngle() const override;
 
 private:
-    void calculateVerticesPosition();
+    void calculateVerticesPositions();
     PhysicalObject *object;
 
 };

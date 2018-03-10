@@ -6,13 +6,16 @@
 #define ZCPP_MISSIONIMPOSSIBLE_LAKE_H
 
 #include "Obstacle.h"
+#include "Player.h"
 
 class Lake : public Obstacle {
 public:
     Lake(uint16_t pSizeX, uint16_t pSizeY, uint16_t posX, uint16_t posY, uint16_t rot);
 
-protected:
-    float resistMovement() override;
+private:
+    float resistMovement(Player *player) override;
+
+    double slope;
 };
 
 

@@ -8,9 +8,13 @@
 
 #include <cstdint>
 #include <map>
+#include <vector>
+#include "Point.h"
 
 class PhysicalObject {
 public:
+    virtual ~PhysicalObject() = 0;
+
     uint16_t getPositionX() const;
 
     uint16_t getPositionY() const;
@@ -21,7 +25,7 @@ public:
 
     uint16_t getRotation() const;
 
-    std::map<uint16_t, uint16_t> getVercitesPosition();
+    std::vector<Point> getVerticesPosition();
 
 protected:
     uint16_t positionX;

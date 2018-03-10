@@ -3,3 +3,7 @@
 //
 
 #include "Headquarters.h"
+
+std::vector<Agent *>* Headquarters::getAgents() const {
+    return agents;
+}

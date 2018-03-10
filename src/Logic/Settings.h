@@ -11,7 +11,6 @@ class Settings {
 
 public:
     Settings();
-    Settings(uint8_t numberOfAgents, uint16_t rangeOfView, uint8_t angleOfView, bool debug);
     uint8_t getNumberOfAgents() const;
 
     uint16_t getRangeOfView() const;

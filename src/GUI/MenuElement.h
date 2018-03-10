@@ -18,12 +18,12 @@ public:
     bool isSelected() const;
 
     virtual const std::string getText() const;
-    const SDL_Rect &getVerticesPosition() const;
+    const SDL_Rect &getVerticesPositions() const;
     void setSelected(bool selected);
 
 protected:
     std::string text;
-    SDL_Rect verticesPosition;
+    SDL_Rect verticesPositions;
     bool selected;
     uint8_t id;
 };

@@ -18,31 +18,32 @@ public:
 
     void disappear() override;
 
-protected:
-    void loop() override;
-
-    void handleKeyboardEvent(SDL_Event &event) override;
-
-    void renderFrame() override;
-
 private:
-    enum MenuButtons{
+    enum PauseButtons{
         RESUME_GAME = 0,
         RESTART_LEVEL = 1,
         MAIN_MENU = 2,
-        QUIT= 3
+        QUIT = 3
     };
-    enum State{
-        RUNNING = 0,
-        PAUSE = 1
-    };
+    void loop() override;
+    void handleKeyboardEvent(SDL_Event &event) override;
+    void renderFrame() override;
     void preparePauseMenuElements();
     void prepareSprites();
+    void displayPauseManu();
+    void chooseOption();
+    void moveCursorUp();
+    void moveCursorDown();
+    void restartLevel();
+    void goBackToMaunManu();
+    void resumeGame();
+    void quit();
 
     Game *game;
     std::vector<MenuElement*> pauseMenuElements;
     std::vector<Sprite*> sprites;
-    State state;
+    uint8_t selectedElementIndex;
+
 };
 
 

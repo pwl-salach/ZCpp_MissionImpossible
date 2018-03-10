@@ -20,10 +20,10 @@ Map::Map(Player *pPlayer, uint8_t mapFileId) {
             this->loadSizeFromFileContent(line);
         }else if (Dictionary::stringStartsWith(line, "box:")){
             Dictionary::cutString(line, "box:");
-            this->loadObstraclesFromFileContent<Box>(line);
+            this->loadObstaclesFromFileContent<Box>(line);
         }else if (Dictionary::stringStartsWith(line, "lake:")){
             Dictionary::cutString(line, "lake:");
-            this->loadObstraclesFromFileContent<Lake>(line);
+            this->loadObstaclesFromFileContent<Lake>(line);
         }else if (Dictionary::stringStartsWith(line, "player:")){
             Dictionary::cutString(line, "player:");
             this->loadPlayerStartingPosition(line);
@@ -31,19 +31,18 @@ Map::Map(Player *pPlayer, uint8_t mapFileId) {
     }
 }
 
-void Map::loadSizeFromFileContent(std::string &basic_string) {
+void Map::loadSizeFromFileContent(const std::string &basic_string) {
     std::vector<std::string> mapSize = Dictionary::splitString(basic_string, 'x');
     this->sizeX = uint16_t(std::atoi(mapSize.at(0).c_str()));
     this->sizeY = uint16_t(std::atoi(mapSize.at(1).c_str()));
 }
 
-void Map::loadPlayerStartingPosition(std::string &basic_string) {
+void Map::loadPlayerStartingPosition(const std::string &basic_string) {
     std::vector<std::string> params = Dictionary::splitString(basic_string, ',');
     auto x = uint16_t(std::atoi(params.at(0).c_str()));
     auto y = uint16_t(std::atoi(params.at(1).c_str()));
     auto r = uint16_t(std::atoi(params.at(2).c_str()));
-    this->player->setPositionX(x);
-    this->player->setPositionY(y);
+    this->player->setPosition(Point(x,y));
     this->player->setRotation(r);
 }
 
@@ -55,6 +54,10 @@ uint16_t Map::getSizeY() const {
     return sizeY;
 }
 
-const std::vector<Obstacle *> &Map::getObstacles() const {
+const std::vector<Obstacle *> &Map::getObstacles() {
     return obstacles;
+}
+
+Map::Map() {
+
 }

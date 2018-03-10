@@ -38,3 +38,9 @@ std::string FileManager::readTextFile(const std::string &fileName) {
     }
     return ret;
 }
+
+std::string FileManager::concatenateFilePath(const std::string &fileName) {
+    std::string filePath= "../resources/";
+    filePath += fileName;
+    return filePath;
+}

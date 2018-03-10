@@ -16,17 +16,29 @@ void Game::start() {
 
 }
 
-Game::Game(Settings *settings) : settings(settings) {
-    this->player = new Player();
-    this->map = new Map(player, settings->getMapNumber());
+Game::Game(Settings *settings) : settings(settings){
+    this->state = State::RUNNING;
+    this->map = Map(&player, settings->getMapNumber());
 }
 
-Player *Game::getPlayer() const {
+Player &Game::getPlayer() {
     return player;
 }
 
-Map *Game::getMap() const {
+Map &Game::getMap(){
     return map;
+}
+
+Headquarters Game::getHeadquarters() const {
+    return headquarters;
+}
+
+std::vector<Agent *> Game::getAgents() const {
+    return agents;
+}
+
+Game::State Game::getState() const {
+    return state;
 }
 
 

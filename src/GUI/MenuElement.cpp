@@ -10,7 +10,7 @@ uint8_t MenuElement::getId() const {
 }
 
 MenuElement::MenuElement(uint8_t id, const std::string &text, const SDL_Rect &verticesPosition)
-        :id(id), text(text), verticesPosition(
+        :id(id), text(text), verticesPositions(
         verticesPosition) {
     this->selected = false;
 }
@@ -23,8 +23,8 @@ const std::string MenuElement::getText() const {
     return text;
 }
 
-const SDL_Rect &MenuElement::getVerticesPosition() const {
-    return verticesPosition;
+const SDL_Rect &MenuElement::getVerticesPositions() const {
+    return verticesPositions;
 }
 
 void MenuElement::setSelected(bool selected) {

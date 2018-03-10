@@ -4,9 +4,6 @@
 
 #include "Settings.h"
 
-Settings::Settings(uint8_t numberOfAgents, uint16_t rangeOfView, uint8_t angleOfView, bool debug) : numberOfAgents(
-        numberOfAgents), rangeOfView(rangeOfView), angleOfView(angleOfView), debug(debug) {}
-
 Settings::Settings() {
     this->mapNumber = 1;
     this->numberOfAgents = 3;

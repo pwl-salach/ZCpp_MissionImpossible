@@ -3,6 +3,7 @@
 //
 
 #include "Lake.h"
+#include "Player.h"
 
 Lake::Lake(uint16_t pSizeX, uint16_t pSizeY, uint16_t posX, uint16_t posY, uint16_t rot){
     this->sizeX = pSizeX;
@@ -12,7 +13,7 @@ Lake::Lake(uint16_t pSizeX, uint16_t pSizeY, uint16_t posX, uint16_t posY, uint1
     this->rotation = rot;
 }
 
-float Lake::resistMovement() {
+float Lake::resistMovement(Player *player) {
     return 0;
 }
 

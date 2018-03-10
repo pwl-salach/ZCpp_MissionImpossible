@@ -6,19 +6,19 @@
 #include "ImageElement.h"
 #include "../Utils/FileManager.h"
 
-ImageElement::ImageElement(const char *resourceFilePath, const SDL_Rect &verticesPosition, double angel)
-        : verticesPosition(verticesPosition), angel(angel) {
-    this->surface = FileManager::loadImage(resourceFilePath);
+ImageElement::ImageElement(const char *fileName, const SDL_Rect &verticesPositions, double angel)
+        : verticesPositions(verticesPositions), angle(angel) {
+    this->surface = FileManager::loadImage(fileName);
     this->calculateCenter();
 }
 
 void ImageElement::calculateCenter() {
-    this->center.x = verticesPosition.x + verticesPosition.w/2;
-    this->center.y = verticesPosition.y + verticesPosition.h/2;
+    this->center.x = verticesPositions.x + verticesPositions.w/2;
+    this->center.y = verticesPositions.y + verticesPositions.h/2;
 }
 
-const SDL_Rect & ImageElement::getVerticesPosition() {
-    return verticesPosition;
+const SDL_Rect & ImageElement::getVerticesPositions() {
+    return verticesPositions;
 }
 
 SDL_Surface *ImageElement::getSurface() const {
@@ -29,8 +29,8 @@ const SDL_Point & ImageElement::getCenter() {
     return center;
 }
 
-double ImageElement::getAngel() const {
-    return angel;
+double ImageElement::getAngle() const {
+    return angle;
 }
 
 ImageElement::ImageElement() {}

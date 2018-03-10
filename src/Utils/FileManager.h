@@ -21,11 +21,7 @@ private:
             throw std::runtime_error("Couldn't open file: " + std::string(fileName));
         }
     }
-    static std::string concatenateFilePath(const std::string &fileName){
-        std::string filePath= "../resources/";
-        filePath += fileName;
-        return filePath;
-    }
+    static std::string concatenateFilePath(const std::string &fileName);
 };
 
 

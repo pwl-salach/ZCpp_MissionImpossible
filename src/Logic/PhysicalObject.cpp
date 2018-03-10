@@ -24,12 +24,16 @@ uint16_t PhysicalObject::getRotation() const {
     return rotation;
 }
 
-std::map<uint16_t, uint16_t> PhysicalObject::getVercitesPosition() {
-    std::map<uint16_t, uint16_t>vertices = {
-            {this->getPositionX() - this->getSizeX()/2, this->getPositionY() + this->getSizeY()/2},
-            {this->getPositionX() + this->getSizeX()/2, this->getPositionY() + this->getSizeY()/2},
-            {this->getPositionX() - this->getSizeX()/2, this->getPositionY() - this->getSizeY()/2},
-            {this->getPositionX() + this->getSizeX()/2, this->getPositionY() - this->getSizeY()/2}
+std::vector<Point>  PhysicalObject::getVerticesPosition() {
+    std::vector<Point> vertices = {
+            Point(this->getPositionX() - this->getSizeX()/2, this->getPositionY() + this->getSizeY()/2),
+            Point(this->getPositionX() + this->getSizeX()/2, this->getPositionY() + this->getSizeY()/2),
+            Point(this->getPositionX() - this->getSizeX()/2, this->getPositionY() - this->getSizeY()/2),
+            Point(this->getPositionX() + this->getSizeX()/2, this->getPositionY() - this->getSizeY()/2)
     };
     return vertices;
+}
+
+PhysicalObject::~PhysicalObject() {
+
 }

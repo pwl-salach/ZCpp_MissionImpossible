@@ -69,7 +69,7 @@ private:
     }
 
     SDL_Texture *logoTexture;
-    ImageElement *logo;
+    ImageElement logo;
     Settings *settings;
     std::vector<MenuElement*> mainMenuElements;
     std::vector<MenuElement*> settingsMenuElements;

@@ -17,7 +17,7 @@ StartWindow::StartWindow(uint16_t resX, uint16_t resY, Settings *pSettings) {
     this->settings = pSettings;
     this->prepareSettingsMenuElements();
     SDL_Rect logoPos {this->resolutionX/4, this->resolutionY/8, this->resolutionX/2, this->resolutionY/4};
-    this->logo = new ImageElement("logo.png", logoPos);
+    this->logo = ImageElement("logo.png", logoPos);
     this->font = FileManager::loadFont("KarmaFuture.ttf", 16);
 }
 
@@ -55,7 +55,7 @@ void StartWindow::prepareSettingsMenuElements() {
     this->settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::ANGLE_OF_VIEW, Dictionary::ANGLE_OF_VIEW, menuElementsPositions.at(3), this->settings->getAngleOfView()));
     this->settingsMenuElements.push_back(new SettingElement<bool>(MenuButtons::DEBUG, Dictionary::DEBUG, menuElementsPositions.at(4), this->settings->isDebug()));
 
-    uint16_t elementHeight = uint16_t(this->settingsMenuElements.at(0)->getVerticesPosition().h);
+    uint16_t elementHeight = uint16_t(this->settingsMenuElements.at(0)->getVerticesPositions().h);
     uint16_t acceptWidth = this->getElementWidth(Dictionary::ACCEPT, elementHeight);
     uint16_t cancelWidth = this->getElementWidth(Dictionary::CANCEL, elementHeight);
     uint16_t horizontalSpace = uint16_t(this->resolutionX / 10);
@@ -77,7 +77,7 @@ void StartWindow::show() {
             this->resolutionY,
             SDL_WINDOW_OPENGL);
     this->renderer = SDL_CreateRenderer(this->window, -1, 0);
-    this->logoTexture = SDL_CreateTextureFromSurface(this->renderer, this->logo->getSurface());
+    this->logoTexture = SDL_CreateTextureFromSurface(this->renderer, this->logo.getSurface());
     this->visible = true;
     this->goToMainMenu();
     this->loop();
@@ -86,7 +86,7 @@ void StartWindow::show() {
 void StartWindow::loop() {
     Uint32  frameBeginning = 0;
     Uint32 frameEnd = 0;
-    SDL_Event event;
+    SDL_Event event{};
     while(this->visible) {
         frameBeginning = SDL_GetTicks();
         while (SDL_PollEvent(&event) != 0) {
@@ -110,13 +110,14 @@ void StartWindow::loop() {
 }
 
 void StartWindow::renderFrame() {
-    //SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
-    SDL_RenderCopy(this->renderer, this->logoTexture, NULL, &this->logo->getVerticesPosition());
+    SDL_RenderCopy(this->renderer, this->logoTexture, NULL, &this->logo.getVerticesPositions());
     for (MenuElement *menuElement : *this->visibleElements){
         SDL_Color color = ( menuElement->isSelected() ? SDL_Color{255, 255, 255, 0}: SDL_Color{180, 180, 180, 0});
         SDL_Surface *textSurface = TTF_RenderText_Solid(this->font, menuElement->getText().c_str(), color);
-        SDL_Texture* textTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
-        SDL_RenderCopy(this->renderer, textTexture, NULL, &menuElement->getVerticesPosition());
+        SDL_Texture *textTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
+        SDL_RenderCopy(this->renderer, textTexture, NULL, &menuElement->getVerticesPositions());
+        SDL_DestroyTexture(textTexture);
+        SDL_FreeSurface(textSurface);
     }
 }
 
@@ -282,8 +283,8 @@ void StartWindow::disappear() {
 }
 
 void StartWindow::startGame() {
-    Game *game = new Game(this->settings);
-    GameWindow *gameWindow = new GameWindow(game);
+    auto *game = new Game(this->settings);
+    auto *gameWindow = new GameWindow(game);
 }
 
 StartWindow::~StartWindow() {

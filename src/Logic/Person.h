@@ -8,25 +8,32 @@
 
 #include <cstdint>
 #include "PhysicalObject.h"
+#include "FieldOfView.h"
+#include "Point.h"
 
-class Person :public PhysicalObject{
+/*!
+ * \brief
+ */
+class Person : public PhysicalObject{
 public:
-    void setPositionX(uint16_t posX);
-    void setPositionY(uint16_t posY);
-    void setRotation(uint16_t rot);
-protected:
-public:
+    enum Movement{
+        FORWARD = 0,
+        BACK = 1,
+        TURN_LEFT = 2,
+        TURN_RIGHT = 3
+    };
     Person();
+    virtual ~Person()=0;
+    void move(const Movement &movement);
+    void turn(const Movement &movement);
+    Point calculateNewPosition(const Movement &movement);
+    void setPosition(const Point &point);
+    void setRotation(uint16_t rot);
 
 protected:
-    void moveForward();
-    void moveBack();
-    void turnRight();
-    void turnLeft();
     uint8_t movementSpeed;
     uint8_t turningSpeed;
-private:
-    uint8_t turnStep;
+    FieldOfView *fov;
 };
 
 

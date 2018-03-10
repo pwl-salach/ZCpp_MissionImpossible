@@ -7,10 +7,18 @@
 
 
 #include "PhysicalObject.h"
+#include "Player.h"
 
 class Obstacle : public PhysicalObject{
+public:
+    enum Blocking{
+        VIEW = 1,
+        MOVEMENT = 2,
+        BOTH = 3
+    };
 protected:
-    virtual float resistMovement() = 0;
+    Blocking blocks;
+    virtual float resistMovement(Player *player) = 0;
 };
 
 

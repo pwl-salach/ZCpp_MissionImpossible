@@ -12,20 +12,20 @@
 class ImageElement {
 public:
     ImageElement();
-    ImageElement(const char *resourceFilePath, const SDL_Rect &verticesPosition, double angel = 0);
+    ImageElement(const char *fileName, const SDL_Rect &verticesPositions, double angel = 0);
     SDL_Surface *getSurface() const;
 
     virtual const SDL_Point &getCenter();
-    virtual const SDL_Rect &getVerticesPosition();
-    virtual double getAngel() const;
+    virtual const SDL_Rect &getVerticesPositions();
+    virtual double getAngle() const;
 
 protected:
     void calculateCenter();
     SDL_Surface *surface;
-    SDL_Rect verticesPosition;
+    SDL_Rect verticesPositions;
     SDL_Point center;
 private:
-    double angel;
+    double angle;
 };
 
 

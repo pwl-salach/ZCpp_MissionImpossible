@@ -5,7 +5,7 @@
 #include "Sprite.h"
 #include "../Utils/FileManager.h"
 
-Sprite::Sprite(PhysicalObject *pObject, std::string fileName) {
+Sprite::Sprite(PhysicalObject *pObject, const std::string &fileName) {
     this->object = pObject;
     this->surface = FileManager::loadImage(fileName);
 }
@@ -16,18 +16,18 @@ const SDL_Point & Sprite::getCenter(){
     return center;
 }
 
-const SDL_Rect & Sprite::getVerticesPosition() {
-    calculateVerticesPosition();
-    return this->verticesPosition;
+const SDL_Rect & Sprite::getVerticesPositions() {
+    calculateVerticesPositions();
+    return this->verticesPositions;
 }
 
-double Sprite::getAngel() const {
+double Sprite::getAngle() const {
     return this->object->getRotation();
 }
 
-void Sprite::calculateVerticesPosition() {
-    this->verticesPosition.x = this->object->getPositionX() - this->object->getSizeX()/2;
-    this->verticesPosition.y = this->object->getPositionY() - this->object->getSizeY()/2;
-    this->verticesPosition.w = this->object->getSizeX();
-    this->verticesPosition.h = this->object->getSizeY();
+void Sprite::calculateVerticesPositions() {
+    this->verticesPositions.x = this->object->getPositionX() - this->object->getSizeX()/2;
+    this->verticesPositions.y = this->object->getPositionY() - this->object->getSizeY()/2;
+    this->verticesPositions.w = this->object->getSizeX();
+    this->verticesPositions.h = this->object->getSizeY();
 }
