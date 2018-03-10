@@ -9,6 +9,7 @@
 #ifndef ZCPP_MISSIONIMPOSSIBLE_GAME_H
 #define ZCPP_MISSIONIMPOSSIBLE_GAME_H
 
+#include <thread>
 #include "../GUI/StartWindow.h"
 #include "Map.h"
 #include "Headquarters.h"
@@ -24,10 +25,10 @@ public:
         PAUSE = 1
     };
 
-    Game(Settings *settings);
-    virtual ~Game();
+    explicit Game(Settings *settings);
     void start();
     void loop();
+    void update();
     void pause();
     void resume();
     void quit();
@@ -46,6 +47,7 @@ private:
     Headquarters headquarters;
     std::vector<Agent*>agents;
     State state;
+    std::thread updateLoop;
 
 };
 

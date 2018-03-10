@@ -3,6 +3,10 @@ project(ZCpp_MissionImpossible)
 
 set(CMAKE_CXX_STANDARD 11)
 
+IF(UNIX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+ENDIF()
+
 if(WIN32)
     set(SDL2_INCLUDE_DIR  "E:/Cpp/SDL2/i686-w64-mingw32/include;E:/Cpp/SDL2/i686-w64-mingw32/include/SDL2")
     set(SDL2_IMAGE_DIR "E:/Cpp/SDL2_image/i686-w64-mingw32/include")

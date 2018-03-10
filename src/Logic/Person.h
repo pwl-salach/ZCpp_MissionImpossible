@@ -17,20 +17,22 @@
 class Person : public PhysicalObject{
 public:
     enum Movement{
-        FORWARD = 0,
-        BACK = 1,
-        TURN_LEFT = 2,
-        TURN_RIGHT = 3
+        NONE = 0,
+        FORWARD = 1,
+        BACK = 2,
+        TURN_LEFT = 3,
+        TURN_RIGHT = 4
     };
     Person();
     virtual ~Person()=0;
-    void move(const Movement &movement);
-    void turn(const Movement &movement);
+    void move();
     Point calculateNewPosition(const Movement &movement);
     void setPosition(const Point &point);
     void setRotation(uint16_t rot);
 
 protected:
+    void turn(const Movement &movement);
+    Movement movement;
     uint8_t movementSpeed;
     uint8_t turningSpeed;
     FieldOfView *fov;
