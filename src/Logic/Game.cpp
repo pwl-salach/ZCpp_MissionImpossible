@@ -5,18 +5,23 @@
 #include "Game.h"
 
 
+void Game::start() {
+    this->state = State::RUNNING;
+    this->updateLoop = std::thread(&Game::loop, this);
+}
+
 void Game::quit() {
+    this->pause();
+}
+
+void Game::pause() {
+    this->state = State::PAUSE;
     updateLoop.join();
 }
 
-void Game::start() {
-
-}
-
 Game::Game(Settings *settings) : settings(settings){
-    this->state = State::RUNNING;
+    this->updatesPerSecond = 30;
     this->map = Map(&player, settings->getMapNumber());
-    this->updateLoop = std::thread(&Game::loop, this);
 }
 
 Player &Game::getPlayer() {
@@ -40,17 +45,22 @@ Game::State Game::getState() const {
 }
 
 void Game::loop() {
-    auto begin = std::chrono::high_resolution_clock::now();
-    if (this->state == State::RUNNING){
+    while(this->state == State::RUNNING) {
+        auto begin = std::chrono::high_resolution_clock::now();
         this->update();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+        auto stepDuration = std::chrono::milliseconds(1000/this->updatesPerSecond);
+        std::this_thread::sleep_for(stepDuration - duration);
+        //std::chrono::duration<std::chrono::nanoseconds> ddd = end - begin;
+        //std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << "ns";
     }
-    auto end = std::chrono::high_resolution_clock::now();
-    //std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << "ns";
-
 }
 
 void Game::update() {
-
+    if(!this->map.checkCollisions(&player)) {
+        this->player.move();
+    }
 }
 
 

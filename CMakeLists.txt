@@ -3,17 +3,15 @@ project(ZCpp_MissionImpossible)
 
 set(CMAKE_CXX_STANDARD 11)
 
-IF(UNIX)
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-ENDIF()
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 if(WIN32)
-    set(SDL2_INCLUDE_DIR  "E:/Cpp/SDL2/i686-w64-mingw32/include;E:/Cpp/SDL2/i686-w64-mingw32/include/SDL2")
-    set(SDL2_IMAGE_DIR "E:/Cpp/SDL2_image/i686-w64-mingw32/include")
-    set(SDL2_TTF_DIR "E:/Cpp/SDL2_ttf/i686-w64-mingw32/include")
-    set(SDL2_LIB "E:/Cpp/SDL2/i686-w64-mingw32/lib")
-    set(SDL2_IMAGE_LIB "E:/Cpp/SDL2_image/i686-w64-mingw32/lib")
-    set(SDL2_TTF_LIB "E:/Cpp/SDL2_ttf/i686-w64-mingw32/lib")
+    set(SDL2_INCLUDE_DIR  "E:/Cpp/SDL2/x86_64-w64-mingw32/include;E:/Cpp/SDL2/x86_64-w64-mingw32/include/SDL2")
+    set(SDL2_IMAGE_DIR "E:/Cpp/SDL2_image/x86_64-w64-mingw32/include")
+    set(SDL2_TTF_DIR "E:/Cpp/SDL2_ttf/x86_64-w64-mingw32/include")
+    set(SDL2_LIB "E:/Cpp/SDL2/x86_64-w64-mingw32/lib")
+    set(SDL2_IMAGE_LIB "E:/Cpp/SDL2_image/x86_64-w64-mingw32/lib")
+    set(SDL2_TTF_LIB "E:/Cpp/SDL2_ttf/x86_64-w64-mingw32/lib")
 endif(WIN32)
 
 
@@ -27,7 +25,7 @@ include_directories(
 link_directories(
         ${SDL2_LIB}
         ${SDL2_IMAGE_LIB}
-        ${SDL2_TTF_LIB} #moze sie przyda
+        ${SDL2_TTF_LIB}
 )
 
 add_executable(ZCpp_MissionImpossible

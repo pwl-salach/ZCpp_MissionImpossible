@@ -3,3 +3,8 @@
 //
 
 #include "Player.h"
+
+Player::Player() {
+    this->movementSpeed = 5;
+    this->turningSpeed = 5;
+}

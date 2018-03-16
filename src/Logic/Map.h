@@ -24,7 +24,7 @@ public:
 
     const std::vector<Obstacle*> &getObstacles();
 
-    bool checkCollisions(Person *person, uint8_t movement);
+    bool checkCollisions(Person *person);
 private:
     std::vector<Obstacle*> obstacles;
     std::vector<Agent*> *agents;

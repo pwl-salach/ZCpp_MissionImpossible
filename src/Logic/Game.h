@@ -30,7 +30,6 @@ public:
     void loop();
     void update();
     void pause();
-    void resume();
     void quit();
 
     Player &getPlayer();
@@ -48,7 +47,7 @@ private:
     std::vector<Agent*>agents;
     State state;
     std::thread updateLoop;
-
+    uint8_t updatesPerSecond;
 };
 
 

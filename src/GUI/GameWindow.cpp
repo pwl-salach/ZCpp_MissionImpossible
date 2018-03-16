@@ -9,9 +9,10 @@
 GameWindow::GameWindow(Game *pGame):game(pGame) {
     this->resolutionX = this->game->getMap().getSizeX();
     this->resolutionY = this->game->getMap().getSizeY();
-    this->frameRate = 25;
+    this->frameRate = 60;
     this->preparePauseMenuElements();
     this->prepareSprites();
+    this->game->start();
     this->show();
 }
 
@@ -56,12 +57,15 @@ void GameWindow::loop() {
         while (SDL_PollEvent(&event) != 0) {
             switch (event.type) {
                 case SDL_QUIT:
+                    this->game->quit();
                     this->visible = false;
                     break;
                 case SDL_KEYDOWN:
                     handleKeyboardEvent(event);
                     break;
                 default:
+                    this->game->getPlayer().setMovement(Player::Movement::NONE);
+                    this->game->getPlayer().setTurning(Player::Movement::NONE);
                     break;
             }
         }
@@ -78,7 +82,39 @@ void GameWindow::disappear() {
 }
 
 void GameWindow::handleKeyboardEvent(SDL_Event &event) {
+    if (this->game->getState() == Game::State::RUNNING) {
+        auto key = event.key.keysym.sym;
+        if(key == SDLK_UP){
+            this->game->getPlayer().setMovement(Player::Movement::FORWARD);
+        } else if (key == SDLK_DOWN){
+            this->game->getPlayer().setMovement(Player::Movement::BACK);
+        }
 
+        if(key == SDLK_LEFT){
+            this->game->getPlayer().setTurning(Player::Movement::TURN_LEFT);
+        } else if (key == SDLK_RIGHT){
+            this->game->getPlayer().setTurning(Player::Movement::TURN_RIGHT);
+        }
+
+//        switch (event.key.keysym.sym) {
+//            case SDLK_UP:
+//                this->game->getPlayer().setMovement(Player::Movement::FORWARD);
+//                break;
+//            case SDLK_DOWN:
+//                this->game->getPlayer().setMovement(Player::Movement::BACK);
+//                break;
+//            case SDLK_LEFT:
+//                this->game->getPlayer().setTurning(Player::Movement::TURN_LEFT);
+//                break;
+//            case SDLK_RIGHT:
+//                this->game->getPlayer().setTurning(Player::Movement::TURN_RIGHT);
+//                break;
+//            case SDLK_RETURN:
+//                break;
+//            default:
+//                break;
+//        }
+    }
 }
 
 void GameWindow::renderFrame() {

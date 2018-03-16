@@ -30,12 +30,25 @@ public:
     void setPosition(const Point &point);
     void setRotation(uint16_t rot);
 
+    void setMovement(Movement movement);
+
+    void setTurning(Movement turning);
+
 protected:
-    void turn(const Movement &movement);
+    void turn();
     Movement movement;
+    Movement turning;
     uint8_t movementSpeed;
     uint8_t turningSpeed;
     FieldOfView *fov;
+
+    void moveForward();
+
+    void moveBackward();
+
+    void turnLeft();
+
+    void turnRight();
 };
 
 

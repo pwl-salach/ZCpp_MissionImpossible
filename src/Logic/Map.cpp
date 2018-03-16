@@ -61,3 +61,7 @@ const std::vector<Obstacle *> &Map::getObstacles() {
 Map::Map() {
 
 }
+
+bool Map::checkCollisions(Person *person) {
+    return false;
+}
