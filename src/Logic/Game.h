@@ -22,7 +22,8 @@ class Game {
 public:
     enum State{
         RUNNING = 0,
-        PAUSE = 1
+        PAUSE = 1,
+        VICTORY = 3,
     };
 
     explicit Game(Settings *settings);
@@ -42,7 +43,7 @@ public:
 private:
     Player player;
     Settings *settings;
-    Map map;
+    Map map = Map(&player, settings->getMapNumber());
     Headquarters headquarters;
     std::vector<Agent*>agents;
     State state;

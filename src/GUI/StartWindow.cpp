@@ -110,12 +110,12 @@ void StartWindow::loop() {
 }
 
 void StartWindow::renderFrame() {
-    SDL_RenderCopy(this->renderer, this->logoTexture, NULL, &this->logo.getVerticesPositions());
+    SDL_RenderCopy(this->renderer, this->logoTexture, nullptr, &this->logo.getVerticesPositions());
     for (MenuElement *menuElement : *this->visibleElements){
         SDL_Color color = ( menuElement->isSelected() ? SDL_Color{255, 255, 255, 0}: SDL_Color{180, 180, 180, 0});
         SDL_Surface *textSurface = TTF_RenderText_Solid(this->font, menuElement->getText().c_str(), color);
         SDL_Texture *textTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
-        SDL_RenderCopy(this->renderer, textTexture, NULL, &menuElement->getVerticesPositions());
+        SDL_RenderCopy(this->renderer, textTexture, nullptr, &menuElement->getVerticesPositions());
         SDL_DestroyTexture(textTexture);
         SDL_FreeSurface(textSurface);
     }

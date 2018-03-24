@@ -5,15 +5,15 @@
 #include "Sprite.h"
 #include "../Utils/FileManager.h"
 
-Sprite::Sprite(PhysicalObject *pObject, const std::string &fileName) {
+Sprite::Sprite(PhysicalObject *pObject) {
     this->object = pObject;
-    this->surface = FileManager::loadImage(fileName);
+    this->surface = FileManager::loadImage(object->getImageName());
 }
 
 const SDL_Point & Sprite::getCenter(){
-    this->center.x = this->object->getPositionX();
-    this->center.y = this->object->getPositionY();
-    return center;
+    this->center.x = (int)this->object->getPosition().getX();
+    this->center.y = (int)this->object->getPosition().getY();
+    return this->center;
 }
 
 const SDL_Rect & Sprite::getVerticesPositions() {
@@ -26,8 +26,9 @@ double Sprite::getAngle() const {
 }
 
 void Sprite::calculateVerticesPositions() {
-    this->verticesPositions.x = this->object->getPositionX() - this->object->getSizeX()/2;
-    this->verticesPositions.y = this->object->getPositionY() - this->object->getSizeY()/2;
+    this->getCenter();
+    this->verticesPositions.x = this->center.x - this->object->getSizeX()/2;
+    this->verticesPositions.y = this->center.y - this->object->getSizeY()/2;
     this->verticesPositions.w = this->object->getSizeX();
     this->verticesPositions.h = this->object->getSizeY();
 }

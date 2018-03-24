@@ -11,7 +11,7 @@
 
 class Box: public Obstacle{
 public:
-    Box(uint16_t pSizeX, uint16_t pSizeY, uint16_t posX, uint16_t posY, uint16_t rot);
+    Box(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot);
 
 private:
     void move(Point newPosition);

@@ -3,25 +3,23 @@
 //
 
 #include "Person.h"
-#include <math.h>
+#include <cmath>
 
-Person::~Person() {
-    this->movement = Movement::NONE;
-    this->turning = Movement::NONE;
-}
+Person::~Person() = default;
 
 void Person::setRotation(uint16_t rot) {
     this->rotation = rot;
 }
 
 Person::Person() {
+    this->movement = Movement::NONE;
+    this->turning = Movement::NONE;
     this->sizeX = 30;
     this->sizeY = 18;
 }
 
-void Person::setPosition(const Point &point) {
-    this->positionX = point.getX();
-    this->positionY = point.getY();
+void Person::setPosition(const Point &pos) {
+    this->position = pos;
 }
 
 
@@ -30,47 +28,39 @@ void Person::setMovement(Person::Movement movement) {
 }
 
 void Person::move() {
-    if(this->turning == Movement::TURN_LEFT){
-        this->turnLeft();
-    } else if (this->turning == Movement::TURN_RIGHT){
-        this->turnRight();
-    }
-    if(this->movement == Movement::FORWARD){
-        this->moveForward();
-    } else if (this->movement == Movement::BACK){
-        this->moveBackward();
-    }
-}
-
-void Person::moveForward() {
-    auto xStep = this->movementSpeed * sin(this->rotation * M_PI / 180);
-    auto yStep = this->movementSpeed * cos(this->rotation * M_PI / 180);
-    this->positionX += xStep;
-    this->positionY -= yStep;
-}
-
-void Person::moveBackward() {
-
-}
-
-void Person::turnLeft() {
-    uint16_t full  = 360;
-    if (this->rotation > 0){
-        this->rotation -= this->turningSpeed;
-    } else{
-        this->rotation = full - this->turningSpeed;
-    }
-}
-
-void Person::turnRight() {
-    if (this->rotation < 360){
-        this->rotation += this->turningSpeed;
-    } else{
-        this->rotation = this->turningSpeed;
-    }
+    this->rotation = calculateNewRotation();
+    this->position  = calculateNewPosition();
 }
 
 void Person::setTurning(Person::Movement turning) {
     Person::turning = turning;
 }
 
+Point Person::calculateNewPosition() {
+    return this->calculateNewPosition(this->rotation);
+}
+
+Point Person::calculateNewPosition(uint16_t rot) {
+    if (this->movement == Movement::NONE)
+        return this->position;
+    auto speed = (this->movement == Movement::FORWARD) ? this->movementSpeed : this->movementSpeed/2;
+    auto xStep = speed * sin(rot * M_PI / 180);
+    auto yStep = speed * cos(rot * M_PI / 180);
+    if(this->movement == Movement::FORWARD){
+        return {this->position.getX() + xStep, this->position.getY() - yStep};
+    } else if (this->movement == Movement::BACK){
+        return {this->position.getX() - xStep, this->position.getY() + yStep};
+    }
+}
+
+uint16_t Person::calculateNewRotation() {
+    if(this->turning == Movement::NONE){
+        return this->rotation;
+    }
+    uint16_t full  = 360;
+    if(this->turning == Movement::TURN_LEFT){
+        return (this->rotation > 0) ? this->rotation - this->turningSpeed : full - this->turningSpeed;
+    } else {
+        return (this->rotation < 360) ? this->rotation + this->turningSpeed : this->turningSpeed;
+    }
+}

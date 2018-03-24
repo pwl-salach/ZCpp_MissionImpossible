@@ -5,6 +5,7 @@
 #include "Player.h"
 
 Player::Player() {
-    this->movementSpeed = 5;
+    this->movementSpeed = 4;
     this->turningSpeed = 5;
+    this->imageName = "player.png";
 }

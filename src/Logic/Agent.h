@@ -20,7 +20,7 @@ class Headquarters;
  */
 class Agent : public Person {
 public:
-    Agent(uint16_t posX, uint16_t posY, uint16_t rot);
+    Agent(Point pos, uint16_t rot);
     void updatePlayerPosition(Point *newPosition);
     void updateOrders(Point* destination);
 private:

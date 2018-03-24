@@ -13,26 +13,36 @@
 
 class PhysicalObject {
 public:
+    const Point &getPosition() const;
+
+    void setPosition(const Point &position);
+
     virtual ~PhysicalObject() = 0;
 
-    uint16_t getPositionX() const;
-
-    uint16_t getPositionY() const;
+    uint16_t getRotation() const;
 
     uint16_t getSizeX() const;
 
     uint16_t getSizeY() const;
 
-    uint16_t getRotation() const;
+    const std::string &getImageName() const;
 
     std::vector<Point> getVerticesPosition();
 
+    std::vector<Point> getCustomVerticesPosition(Point position, uint16_t rotation);
+
+    uint16_t getDiagonalLength();
+
 protected:
-    uint16_t positionX;
-    uint16_t positionY;
+public:
+    PhysicalObject();
+
+protected:
+    Point position;
     uint16_t sizeX;
     uint16_t sizeY;
     uint16_t rotation;
+    std::string imageName;
 };
 
 

@@ -12,6 +12,8 @@ GameWindow::GameWindow(Game *pGame):game(pGame) {
     this->frameRate = 60;
     this->preparePauseMenuElements();
     this->prepareSprites();
+    SDL_Rect logoPos {this->resolutionX/4, this->resolutionY/8, this->resolutionX/2, this->resolutionY/4};
+    this->logo = ImageElement("logo.png", logoPos);
     this->game->start();
     this->show();
 }
@@ -32,7 +34,13 @@ void GameWindow::preparePauseMenuElements() {
                 new MenuElement(pair.first, pair.second, menuElementsPositions.at(i)));
         i++;
     }
+}
 
+void GameWindow::prepareSprites() {
+    for(Obstacle* object : this->game->getMap().getObstacles()){
+        this->sprites.push_back(new Sprite(object));
+    }
+    this->sprites.push_back(new Sprite(&this->game->getPlayer()));
 }
 
 void GameWindow::show() {
@@ -44,6 +52,7 @@ void GameWindow::show() {
             this->resolutionY,
             SDL_WINDOW_OPENGL);
     this->renderer = SDL_CreateRenderer(this->window, -1, 0);
+    this->logoTexture = SDL_CreateTextureFromSurface(this->renderer, this->logo.getSurface());
     this->visible = true;
     this->loop();
 }
@@ -61,11 +70,9 @@ void GameWindow::loop() {
                     this->visible = false;
                     break;
                 case SDL_KEYDOWN:
+                case SDL_KEYUP:
                     handleKeyboardEvent(event);
-                    break;
                 default:
-                    this->game->getPlayer().setMovement(Player::Movement::NONE);
-                    this->game->getPlayer().setTurning(Player::Movement::NONE);
                     break;
             }
         }
@@ -77,70 +84,45 @@ void GameWindow::loop() {
     }
 }
 
-void GameWindow::disappear() {
-
-}
-
 void GameWindow::handleKeyboardEvent(SDL_Event &event) {
     if (this->game->getState() == Game::State::RUNNING) {
         auto key = event.key.keysym.sym;
-        if(key == SDLK_UP){
-            this->game->getPlayer().setMovement(Player::Movement::FORWARD);
-        } else if (key == SDLK_DOWN){
-            this->game->getPlayer().setMovement(Player::Movement::BACK);
+        if (event.type == SDL_KEYDOWN) {
+            if (key == SDLK_UP) {
+                this->game->getPlayer().setMovement(Player::Movement::FORWARD);
+            } else if (key == SDLK_DOWN) {
+                this->game->getPlayer().setMovement(Player::Movement::BACK);
+            }
+            if (key == SDLK_LEFT) {
+                this->game->getPlayer().setTurning(Player::Movement::TURN_LEFT);
+            } else if (key == SDLK_RIGHT) {
+                this->game->getPlayer().setTurning(Player::Movement::TURN_RIGHT);
+            }
+        } else {
+            if (key == SDLK_UP || key == SDLK_DOWN)
+                this->game->getPlayer().setMovement(Player::Movement::NONE);
+            if (key == SDLK_LEFT || key == SDLK_RIGHT)
+                this->game->getPlayer().setTurning(Player::Movement::NONE);
         }
-
-        if(key == SDLK_LEFT){
-            this->game->getPlayer().setTurning(Player::Movement::TURN_LEFT);
-        } else if (key == SDLK_RIGHT){
-            this->game->getPlayer().setTurning(Player::Movement::TURN_RIGHT);
-        }
-
-//        switch (event.key.keysym.sym) {
-//            case SDLK_UP:
-//                this->game->getPlayer().setMovement(Player::Movement::FORWARD);
-//                break;
-//            case SDLK_DOWN:
-//                this->game->getPlayer().setMovement(Player::Movement::BACK);
-//                break;
-//            case SDLK_LEFT:
-//                this->game->getPlayer().setTurning(Player::Movement::TURN_LEFT);
-//                break;
-//            case SDLK_RIGHT:
-//                this->game->getPlayer().setTurning(Player::Movement::TURN_RIGHT);
-//                break;
-//            case SDLK_RETURN:
-//                break;
-//            default:
-//                break;
-//        }
     }
+}
+
+void GameWindow::chooseOption() {
+
 }
 
 void GameWindow::renderFrame() {
     switch (this->game->getState()){
         case Game::State::RUNNING:
-            SDL_SetRenderDrawColor(this->renderer, 50, 160, 60, 200);
-            for(auto sprite : this->sprites){
-                SDL_Texture* spriteTexture = SDL_CreateTextureFromSurface( renderer, sprite->getSurface());
-                SDL_RenderCopyEx(this->renderer, spriteTexture, NULL, &sprite->getVerticesPositions(), sprite->getAngle(), NULL,
-                                 SDL_FLIP_NONE);
-                SDL_DestroyTexture(spriteTexture);
-            }
+            this->renderGameScreen();
             break;
         case Game::State::PAUSE:
             break;
-    }
-}
-
-void GameWindow::prepareSprites() {
-    this->sprites.push_back(new Sprite(&this->game->getPlayer(), "player.png"));
-    for(auto object : this->game->getMap().getObstacles()){
-        if(dynamic_cast<Box*>(object) != nullptr){
-            this->sprites.push_back(new Sprite(object, "box.png"));
-        } else if (dynamic_cast<Lake*>(object)) {
-            this->sprites.push_back(new Sprite(object, "lake.png"));
-        }
+        case Game::State::VICTORY:
+            this->displayVictoryScreen();
+            break;
+        default:
+            throw "Unknown game state!";
     }
 }
 
@@ -148,6 +130,22 @@ void GameWindow::displayPauseManu() {
 
 }
 
-void GameWindow::chooseOption() {
+void GameWindow::renderGameScreen() {
+    SDL_SetRenderDrawColor(this->renderer, 50, 160, 60, 200);
+    for(auto sprite : this->sprites) {
+        SDL_Texture *spriteTexture = SDL_CreateTextureFromSurface(renderer, sprite->getSurface());
+        SDL_RenderCopyEx(this->renderer, spriteTexture, nullptr, &sprite->getVerticesPositions(), sprite->getAngle(),
+                         nullptr,
+                         SDL_FLIP_NONE);
+        SDL_DestroyTexture(spriteTexture);
+    }
+}
+
+void GameWindow::displayVictoryScreen() {
+    this->renderGameScreen();
+    SDL_RenderCopy(this->renderer, this->logoTexture, nullptr, &this->logo.getVerticesPositions());
+}
+
+void GameWindow::disappear() {
 
 }

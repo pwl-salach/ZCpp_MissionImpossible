@@ -68,8 +68,6 @@ private:
         return dynamic_cast<SettingElement<T>*>(element);
     }
 
-    SDL_Texture *logoTexture;
-    ImageElement logo;
     Settings *settings;
     std::vector<MenuElement*> mainMenuElements;
     std::vector<MenuElement*> settingsMenuElements;

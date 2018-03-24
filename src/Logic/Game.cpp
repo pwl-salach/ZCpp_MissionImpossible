@@ -21,7 +21,6 @@ void Game::pause() {
 
 Game::Game(Settings *settings) : settings(settings){
     this->updatesPerSecond = 30;
-    this->map = Map(&player, settings->getMapNumber());
 }
 
 Player &Game::getPlayer() {
@@ -60,7 +59,9 @@ void Game::loop() {
 void Game::update() {
     if(!this->map.checkCollisions(&player)) {
         this->player.move();
+        bool victory = this->map.checkVictoryCondition();
+        if(victory){
+            this->state = State::VICTORY;
+        }
     }
 }
-
-

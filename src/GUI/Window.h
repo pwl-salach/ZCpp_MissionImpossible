@@ -6,6 +6,7 @@
 #define ZCPP_MISSIONIMPOSSIBLE_WINDOW_H
 
 #include "SDL2/SDL.h"
+#include "ImageElement.h"
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <map>
@@ -26,6 +27,8 @@ protected:
                                                            uint16_t marginBottom);
     uint16_t getElementWidth(std::string text, uint16_t elementHeight);
 
+    SDL_Texture *logoTexture;
+    ImageElement logo;
     SDL_Window *window;
     SDL_Renderer *renderer;
     bool visible;

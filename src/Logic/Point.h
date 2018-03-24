@@ -10,15 +10,20 @@
 
 class Point {
 public:
-    Point(uint16_t x, uint16_t y);
-
-    uint16_t getX() const;
-
-    uint16_t getY() const;
+    Point();
+    Point(double x, double y);
+    bool operator==(Point const &other);
+    bool sameXCoordinate(Point const &other);
+    bool sameYCoordinate(Point const &other);
+    double getX() const;
+    double getY() const;
+    bool closeTo(Point const &other, double threshold) const;
+    bool isSet() const;
 
 private:
-    uint16_t x;
-    uint16_t y;
+    double x;
+    double y;
+    bool set;
 };
 
 

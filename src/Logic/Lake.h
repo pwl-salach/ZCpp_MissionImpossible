@@ -10,7 +10,7 @@
 
 class Lake : public Obstacle {
 public:
-    Lake(uint16_t pSizeX, uint16_t pSizeY, uint16_t posX, uint16_t posY, uint16_t rot);
+    Lake(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot);
 
 private:
     float resistMovement(Player *player) override;

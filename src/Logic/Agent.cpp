@@ -4,8 +4,7 @@
 
 #include "Agent.h"
 
-Agent::Agent(uint16_t posX, uint16_t posY, uint16_t rot) {
-    this->positionX = posX;
-    this->positionY = posY;
+Agent::Agent(Point pos, uint16_t rot) {
+    this->position = pos;
     this->rotation = rot;
 }

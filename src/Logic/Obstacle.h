@@ -17,6 +17,10 @@ public:
         BOTH = 3
     };
 protected:
+public:
+    Obstacle();
+
+protected:
     Blocking blocks;
     virtual float resistMovement(Player *player) = 0;
 };

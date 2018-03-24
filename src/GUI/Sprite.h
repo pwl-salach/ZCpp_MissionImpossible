@@ -12,7 +12,7 @@
 
 class Sprite : public ImageElement{
 public:
-    Sprite(PhysicalObject *pObject, const std::string &fileName);
+    Sprite(PhysicalObject *pObject);
 
     const SDL_Point & getCenter() override;
 

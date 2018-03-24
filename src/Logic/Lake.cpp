@@ -5,12 +5,12 @@
 #include "Lake.h"
 #include "Player.h"
 
-Lake::Lake(uint16_t pSizeX, uint16_t pSizeY, uint16_t posX, uint16_t posY, uint16_t rot){
+Lake::Lake(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot) {
+    this->position = pos;
     this->sizeX = pSizeX;
     this->sizeY = pSizeY;
-    this->positionX =posX;
-    this->positionY = posY;
     this->rotation = rot;
+    this->imageName = "lake.png";
 }
 
 float Lake::resistMovement(Player *player) {

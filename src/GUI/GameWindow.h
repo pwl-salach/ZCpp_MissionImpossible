@@ -44,6 +44,9 @@ private:
     std::vector<Sprite*> sprites;
     uint8_t selectedElementIndex;
 
+    void renderGameScreen();
+
+    void displayVictoryScreen();
 };
 
 

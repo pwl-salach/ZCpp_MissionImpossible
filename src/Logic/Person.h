@@ -24,10 +24,14 @@ public:
         TURN_RIGHT = 4
     };
     Person();
-    virtual ~Person()=0;
+
+    ~Person() override;
     void move();
-    Point calculateNewPosition(const Movement &movement);
-    void setPosition(const Point &point);
+    Point calculateNewPosition(uint16_t rot);
+    uint16_t calculateNewRotation();
+
+    void setPosition(const Point &pos);
+
     void setRotation(uint16_t rot);
 
     void setMovement(Movement movement);
@@ -35,20 +39,13 @@ public:
     void setTurning(Movement turning);
 
 protected:
-    void turn();
     Movement movement;
     Movement turning;
     uint8_t movementSpeed;
     uint8_t turningSpeed;
     FieldOfView *fov;
 
-    void moveForward();
-
-    void moveBackward();
-
-    void turnLeft();
-
-    void turnRight();
+    Point calculateNewPosition();
 };
 
 
