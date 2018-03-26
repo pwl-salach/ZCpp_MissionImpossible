@@ -12,6 +12,7 @@
 #include <stack>
 #include "Person.h"
 #include "Point.h"
+#include "Scanner.h"
 
 class Headquarters;
 
@@ -20,17 +21,26 @@ class Headquarters;
  */
 class Agent : public Person {
 public:
-    Agent(Point pos, uint16_t rot);
-    void updatePlayerPosition(Point *newPosition);
-    void updateOrders(Point* destination);
+    Agent(uint16_t rangeOfView, uint8_t angleOfView);
+    void updatePlayerPosition(const Point &newPosition);
+    void updateOrders(const Point &destination);
+    void addDestination(const Point &point);
+    void update();
+    bool emptyPathStack();
+
+    void setHeadquarters(Headquarters *headquarters);
+
+    void lookAround(const Map *map);
+
 private:
     void goToNextDestination();
     void findOtherWay();
-
-    std::stack<Point*> pathStack;
+    Scanner scanner;
+    std::stack<Point> pathStack;
     Headquarters *headquarters;
-    Point *playerPosition;
+    Point playerPosition;
 
+    void reportPlayerPosition(Point &position);
 };
 
 

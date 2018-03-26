@@ -8,7 +8,6 @@
 
 #include <cstdint>
 #include "PhysicalObject.h"
-#include "FieldOfView.h"
 #include "Point.h"
 
 /*!
@@ -30,7 +29,7 @@ public:
     Point calculateNewPosition(uint16_t rot);
     uint16_t calculateNewRotation();
 
-    void setPosition(const Point &pos);
+    void setInitialPosition(const Point &pos);
 
     void setRotation(uint16_t rot);
 
@@ -43,8 +42,6 @@ protected:
     Movement turning;
     uint8_t movementSpeed;
     uint8_t turningSpeed;
-    FieldOfView *fov;
-
     Point calculateNewPosition();
 };
 

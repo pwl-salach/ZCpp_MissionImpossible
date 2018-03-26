@@ -53,13 +53,13 @@ private:
     void cancelChanges();
 
     template <typename T> T getSettingValueAndApproveIt(uint8_t settingElementID){
-        int index = 0;
-        for(auto element : this->settingsMenuElements){
+        uint8_t index = 0;
+        for(auto element : settingsMenuElements){
             if (element->getId() == settingElementID)
                 break;
             index++;
         }
-        SettingElement<T> *element = this->castMenuElementToSetting<T>(this->settingsMenuElements.at(index));
+        SettingElement<T> *element = castMenuElementToSetting<T>(settingsMenuElements.at(index));
         element->saveChanges();
         return element->getSetting();
     }

@@ -13,17 +13,24 @@
 
 #include "Point.h"
 #include "Agent.h"
+#include "Map.h"
 
 class Headquarters {
 public:
+    Headquarters(std::vector<Agent *> *agents, Map *map);
+
     void broadcastPlayerPosition();
     void planSearching();
     void sendOrder(Point locationToCheck, Agent *agent);
 
     std::vector<Agent*>* getAgents() const;
 
+    void acceptThePositionReport(Point &position);
+
 private:
     std::vector<Agent*> *agents;
+    Point playerPosition;
+    Map* map;
 };
 
 

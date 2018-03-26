@@ -6,35 +6,35 @@
 #include "Point.h"
 
 Point::Point(double x, double y) : x(x), y(y) {
-    this->set = true;
+    set = true;
 }
 
 double Point::getX() const {
-    if(!this->isSet())
+    if(!isSet())
         throw "This point is not properly initiated!";
     return x;
 }
 
 double Point::getY() const {
-    if(!this->isSet())
+    if(!isSet())
         throw "This point is not properly initiated!";
     return y;
 }
 
-bool Point::operator==(Point const &other) {
-    return fabs(this->getX()-other.getX()) < this->getX()*0.001 && fabs(this->getY()-other.getY()) < this->getY()*0.001;
+bool Point::operator==(const Point &other) const {
+    return sameXCoordinate(other) && sameYCoordinate(other);
 }
 
-bool Point::sameXCoordinate(Point const &other) {
-    return fabs(this->getX() - other.getX()) < this->getX() * 0.001;
+bool Point::sameXCoordinate(const Point &other) const {
+    return fabs(getX() - other.getX()) < fabs(getX()) * 0.001 || getX() == other.getX();
 }
 
-bool Point::sameYCoordinate(Point const &other) {
-    return fabs(this->getY() - other.getY()) < this->getY() * 0.001;
+bool Point::sameYCoordinate(const Point &other) const{
+    return fabs(getY() - other.getY()) < fabs(getY()) * 0.001 || getY() == other.getY();
 }
 
 Point::Point() {
-    this->set = false;
+    set = false;
 }
 
 bool Point::isSet() const {
@@ -42,5 +42,5 @@ bool Point::isSet() const {
 }
 
 bool Point::closeTo(Point const &other, double threshold) const{
-    return fabs(this->getX() - other.getX()) < threshold && fabs(this->getY() - other.getY()) < threshold;
+    return fabs(getX() - other.getX()) < threshold && fabs(getY() - other.getY()) < threshold;
 }

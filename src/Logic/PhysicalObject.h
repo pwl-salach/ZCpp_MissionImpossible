@@ -15,7 +15,7 @@ class PhysicalObject {
 public:
     const Point &getPosition() const;
 
-    void setPosition(const Point &position);
+    void setInitialPosition(const Point &position);
 
     virtual ~PhysicalObject() = 0;
 

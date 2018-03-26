@@ -9,9 +9,9 @@ float Fence::resistMovement(Player *player) {
 }
 
 Fence::Fence(Point pos, uint16_t pSizeX, uint16_t rot) {
-    this->position = pos;
-    this->sizeX = pSizeX;
-    this->rotation = rot;
-    this->sizeY = 10;
-    this->imageName = "fence.png";
+    position = pos;
+    sizeX = pSizeX;
+    rotation = rot;
+    sizeY = 10;
+    imageName = "fence.png";
 }

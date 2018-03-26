@@ -8,18 +8,18 @@
 Person::~Person() = default;
 
 void Person::setRotation(uint16_t rot) {
-    this->rotation = rot;
+    rotation = rot;
 }
 
 Person::Person() {
-    this->movement = Movement::NONE;
-    this->turning = Movement::NONE;
-    this->sizeX = 30;
-    this->sizeY = 18;
+    movement = Movement::NONE;
+    turning = Movement::NONE;
+    sizeX = 30;
+    sizeY = 18;
 }
 
-void Person::setPosition(const Point &pos) {
-    this->position = pos;
+void Person::setInitialPosition(const Point &pos) {
+    position = pos;
 }
 
 
@@ -28,8 +28,8 @@ void Person::setMovement(Person::Movement movement) {
 }
 
 void Person::move() {
-    this->rotation = calculateNewRotation();
-    this->position  = calculateNewPosition();
+    rotation = calculateNewRotation();
+    position  = calculateNewPosition();
 }
 
 void Person::setTurning(Person::Movement turning) {
@@ -37,30 +37,30 @@ void Person::setTurning(Person::Movement turning) {
 }
 
 Point Person::calculateNewPosition() {
-    return this->calculateNewPosition(this->rotation);
+    return calculateNewPosition(rotation);
 }
 
 Point Person::calculateNewPosition(uint16_t rot) {
-    if (this->movement == Movement::NONE)
-        return this->position;
-    auto speed = (this->movement == Movement::FORWARD) ? this->movementSpeed : this->movementSpeed/2;
+    if (movement == Movement::NONE)
+        return position;
+    auto speed = (movement == Movement::FORWARD) ? movementSpeed : movementSpeed/2;
     auto xStep = speed * sin(rot * M_PI / 180);
     auto yStep = speed * cos(rot * M_PI / 180);
-    if(this->movement == Movement::FORWARD){
-        return {this->position.getX() + xStep, this->position.getY() - yStep};
-    } else if (this->movement == Movement::BACK){
-        return {this->position.getX() - xStep, this->position.getY() + yStep};
+    if(movement == Movement::FORWARD){
+        return {position.getX() + xStep, position.getY() - yStep};
+    } else if (movement == Movement::BACK){
+        return {position.getX() - xStep, position.getY() + yStep};
     }
 }
 
 uint16_t Person::calculateNewRotation() {
-    if(this->turning == Movement::NONE){
-        return this->rotation;
+    if(turning == Movement::NONE){
+        return rotation;
     }
     uint16_t full  = 360;
-    if(this->turning == Movement::TURN_LEFT){
-        return (this->rotation > 0) ? this->rotation - this->turningSpeed : full - this->turningSpeed;
+    if(turning == Movement::TURN_LEFT){
+        return (rotation > 0) ? rotation - turningSpeed : full - turningSpeed;
     } else {
-        return (this->rotation < 360) ? this->rotation + this->turningSpeed : this->turningSpeed;
+        return (rotation < 360) ? rotation + turningSpeed : turningSpeed;
     }
 }

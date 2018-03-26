@@ -9,100 +9,116 @@
 #include "Lake.h"
 #include "Box.h"
 #include "Fence.h"
+#include "Line.h"
 
-Map::Map(){
-};
 
-Map::Map(Player *pPlayer, uint8_t mapFileId) {
-    this->player = pPlayer;
+Map::Map(Player *player, std::vector<Agent *> *agents, uint8_t mapFileID) : player(player), agents(agents){
     std::string fileName = "map_";
-    fileName += std::to_string(mapFileId) + ".txt";
+    fileName += std::to_string(mapFileID) + ".txt";
     std::string mapConfig = FileManager::readTextFile(fileName);
     std::vector<std::string> configMainParts = Dictionary::splitString(mapConfig, '\n');
     for (auto line : configMainParts){
         if (Dictionary::stringStartsWith(line, "size:")){
             Dictionary::cutString(line, "size:");
-            this->loadSizeFromFileContent(line);
+            loadSizeFromFileContent(line);
         }else if (Dictionary::stringStartsWith(line, "box:")){
             Dictionary::cutString(line, "box:");
-            this->loadObstaclesFromFileContent<Box>(line);
+            loadObstaclesFromFileContent<Box>(line);
         }else if (Dictionary::stringStartsWith(line, "lake:")){
             Dictionary::cutString(line, "lake:");
-            this->loadObstaclesFromFileContent<Lake>(line);
+            loadObstaclesFromFileContent<Lake>(line);
         }else if (Dictionary::stringStartsWith(line, "player:")){
             Dictionary::cutString(line, "player:");
-            this->loadPlayerStartingPosition(line);
-        }else if (Dictionary::stringStartsWith(line, "finish:")){
+            loadPlayerStartingPosition(line);
+        }else if (Dictionary::stringStartsWith(line, "agent:")){
+            Dictionary::cutString(line, "agent:");
+            loadAgentsPositions(line);
+        }else if (Dictionary::stringStartsWith(line, "finish:")) {
             Dictionary::cutString(line, "finish:");
-            this->loadFinishPoint(line);
+            loadFinishPoint(line);
         }
     }
-    if(!this->finishPoint.isSet()){
+    if(!finishPoint.isSet()){
         throw "No finish point. This game would be pointless!";
     }
-    this->createFence();
+    createFence();
 }
 
 void Map::loadSizeFromFileContent(const std::string &configString) {
     std::vector<std::string> mapSize = Dictionary::splitString(configString, 'x');
-    this->sizeX = uint16_t(std::atoi(mapSize.at(0).c_str()));
-    this->sizeY = uint16_t(std::atoi(mapSize.at(1).c_str()));
+    sizeX = uint16_t(std::atoi(mapSize.at(0).c_str()));
+    sizeY = uint16_t(std::atoi(mapSize.at(1).c_str()));
 }
 
 void Map::loadPlayerStartingPosition(const std::string &configString) {
     std::vector<std::string> params = Dictionary::splitString(configString, ',');
-    auto x = uint16_t(std::atoi(params.at(0).c_str()));
-    auto y = uint16_t(std::atoi(params.at(1).c_str()));
+    auto x = std::atoi(params.at(0).c_str());
+    auto y = std::atoi(params.at(1).c_str());
     auto r = uint16_t(std::atoi(params.at(2).c_str()));
-    this->player->setPosition(Point(x,y));
-    this->player->setRotation(r);
+    checkInitPosition(x, y);
+    player->setInitialPosition(Point(x, y));
+    player->setRotation(r);
+}
+
+void Map::loadAgentsPositions(const std::string &configString) {
+    std::vector<std::string> parts = Dictionary::splitString(configString, ';');
+    if(agents->size() > parts.size()){
+        throw "Not enough agents initial positions in the config file!";
+    }
+    uint8_t index = 0;
+    for(auto agent : *agents){
+        auto info = parts.at(index);
+        std::vector<std::string> params = Dictionary::splitString(info, ',');
+        auto x = std::atoi(params.at(0).c_str());
+        auto y = std::atoi(params.at(1).c_str());
+        auto r = uint16_t(std::atoi(params.at(2).c_str()));
+        checkInitPosition(x, y);
+        r = recalculateRotation(r);
+        agent->setInitialPosition(Point(x,y));
+        agent->setRotation(r);
+        index++;
+    }
 }
 
 void Map::loadFinishPoint(const std::string &configString) {
     std::vector<std::string> params = Dictionary::splitString(configString, ',');
-    auto x = uint16_t(std::atoi(params.at(0).c_str()));
-    auto y = uint16_t(std::atoi(params.at(1).c_str()));
+    auto x = std::atoi(params.at(0).c_str());
+    auto y = std::atoi(params.at(1).c_str());
     auto radius = uint8_t(std::atoi(params.at(2).c_str()));
-    if(radius < this->player->getSizeX() * 1.5 && radius < this->player->getSizeY() * 1.5){
+    if(radius < player->getSizeX() * 1.5 && radius < player->getSizeY() * 1.5){
         throw "Finish Point radius less then 0";
     }
-    this->finishPointRadius = radius;
-    if(x < 0 && this->sizeX < x){
-        throw "Finish Point X-coordinate out of range!";
-    }
-    if(y < 0 && this->sizeY < y){
-        throw "Finish Point Y-coordinate out of range!";
-    }
-    if (x != 0 && y != 0 && x != this->sizeX && y != this->sizeY){
+    finishPointRadius = radius;
+    checkInitPosition(x, y);
+    if (x != 0 && y != 0 && x != sizeX && y != sizeY){
         throw "Finish point has to be on the border of the map!";
     }
-    this->finishPoint = Point(x,y);
+    finishPoint = Point(x,y);
 }
 
 void Map::createFence() {
-    Fence* topFence = new Fence(Point(this->sizeX/2, 0), this->sizeX, 0);
-    Fence* rightFence = new Fence(Point(this->sizeX, this->sizeY/2), this->sizeY, 90);
-    Fence* bottomFence = new Fence(Point(this->sizeX/2, this->sizeY), this->sizeX, 0);
-    Fence* leftFence = new Fence(Point(0, this->sizeY/2), this->sizeY, 90);
-    if (this->finishPoint.getY() == 0 || this->finishPoint.getY() == this->sizeY) {
-        if (this->finishPoint.getX() > this->finishPointRadius
-            && this->sizeX - this->finishPoint.getX() > this->finishPointRadius) {
+    Fence* topFence = new Fence(Point(sizeX/2, 0), sizeX, 0);
+    Fence* rightFence = new Fence(Point(sizeX, sizeY/2), sizeY, 90);
+    Fence* bottomFence = new Fence(Point(sizeX/2, sizeY), sizeX, 0);
+    Fence* leftFence = new Fence(Point(0, sizeY/2), sizeY, 90);
+    if (finishPoint.getY() == 0 || finishPoint.getY() == sizeY) {
+        if (finishPoint.getX() > finishPointRadius
+            && sizeX - finishPoint.getX() > finishPointRadius) {
 
-            double tempFenceSizeX = this->finishPoint.getX() - this->finishPointRadius;
-            Fence*& temp = (this->finishPoint.getY() == 0) ? topFence : bottomFence;
+            double tempFenceSizeX = finishPoint.getX() - finishPointRadius;
+            Fence*& temp = (finishPoint.getY() == 0) ? topFence : bottomFence;
             delete temp;
-            temp = new Fence(Point(tempFenceSizeX / 2, this->finishPoint.getY()), static_cast<uint16_t>(tempFenceSizeX), 0);
-
-            tempFenceSizeX = this->sizeX - this->finishPoint.getX() + this->finishPointRadius;
-            Fence* tempFence = new Fence(Point(this->finishPoint.getX() + this->finishPointRadius + tempFenceSizeX/2,
-                                               this->finishPoint.getY()), static_cast<uint16_t>(tempFenceSizeX), 0);
-            this->obstacles.push_back(tempFence);
+            temp = new Fence(Point(tempFenceSizeX / 2, finishPoint.getY()), static_cast<uint16_t>(tempFenceSizeX), 0);
+            tempFenceSizeX = sizeX - finishPoint.getX() + finishPointRadius;
+            auto centralPoint = Point(finishPoint.getX() + finishPointRadius + tempFenceSizeX/2, finishPoint.getY());
+            auto tempFence = new Fence(centralPoint, static_cast<uint16_t>(tempFenceSizeX), 0);
+            obstacles.push_back(tempFence);
         }
     }
-    this->obstacles.push_back(topFence);
-    this->obstacles.push_back(rightFence);
-    this->obstacles.push_back(bottomFence);
-    this->obstacles.push_back(leftFence);
+    obstacles.push_back(topFence);
+    obstacles.push_back(rightFence);
+    obstacles.push_back(bottomFence);
+    obstacles.push_back(leftFence);
 }
 
 uint16_t Map::getSizeX() const {
@@ -125,12 +141,11 @@ bool Map::checkCollisions(Person *person) {
         return false;
     }
     std::vector<Point>newPersonVertices = person->getCustomVerticesPosition(newPos, newRot);
-    std::vector<Point>personVertices = person->getVerticesPosition(); // TODO: only for debug purpose
-    for(auto obstacle : this->obstacles){
-        if(this->areClose(person, obstacle)){
+    for(auto obstacle : obstacles){
+        if(areClose(person, obstacle)){
             collision = overlappingRectangles(obstacle->getVerticesPosition(), newPersonVertices);
             if (collision)
-                return collision;
+                break;
         }
     }
     return collision;
@@ -143,7 +158,22 @@ bool Map::areClose(PhysicalObject *firstObject, PhysicalObject *secondObject) {
     return xDistance <= minDistance && yDistance <= minDistance;
 }
 
-bool Map::isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) {
+bool Map::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
+    auto overlaps = [](Map* object, const std::vector<Point> &some, const std::vector<Point> &other)->bool{
+        for(const auto &vertex : some){
+            bool overlapping = object->isPointInsideRectangle(other, vertex);
+            if (overlapping){
+                return true;
+            }
+        }
+        return false;
+    };
+    bool firstOverlappingSecond = overlaps(this, firstRectVer, secondRectVer);
+    bool secondOverlappingFirst = overlaps(this, secondRectVer, firstRectVer);
+    return firstOverlappingSecond || secondOverlappingFirst;
+}
+
+bool Map::isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const{
     int counter = 0;
     double xMin = rectVertices.at(0).getX();
     double yMin = rectVertices.at(0).getY();
@@ -163,7 +193,8 @@ bool Map::isPointInsideRectangle(const std::vector<Point> &rectVertices, const P
         if (currPoint.sameXCoordinate(nextPoint)){
             continue;
         }
-        auto calcY = (point.getX()-currPoint.getX())*(currPoint.getY() - nextPoint.getY())/(currPoint.getX() - nextPoint.getX()) + currPoint.getY();
+        Line line = Line(currPoint, nextPoint);
+        auto calcY = line.calculate(point.getX());
         if(calcY > point.getY()){
             counter++;
         } else if(calcY < point.getY()){
@@ -178,39 +209,49 @@ bool Map::isPointInsideRectangle(const std::vector<Point> &rectVertices, const P
         return false;
 }
 
-bool
-Map::overlappingRectangles(const std::vector<Point> &firstRectVertices, const std::vector<Point> &secondRectVertices) {
-    bool overlapping;
-    for(const auto &vertex : firstRectVertices){
-        overlapping = this->isPointInsideRectangle(secondRectVertices, vertex);
-        if (overlapping){
-            return true;
-        }
-    }
-    for(const auto &vertex : secondRectVertices){
-        overlapping = this->isPointInsideRectangle(firstRectVertices, vertex);
-        if (overlapping){
-            return true;
-        }
-    }
-    return false;
-}
-
 Map::~Map() {
-    for(auto it: this->obstacles){
-        delete it;
-     }
-    this->obstacles.clear();
+    for(auto it: obstacles){
+       delete it;
+    }
+    obstacles.clear();
 }
 
 bool Map::checkVictoryCondition() {
-    bool playerOutside = this->objectOutsideBoundaries(this->player);
-    bool closeToExitPoint = this->player->getPosition().closeTo(this->finishPoint, this->finishPointRadius);
+    bool playerOutside = objectOutsideBoundaries(player);
+    bool closeToExitPoint = player->getPosition().closeTo(finishPoint, finishPointRadius);
     return  playerOutside && closeToExitPoint;
 }
 
 bool Map::objectOutsideBoundaries(PhysicalObject *object) {
     auto x = object->getPosition().getX();
     auto y = object->getPosition().getY();
-    return 0 > x || x > this->sizeX || 0 > y || y > this->sizeY;
+    return 0 > x || x > sizeX || 0 > y || y > sizeY;
 }
+
+void Map::checkInitPosition(const double x, const double y) const{
+    if(x < 0 && sizeX < x){
+        throw "Finish Point X-coordinate out of range!";
+    }
+    if(y < 0 && sizeY < y){
+        throw "Finish Point Y-coordinate out of range!";
+    }
+}
+
+uint16_t Map::recalculateRotation(uint16_t r) {
+    int period = 0;
+    if(abs(r) > 360){
+        period = (r/360)*360;
+        period = (r >=0 ) ? period : -period;
+    }
+    r = (uint16_t)(r - period);
+    return r;
+}
+
+bool Map::isPointThePlayerPosition(const Point &point) const{
+    if(point.closeTo(player->getPosition(), 30)) {
+        std::vector<Point> playerVertices = player->getVerticesPosition();
+        return isPointInsideRectangle(playerVertices, point);
+    }
+    return false;
+}
+

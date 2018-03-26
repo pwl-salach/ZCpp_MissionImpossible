@@ -12,13 +12,13 @@ class Point {
 public:
     Point();
     Point(double x, double y);
-    bool operator==(Point const &other);
-    bool sameXCoordinate(Point const &other);
-    bool sameYCoordinate(Point const &other);
+    bool operator==(const Point &other) const;
     double getX() const;
     double getY() const;
-    bool closeTo(Point const &other, double threshold) const;
     bool isSet() const;
+    bool sameXCoordinate(const Point &other) const;
+    bool sameYCoordinate(const Point &other) const;
+    bool closeTo(Point const &other, double threshold) const;
 
 private:
     double x;

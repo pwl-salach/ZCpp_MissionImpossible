@@ -16,7 +16,7 @@ void Window::initSDL() {
 
 void Window::enforceFrameRate(Uint32 frameBeginning, Uint32 frameActionsEnd) {
     Uint32 actualFrameDuration = frameBeginning - frameActionsEnd;
-    Uint32 frameDuration = Uint32(1000/this->frameRate);
+    Uint32 frameDuration = Uint32(1000/frameRate);
 
     if ( frameDuration > actualFrameDuration ){
         SDL_Delay( frameDuration - actualFrameDuration );
@@ -29,14 +29,14 @@ std::vector<SDL_Rect> Window::calculateMenuElementsCoordinates(std::map<uint8_t,
     uint8_t elementsCount = uint8_t(elementsBasicData.size());
     std::vector<SDL_Rect> ret;
     uint8_t elementSpaceProportions = 2;
-    uint16_t space = this->resolutionY - martinTop - marginBottom;
+    uint16_t space = resolutionY - martinTop - marginBottom;
     uint16_t elementsHeight = uint16_t(space/(elementsCount + (elementsCount - 1)/elementSpaceProportions));
     uint16_t verticalSpace = elementsHeight / elementSpaceProportions;
     uint16_t tempElementYCoord = martinTop;
     for (auto const &pair : elementsBasicData) {
         std::string text = pair.second;
-        uint16_t elementsWidth = this->getElementWidth(text, elementsHeight);
-        uint16_t elementsXCoord = uint16_t((this->resolutionX - elementsWidth) / 2);
+        uint16_t elementsWidth = getElementWidth(text, elementsHeight);
+        uint16_t elementsXCoord = uint16_t((resolutionX - elementsWidth) / 2);
         SDL_Rect tempRect = {elementsXCoord, tempElementYCoord, elementsWidth, elementsHeight};
         tempElementYCoord += elementsHeight + verticalSpace;
         ret.push_back(tempRect);

@@ -13,18 +13,18 @@ template <typename T> class SettingElement: public MenuElement{
 public:
     SettingElement(uint8_t id, const std::string &text, const SDL_Rect &verticesPosition, T setting)
             :MenuElement(id, text, verticesPosition), setting(setting) {
-        this->backedUpValue = this->setting;
+        backedUpValue = setting;
     }
 
     const std::string getText() const override {
-        return this->text + ": " + this->getSettingText();
+        return text + ": " + getSettingText();
     }
 
     const std::string getSettingText() const{
         if (std::is_same<T, bool>::value){
-            return this->setting ? Dictionary::YES : Dictionary::NO;
+            return setting ? Dictionary::YES : Dictionary::NO;
         }
-        return std::to_string(this->setting);
+        return std::to_string(setting);
     }
 
     T getSetting() const {
@@ -33,7 +33,7 @@ public:
 
     void increaseSettingValue(T limit){
         if (std::is_same<T, bool>::value){
-            this->setting = true;
+            setting = true;
             return;
         }
         if (setting < limit){
@@ -43,7 +43,7 @@ public:
 
     void decreaseSettingValue(T limit){
         if (std::is_same<T, bool>::value){
-            this->setting = false;
+            setting = false;
             return;
         }
         if (setting > limit){
@@ -52,11 +52,11 @@ public:
     }
 
     void saveChanges(){
-        this->backedUpValue = this->setting;
+        backedUpValue = setting;
     }
 
     void resetValue(){
-        this->setting = this->backedUpValue;
+        setting = backedUpValue;
     }
 
 private:

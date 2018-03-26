@@ -4,23 +4,33 @@
 
 #include "Game.h"
 
+#include <utility>
+
 
 void Game::start() {
-    this->state = State::RUNNING;
-    this->updateLoop = std::thread(&Game::loop, this);
+    state = State::RUNNING;
+    updateLoop = std::thread(&Game::loop, this);
+    headquarters.planSearching();
 }
 
 void Game::quit() {
-    this->pause();
+    pause();
+    for(auto agent : agents){
+        delete agent;
+    }
+    agents.clear();
 }
 
 void Game::pause() {
-    this->state = State::PAUSE;
+    state = State::PAUSE;
     updateLoop.join();
 }
 
-Game::Game(Settings *settings) : settings(settings){
-    this->updatesPerSecond = 30;
+Game::Game(Settings *pSettings, std::vector<Agent *> pAgents) : settings(pSettings),
+                                                                agents(std::move(pAgents)),
+                                                                headquarters(Headquarters(&agents, &map)),
+                                                                map(Map(&player, &agents, settings->getMapNumber())){
+    updatesPerSecond = 30;
 }
 
 Player &Game::getPlayer() {
@@ -44,24 +54,29 @@ Game::State Game::getState() const {
 }
 
 void Game::loop() {
-    while(this->state == State::RUNNING) {
+    while(state == State::RUNNING) {
         auto begin = std::chrono::high_resolution_clock::now();
-        this->update();
+        update();
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-        auto stepDuration = std::chrono::milliseconds(1000/this->updatesPerSecond);
+        auto stepDuration = std::chrono::milliseconds(1000/updatesPerSecond);
         std::this_thread::sleep_for(stepDuration - duration);
-        //std::chrono::duration<std::chrono::nanoseconds> ddd = end - begin;
-        //std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << "ns";
     }
 }
 
 void Game::update() {
-    if(!this->map.checkCollisions(&player)) {
-        this->player.move();
-        bool victory = this->map.checkVictoryCondition();
+    if(!map.checkCollisions(&player)) {
+        player.move();
+        bool victory = map.checkVictoryCondition();
         if(victory){
-            this->state = State::VICTORY;
+            state = State::VICTORY;
         }
+    }
+    for(auto agent : agents){
+        agent->lookAround(&map);
+        agent->update();
+        //if(!map.checkCollisions(agent)){
+            agent->move();
+        //}
     }
 }

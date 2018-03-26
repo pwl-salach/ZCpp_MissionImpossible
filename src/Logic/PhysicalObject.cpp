@@ -10,7 +10,7 @@ uint16_t PhysicalObject::getRotation() const {
 }
 
 std::vector<Point>  PhysicalObject::getVerticesPosition() {
-    return this->getCustomVerticesPosition(this->position, this->rotation);
+    return getCustomVerticesPosition(position, rotation);
 }
 
 PhysicalObject::~PhysicalObject() = default;
@@ -20,15 +20,15 @@ const std::string &PhysicalObject::getImageName() const {
 }
 
 uint16_t PhysicalObject::getDiagonalLength() {
-    return static_cast<uint16_t>(sqrt(this->sizeX * this->sizeX + this->sizeY * this->sizeY));
+    return static_cast<uint16_t>(sqrt(sizeX * sizeX + sizeY * sizeY));
 }
 
 std::vector<Point> PhysicalObject::getCustomVerticesPosition(Point position, uint16_t rotation) {
     std::vector<Point> vertices = {
-            Point( - this->sizeX/2,  - this->sizeY/2),
-            Point(  this->sizeX/2,  - this->sizeY/2),
-            Point(  this->sizeX/2,   this->sizeY/2),
-            Point( - this->sizeX/2,   this->sizeY/2)
+            Point( - sizeX/2,  - sizeY/2),
+            Point(  sizeX/2,  - sizeY/2),
+            Point(  sizeX/2,   sizeY/2),
+            Point( - sizeX/2,   sizeY/2)
     };
     std::vector<Point> rotatedVertices;
     for (auto vertex : vertices){
@@ -43,7 +43,10 @@ const Point &PhysicalObject::getPosition() const {
     return position;
 }
 
-void PhysicalObject::setPosition(const Point &position) {
+void PhysicalObject::setInitialPosition(const Point &position) {
+    if(position.isSet()){
+        throw "Initial position already set!";
+    }
     PhysicalObject::position = position;
 }
 

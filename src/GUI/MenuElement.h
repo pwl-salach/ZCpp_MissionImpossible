@@ -19,7 +19,7 @@ public:
 
     virtual const std::string getText() const;
     const SDL_Rect &getVerticesPositions() const;
-    void setSelected(bool selected);
+    void setSelected(bool pSelected);
 
 protected:
     std::string text;

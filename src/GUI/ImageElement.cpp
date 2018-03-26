@@ -8,13 +8,13 @@
 
 ImageElement::ImageElement(const char *fileName, const SDL_Rect &verticesPositions, double angel)
         : verticesPositions(verticesPositions), angle(angel) {
-    this->surface = FileManager::loadImage(fileName);
-    this->calculateCenter();
+    surface = FileManager::loadImage(fileName);
+    calculateCenter();
 }
 
 void ImageElement::calculateCenter() {
-    this->center.x = verticesPositions.x + verticesPositions.w/2;
-    this->center.y = verticesPositions.y + verticesPositions.h/2;
+    center.x = verticesPositions.x + verticesPositions.w/2;
+    center.y = verticesPositions.y + verticesPositions.h/2;
 }
 
 const SDL_Rect & ImageElement::getVerticesPositions() {

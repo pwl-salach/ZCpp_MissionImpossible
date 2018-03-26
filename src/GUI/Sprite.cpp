@@ -6,29 +6,29 @@
 #include "../Utils/FileManager.h"
 
 Sprite::Sprite(PhysicalObject *pObject) {
-    this->object = pObject;
-    this->surface = FileManager::loadImage(object->getImageName());
+    object = pObject;
+    surface = FileManager::loadImage(object->getImageName());
 }
 
 const SDL_Point & Sprite::getCenter(){
-    this->center.x = (int)this->object->getPosition().getX();
-    this->center.y = (int)this->object->getPosition().getY();
-    return this->center;
+    center.x = (int)object->getPosition().getX();
+    center.y = (int)object->getPosition().getY();
+    return center;
 }
 
 const SDL_Rect & Sprite::getVerticesPositions() {
     calculateVerticesPositions();
-    return this->verticesPositions;
+    return verticesPositions;
 }
 
 double Sprite::getAngle() const {
-    return this->object->getRotation();
+    return object->getRotation();
 }
 
 void Sprite::calculateVerticesPositions() {
-    this->getCenter();
-    this->verticesPositions.x = this->center.x - this->object->getSizeX()/2;
-    this->verticesPositions.y = this->center.y - this->object->getSizeY()/2;
-    this->verticesPositions.w = this->object->getSizeX();
-    this->verticesPositions.h = this->object->getSizeY();
+    getCenter();
+    verticesPositions.x = center.x - object->getSizeX()/2;
+    verticesPositions.y = center.y - object->getSizeY()/2;
+    verticesPositions.w = object->getSizeX();
+    verticesPositions.h = object->getSizeY();
 }

@@ -26,7 +26,7 @@ public:
         VICTORY = 3,
     };
 
-    explicit Game(Settings *settings);
+    Game(Settings *pSettings, std::vector<Agent *> pAgents);
     void start();
     void loop();
     void update();
@@ -41,12 +41,12 @@ public:
     State getState() const;
 
 private:
+    State state;
     Player player;
     Settings *settings;
-    Map map = Map(&player, settings->getMapNumber());
-    Headquarters headquarters;
     std::vector<Agent*>agents;
-    State state;
+    Map map;
+    Headquarters headquarters;
     std::thread updateLoop;
     uint8_t updatesPerSecond;
 };

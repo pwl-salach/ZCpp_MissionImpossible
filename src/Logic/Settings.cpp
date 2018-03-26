@@ -5,20 +5,20 @@
 #include "Settings.h"
 
 Settings::Settings() {
-    this->mapNumber = 1;
-    this->numberOfAgents = 3;
-    this->rangeOfView = 128;
-    this->angleOfView = 30;
-    this->debug = false;
+    mapNumber = 1;
+    numberOfAgents = 3;
+    rangeOfView = 100;
+    angleOfView = 40;
+    debug = false;
 
-    this->minManNumber = 1;
-    this->maxManNumber = 2;
-    this->minNumberOfAgents = 1;
-    this->maxNumberOfAgents = 6;
-    this->minRangeOfView = 50;
-    this->maxRangeOfView = 300;
-    this->minAngleOfView = 20;
-    this->maxAngleOfView = 120;
+    minManNumber = 1;
+    maxManNumber = 2;
+    minNumberOfAgents = 1;
+    maxNumberOfAgents = 6;
+    minRangeOfView = 50;
+    maxRangeOfView = 300;
+    minAngleOfView = 20;
+    maxAngleOfView = 120;
 }
 
 uint8_t Settings::getNumberOfAgents() const {

@@ -15,10 +15,9 @@
 
 class Map {
 public:
-    Map();
-    Map(Player *pPlayer, uint8_t mapFileId);
+    Map(Player *player, std::vector<Agent *> *agents, uint8_t mapFileID);
 
-    virtual ~Map();
+    ~Map();
 
     uint16_t getSizeX() const;
 
@@ -26,10 +25,11 @@ public:
 
     const std::vector<Obstacle*> &getObstacles();
 
-    bool isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point);
-    bool overlappingRectangles(const std::vector<Point> &firstRectVertices,
-                               const std::vector<Point> &secondRectVertices);
+    bool isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const;
+    bool overlappingRectangles(const std::vector<Point> &firstRectVer,
+                               const std::vector<Point> &secondRectVer);
     bool checkCollisions(Person *person);
+    bool isPointThePlayerPosition(const Point &point) const;
 
     bool checkVictoryCondition();
 
@@ -47,6 +47,7 @@ private:
     void loadAgentsPositions(const std::string &configString);
     void loadFinishPoint(const std::string& configString);
     void createFence();
+    void checkInitPosition(double x, double y) const;
 
     template <class T> void loadObstaclesFromFileContent(std::string &configString){
         std::vector<std::string> parts = Dictionary::splitString(configString, ':');
@@ -54,19 +55,22 @@ private:
         auto obstacleSizeX = uint16_t(std::atoi(obstacleSize.at(0).c_str()));
         auto obstacleSizeY = uint16_t(std::atoi(obstacleSize.at(1).c_str()));
         std::vector<std::string> obstacleCords = Dictionary::splitString(parts.at(1), ';');
-        for(auto info : obstacleCords){
+        for(const auto &info : obstacleCords){
             std::vector<std::string> params = Dictionary::splitString(info, ',');
-            auto x = uint16_t(std::atoi(params.at(0).c_str()));
-            auto y = uint16_t(std::atoi(params.at(1).c_str()));
+            auto x = std::atoi(params.at(0).c_str());
+            auto y = std::atoi(params.at(1).c_str());
             auto r = uint16_t(std::atoi(params.at(2).c_str()));
+            checkInitPosition(x, y);
             T* obstacle = new T(Point(x, y),obstacleSizeX, obstacleSizeY, r);
-            this->obstacles.push_back(obstacle);
+            obstacles.push_back(obstacle);
         }
     }
 
     bool areClose(PhysicalObject *firstObject, PhysicalObject *secondObject);
 
     bool objectOutsideBoundaries(PhysicalObject *object);
+
+    uint16_t recalculateRotation(uint16_t r);
 };
 
 
