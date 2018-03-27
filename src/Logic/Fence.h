@@ -8,14 +8,9 @@
 
 #include "Obstacle.h"
 
-class Fence: public Obstacle{
+class Fence: public Obstacle {
 public:
     Fence(Point pos, uint16_t pSizeX, uint16_t rot);
-
-protected:
-    float resistMovement(Player *player) override;
-
 };
-
 
 #endif //ZCPP_MISSIONIMPOSSIBLE_FENCE_H

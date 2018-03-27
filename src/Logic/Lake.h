@@ -13,8 +13,6 @@ public:
     Lake(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot);
 
 private:
-    float resistMovement(Player *player) override;
-
     double slope;
 };
 

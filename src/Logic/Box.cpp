@@ -12,7 +12,3 @@ Box::Box(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot) {
     rotation = rot;
     imageName = "box.png";
 }
-
-float Box::resistMovement(Player *player) {
-    return 0;
-}

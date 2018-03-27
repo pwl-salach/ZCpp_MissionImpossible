@@ -121,6 +121,9 @@ void GameWindow::renderFrame() {
         case Game::State::VICTORY:
             displayVictoryScreen();
             break;
+        case Game::State::LOSE:
+            displayLoseScreen();
+            break;
         default:
             throw "Unknown game state!";
     }
@@ -148,4 +151,9 @@ void GameWindow::displayVictoryScreen() {
 
 void GameWindow::disappear() {
 
+}
+
+void GameWindow::displayLoseScreen() {
+    renderGameScreen();
+    SDL_RenderCopy(renderer, logoTexture, nullptr, &logo.getVerticesPositions());
 }

@@ -12,8 +12,3 @@ Lake::Lake(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot) {
     rotation = rot;
     imageName = "lake.png";
 }
-
-float Lake::resistMovement(Player *player) {
-    return 0;
-}
-

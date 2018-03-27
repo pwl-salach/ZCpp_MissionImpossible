@@ -14,9 +14,6 @@ public:
     Box(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot);
 
 private:
-    void move(Point newPosition);
-    float resistMovement(Player *player) override;
-
     double friction;
 };
 

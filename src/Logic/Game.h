@@ -24,6 +24,7 @@ public:
         RUNNING = 0,
         PAUSE = 1,
         VICTORY = 3,
+        LOSE = 4
     };
 
     Game(Settings *pSettings, std::vector<Agent *> pAgents);

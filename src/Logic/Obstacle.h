@@ -9,7 +9,7 @@
 #include "PhysicalObject.h"
 #include "Player.h"
 
-class Obstacle : public PhysicalObject{
+class Obstacle : virtual public PhysicalObject{
 public:
     enum Blocking{
         VIEW = 1,
@@ -22,7 +22,6 @@ public:
 
 protected:
     Blocking blocks;
-    virtual float resistMovement(Player *player) = 0;
 };
 
 

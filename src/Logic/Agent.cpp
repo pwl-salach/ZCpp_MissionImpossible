@@ -91,3 +91,9 @@ void Agent::updatePlayerPosition(const Point &newPosition) {
 void Agent::setHeadquarters(Headquarters *headquarters) {
     Agent::headquarters = headquarters;
 }
+
+bool Agent::catchPlayer(Player *player) {
+    auto xDistance = position.getX() - player->getPosition().getX();
+    auto yDistance = position.getY() - player->getPosition().getY();
+    return sqrt(xDistance*xDistance + yDistance*yDistance) <= this->sizeY;
+}

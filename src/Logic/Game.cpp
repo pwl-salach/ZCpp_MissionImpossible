@@ -78,5 +78,8 @@ void Game::update() {
         //if(!map.checkCollisions(agent)){
             agent->move();
         //}
+        if(agent->catchPlayer(&player)){
+            state = State::LOSE;
+        }
     }
 }

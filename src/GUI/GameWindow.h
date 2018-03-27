@@ -47,6 +47,8 @@ private:
     void renderGameScreen();
 
     void displayVictoryScreen();
+
+    void displayLoseScreen();
 };
 
 

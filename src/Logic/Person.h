@@ -13,7 +13,7 @@
 /*!
  * \brief
  */
-class Person : public PhysicalObject{
+class Person : virtual public PhysicalObject{
 public:
     enum Movement{
         NONE = 0,

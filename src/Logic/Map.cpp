@@ -42,6 +42,9 @@ Map::Map(Player *player, std::vector<Agent *> *agents, uint8_t mapFileID) : play
         throw "No finish point. This game would be pointless!";
     }
     createFence();
+    for(auto agent : *agents){
+        obstacles.push_back(agent);
+    }
 }
 
 void Map::loadSizeFromFileContent(const std::string &configString) {

@@ -13,13 +13,14 @@
 #include "Person.h"
 #include "Point.h"
 #include "Scanner.h"
+#include "Obstacle.h"
 
 class Headquarters;
 
 /*!
  * \brief Objects of this class are meant to find Player
  */
-class Agent : public Person {
+class Agent : public Person, public Obstacle{
 public:
     Agent(uint16_t rangeOfView, uint8_t angleOfView);
     void updatePlayerPosition(const Point &newPosition);
@@ -27,7 +28,7 @@ public:
     void addDestination(const Point &point);
     void update();
     bool emptyPathStack();
-
+    bool catchPlayer(Player *player);
     void setHeadquarters(Headquarters *headquarters);
 
     void lookAround(const Map *map);
