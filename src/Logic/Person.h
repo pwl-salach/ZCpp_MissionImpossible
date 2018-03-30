@@ -29,8 +29,6 @@ public:
     Point calculateNewPosition(uint16_t rot);
     uint16_t calculateNewRotation();
 
-    void setInitialPosition(const Point &pos);
-
     void setRotation(uint16_t rot);
 
     void setMovement(Movement movement);

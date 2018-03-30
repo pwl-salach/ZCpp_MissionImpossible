@@ -13,9 +13,10 @@
 
 #include <cstdint>
 #include <vector>
-#include "PhysicalObject.h"
+#include "Obstacle.h"
 
 class Map;
+class Agent;
 
 /*!
  * \brief Objects of this class represents way that agents see in this game
@@ -24,14 +25,21 @@ class Map;
 class Scanner {
 public:
     Scanner(uint16_t pRange, uint8_t pAngle);
-
-    std::vector<PhysicalObject *> searchForObstacles(const Map *map, Point position, uint16_t rotation);
-    Point calculateMaxRangePoint(const Point &beginning, uint16_t rotation);
-    Point findPlayerPosition(const Map *map, const Point &agentPosition, uint16_t rotation);
-
+    std::vector<Obstacle *> searchForObstacles(const Map *map, Agent *agent, Point &playerPosition);
 private:
+    Point position;
+    Point centralMaxRangePoint;
+    Point leftMaxRangePoint;
+    Point rightMaxRangePoint;
     uint16_t range;
     uint8_t angle;
+
+    void recalculateCentralMaxRangePoint(uint16_t rotation);
+    void recalculateLeftMaxRangePoint(uint16_t rotation);
+    void recalculateRightMaxRangePoint(uint16_t rotation);
+    Point calculateMaxRangePoint(const Point &beginning, uint16_t rotation);
+
+    void recalculateAttachmentPosition(Agent *agent);
 };
 
 

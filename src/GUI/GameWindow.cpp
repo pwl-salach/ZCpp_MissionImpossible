@@ -36,9 +36,9 @@ void GameWindow::prepareSprites() {
     for(auto object : game->getMap().getObstacles()){
         sprites.push_back(new Sprite(object));
     }
-    for(auto agent : game->getAgents()){
-        sprites.push_back(new Sprite(agent));
-    }
+    //for(auto agent : game->getAgents()){
+    //    sprites.push_back(new Sprite(agent));
+    //}
     sprites.push_back(new Sprite(&game->getPlayer()));
 }
 

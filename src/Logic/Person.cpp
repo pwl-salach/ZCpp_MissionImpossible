@@ -18,18 +18,13 @@ Person::Person() {
     sizeY = 18;
 }
 
-void Person::setInitialPosition(const Point &pos) {
-    position = pos;
-}
-
-
 void Person::setMovement(Person::Movement movement) {
     Person::movement = movement;
 }
 
 void Person::move() {
     rotation = calculateNewRotation();
-    position  = calculateNewPosition();
+    position = calculateNewPosition();
 }
 
 void Person::setTurning(Person::Movement turning) {

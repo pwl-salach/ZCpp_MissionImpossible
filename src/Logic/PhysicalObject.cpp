@@ -43,14 +43,12 @@ const Point &PhysicalObject::getPosition() const {
     return position;
 }
 
-void PhysicalObject::setInitialPosition(const Point &position) {
+void PhysicalObject::setInitialPosition(const Point &pPosition) {
     if(position.isSet()){
         throw "Initial position already set!";
     }
-    PhysicalObject::position = position;
+    position = pPosition;
 }
-
-PhysicalObject::PhysicalObject() = default;
 
 uint16_t PhysicalObject::getSizeX() const {
     return sizeX;

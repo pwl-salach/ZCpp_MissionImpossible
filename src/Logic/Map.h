@@ -23,7 +23,7 @@ public:
 
     uint16_t getSizeY() const;
 
-    const std::vector<Obstacle*> &getObstacles();
+    const std::vector<Obstacle*> &getObstacles() const;
 
     bool isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const;
     bool overlappingRectangles(const std::vector<Point> &firstRectVer,
@@ -32,6 +32,8 @@ public:
     bool isPointThePlayerPosition(const Point &point) const;
 
     bool checkVictoryCondition();
+
+    bool isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const;
 
 private:
     std::vector<Obstacle*> obstacles;
@@ -71,6 +73,8 @@ private:
     bool objectOutsideBoundaries(PhysicalObject *object);
 
     uint16_t recalculateRotation(uint16_t r);
+
+    bool areClose(const Point &point, PhysicalObject *object) const;
 };
 
 

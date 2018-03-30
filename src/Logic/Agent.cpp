@@ -72,11 +72,14 @@ bool Agent::emptyPathStack() {
 }
 
 void Agent::lookAround(const Map *map) {
-    auto playerPos = scanner.findPlayerPosition(map, position, rotation);
+    Point playerPos;
+    auto obstacles = scanner.searchForObstacles(map, this, playerPos);
     if(playerPos.isSet()){
         reportPlayerPosition(playerPos);
     }
-    auto objects = scanner.searchForObstacles(map, position, rotation);
+    for(auto obstacle : obstacles){
+
+    }
 }
 
 void Agent::reportPlayerPosition(Point &position) {

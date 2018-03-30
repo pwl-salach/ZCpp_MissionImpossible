@@ -132,7 +132,7 @@ uint16_t Map::getSizeY() const {
     return sizeY;
 }
 
-const std::vector<Obstacle*> &Map::getObstacles() {
+const std::vector<Obstacle*> &Map::getObstacles() const{
     return obstacles;
 }
 
@@ -161,18 +161,23 @@ bool Map::areClose(PhysicalObject *firstObject, PhysicalObject *secondObject) {
     return xDistance <= minDistance && yDistance <= minDistance;
 }
 
+bool Map::areClose(const Point &point, PhysicalObject *object) const{
+
+    return true;
+}
+
 bool Map::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
-    auto overlaps = [](Map* object, const std::vector<Point> &some, const std::vector<Point> &other)->bool{
+    auto overlaps = [this](const std::vector<Point> &some, const std::vector<Point> &other)->bool{
         for(const auto &vertex : some){
-            bool overlapping = object->isPointInsideRectangle(other, vertex);
+            bool overlapping = isPointInsideRectangle(other, vertex);
             if (overlapping){
                 return true;
             }
         }
         return false;
     };
-    bool firstOverlappingSecond = overlaps(this, firstRectVer, secondRectVer);
-    bool secondOverlappingFirst = overlaps(this, secondRectVer, firstRectVer);
+    bool firstOverlappingSecond = overlaps(firstRectVer, secondRectVer);
+    bool secondOverlappingFirst = overlaps(secondRectVer, firstRectVer);
     return firstOverlappingSecond || secondOverlappingFirst;
 }
 
@@ -256,5 +261,12 @@ bool Map::isPointThePlayerPosition(const Point &point) const{
         return isPointInsideRectangle(playerVertices, point);
     }
     return false;
+}
+
+bool Map::isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const{
+    if(!areClose(point, pObstacle)){
+        return false;
+    }
+    return isPointInsideRectangle(pObstacle->getVerticesPosition(), point);;
 }
 
