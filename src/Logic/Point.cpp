@@ -5,17 +5,17 @@
 #include <cmath>
 #include "Point.h"
 
-Point::Point(double x, double y) : x(x), y(y) {
+Point::Point(float x, float y) : x(x), y(y) {
     set = true;
 }
 
-double Point::getX() const {
+float Point::getX() const {
     if(!isSet())
         throw "This point is not properly initiated!";
     return x;
 }
 
-double Point::getY() const {
+float Point::getY() const {
     if(!isSet())
         throw "This point is not properly initiated!";
     return y;
@@ -26,11 +26,11 @@ bool Point::operator==(const Point &other) const {
 }
 
 bool Point::sameXCoordinate(const Point &other) const {
-    return fabs(getX() - other.getX()) < fabs(getX()) * 0.001 || getX() == other.getX();
+    return std::fabs(getX() - other.getX()) < std::fabs(getX()) * 0.001 || getX() == other.getX();
 }
 
 bool Point::sameYCoordinate(const Point &other) const{
-    return fabs(getY() - other.getY()) < fabs(getY()) * 0.001 || getY() == other.getY();
+    return std::fabs(getY() - other.getY()) < std::fabs(getY()) * 0.001 || getY() == other.getY();
 }
 
 Point::Point() {
@@ -41,6 +41,6 @@ bool Point::isSet() const {
     return set;
 }
 
-bool Point::closeTo(Point const &other, double threshold) const{
-    return fabs(getX() - other.getX()) < threshold && fabs(getY() - other.getY()) < threshold;
+bool Point::closeTo(Point const &other, float threshold) const{
+    return std::fabs(getX() - other.getX()) < threshold && std::fabs(getY() - other.getY()) < threshold;
 }

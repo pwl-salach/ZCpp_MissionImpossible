@@ -49,7 +49,7 @@ private:
     void loadAgentsPositions(const std::string &configString);
     void loadFinishPoint(const std::string& configString);
     void createFence();
-    void checkInitPosition(double x, double y) const;
+    void checkInitPosition(float x, float y) const;
 
     template <class T> void loadObstaclesFromFileContent(std::string &configString){
         std::vector<std::string> parts = Dictionary::splitString(configString, ':');

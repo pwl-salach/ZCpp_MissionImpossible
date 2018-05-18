@@ -21,7 +21,7 @@ const SDL_Rect & Sprite::getVerticesPositions() {
     return verticesPositions;
 }
 
-double Sprite::getAngle() const {
+float Sprite::getAngle() const {
     return object->getRotation();
 }
 

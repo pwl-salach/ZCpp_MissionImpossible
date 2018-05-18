@@ -6,8 +6,8 @@
 #include "ImageElement.h"
 #include "../Utils/FileManager.h"
 
-ImageElement::ImageElement(const char *fileName, const SDL_Rect &verticesPositions, double angel)
-        : verticesPositions(verticesPositions), angle(angel) {
+ImageElement::ImageElement(const char *fileName, const SDL_Rect &verticesPositions, float angle)
+        : verticesPositions(verticesPositions), angle(angle) {
     surface = FileManager::loadImage(fileName);
     calculateCenter();
 }
@@ -29,7 +29,7 @@ const SDL_Point & ImageElement::getCenter() {
     return center;
 }
 
-double ImageElement::getAngle() const {
+float ImageElement::getAngle() const {
     return angle;
 }
 

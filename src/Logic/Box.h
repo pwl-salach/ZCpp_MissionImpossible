@@ -11,10 +11,10 @@
 
 class Box: public Obstacle{
 public:
-    Box(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot);
+    Box(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
 
 private:
-    double friction;
+    float friction;
 };
 
 

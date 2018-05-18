@@ -9,8 +9,8 @@ uint16_t PhysicalObject::getRotation() const {
     return rotation;
 }
 
-std::vector<Point>  PhysicalObject::getVerticesPosition() {
-    return getCustomVerticesPosition(position, rotation);
+std::vector<Point>&  PhysicalObject::getVerticesPosition() {
+    return vertices;
 }
 
 PhysicalObject::~PhysicalObject() = default;
@@ -23,7 +23,7 @@ uint16_t PhysicalObject::getDiagonalLength() {
     return static_cast<uint16_t>(sqrt(sizeX * sizeX + sizeY * sizeY));
 }
 
-std::vector<Point> PhysicalObject::getCustomVerticesPosition(Point position, uint16_t rotation) {
+std::vector<Point> PhysicalObject::getCustomVerticesPosition(Point pos, uint16_t rot) {
     std::vector<Point> vertices = {
             Point( - sizeX/2,  - sizeY/2),
             Point(  sizeX/2,  - sizeY/2),
@@ -32,8 +32,8 @@ std::vector<Point> PhysicalObject::getCustomVerticesPosition(Point position, uin
     };
     std::vector<Point> rotatedVertices;
     for (auto vertex : vertices){
-        auto x = position.getX() + vertex.getX()*cos(rotation * M_PI / 180) - vertex.getY()*sin(rotation * M_PI / 180);
-        auto y = position.getY() +  vertex.getX()*sin(rotation * M_PI / 180) + vertex.getY()*cos(rotation * M_PI / 180);
+        auto x = pos.getX() + vertex.getX()*cos(rot * M_PI / 180) - vertex.getY()*sin(rot * M_PI / 180);
+        auto y = pos.getY() +  vertex.getX()*sin(rot * M_PI / 180) + vertex.getY()*cos(rot * M_PI / 180);
         rotatedVertices.emplace_back(x, y);
     }
     return rotatedVertices;
@@ -43,11 +43,13 @@ const Point &PhysicalObject::getPosition() const {
     return position;
 }
 
-void PhysicalObject::setInitialPosition(const Point &pPosition) {
+void PhysicalObject::setInitialOrientation(const Point &pPosition, uint16_t pRotation) {
     if(position.isSet()){
         throw "Initial position already set!";
     }
     position = pPosition;
+    rotation = pRotation;
+    calculateVerticesPosition();
 }
 
 uint16_t PhysicalObject::getSizeX() const {
@@ -56,4 +58,8 @@ uint16_t PhysicalObject::getSizeX() const {
 
 uint16_t PhysicalObject::getSizeY() const {
     return sizeY;
+}
+
+void PhysicalObject::calculateVerticesPosition() {
+    vertices = getCustomVerticesPosition(position, rotation);
 }

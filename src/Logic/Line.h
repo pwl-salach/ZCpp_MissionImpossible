@@ -12,16 +12,16 @@ class Line {
 public:
     Line();
     Line(Point &first, Point &second);
-    double calculate(double x);
-    double getA() const;
-    double getB() const;
+    float calculate(float x);
+    float getA() const;
+    float getB() const;
 
 protected:
     void calculateFactorA(const Point &first, const Point& second);
     void calculateFactorB(const Point &first, const Point& second);
-    double onlyCalculateA(const Point &first, const Point& second) const;
-    double a;
-    double b;
+    float onlyCalculateA(const Point &first, const Point& second) const;
+    float a;
+    float b;
 };
 
 

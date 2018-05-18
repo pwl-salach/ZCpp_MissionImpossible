@@ -10,10 +10,10 @@
 
 class Lake : public Obstacle {
 public:
-    Lake(Point pos, uint16_t pSizeX, uint16_t pSizeY, uint16_t rot);
+    Lake(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
 
 private:
-    double slope;
+    float slope;
 };
 
 

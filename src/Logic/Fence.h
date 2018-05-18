@@ -10,7 +10,7 @@
 
 class Fence: public Obstacle {
 public:
-    Fence(Point pos, uint16_t pSizeX, uint16_t rot);
+    Fence(Point pPosition, uint16_t pSizeX, uint16_t pRotation);
 };
 
 #endif //ZCPP_MISSIONIMPOSSIBLE_FENCE_H

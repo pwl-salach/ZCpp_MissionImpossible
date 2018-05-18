@@ -11,18 +11,18 @@
 class Point {
 public:
     Point();
-    Point(double x, double y);
+    Point(float x, float y);
     bool operator==(const Point &other) const;
-    double getX() const;
-    double getY() const;
+    float getX() const;
+    float getY() const;
     bool isSet() const;
     bool sameXCoordinate(const Point &other) const;
     bool sameYCoordinate(const Point &other) const;
-    bool closeTo(Point const &other, double threshold) const;
+    bool closeTo(Point const &other, float threshold) const;
 
 private:
-    double x;
-    double y;
+    float x; // TODO: zmienic wszedzie double na float
+    float y;
     bool set;
 };
 

@@ -18,7 +18,7 @@ public:
 
     const SDL_Rect & getVerticesPositions() override;
 
-    double getAngle() const override;
+    float getAngle() const override;
 
 private:
     void calculateVerticesPositions();

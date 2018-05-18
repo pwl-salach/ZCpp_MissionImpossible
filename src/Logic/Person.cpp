@@ -7,10 +7,6 @@
 
 Person::~Person() = default;
 
-void Person::setRotation(uint16_t rot) {
-    rotation = rot;
-}
-
 Person::Person() {
     movement = Movement::NONE;
     turning = Movement::NONE;
@@ -25,6 +21,7 @@ void Person::setMovement(Person::Movement movement) {
 void Person::move() {
     rotation = calculateNewRotation();
     position = calculateNewPosition();
+    calculateVerticesPosition();
 }
 
 void Person::setTurning(Person::Movement turning) {
@@ -39,8 +36,8 @@ Point Person::calculateNewPosition(uint16_t rot) {
     if (movement == Movement::NONE)
         return position;
     auto speed = (movement == Movement::FORWARD) ? movementSpeed : movementSpeed/2;
-    auto xStep = speed * sin(rot * M_PI / 180);
-    auto yStep = speed * cos(rot * M_PI / 180);
+    auto xStep = static_cast<float>(speed * sin(rot * M_PI / 180));
+    auto yStep = static_cast<float>(speed * cos(rot * M_PI / 180));
     if(movement == Movement::FORWARD){
         return {position.getX() + xStep, position.getY() - yStep};
     } else if (movement == Movement::BACK){

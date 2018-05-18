@@ -28,7 +28,7 @@ void Agent::update() {
         return;
     }
     Point nextDestination = pathStack.top();
-    double alpha = 0;
+    float alpha = 0;
     auto xDistance = nextDestination.getX() - position.getX();
     auto yDistance = nextDestination.getY() - position.getY();
     alpha = atan(fabs(xDistance)/fabs(yDistance)) * 180 / M_PI;

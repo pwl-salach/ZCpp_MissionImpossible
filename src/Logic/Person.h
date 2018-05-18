@@ -29,10 +29,7 @@ public:
     Point calculateNewPosition(uint16_t rot);
     uint16_t calculateNewRotation();
 
-    void setRotation(uint16_t rot);
-
     void setMovement(Movement movement);
-
     void setTurning(Movement turning);
 
 protected:

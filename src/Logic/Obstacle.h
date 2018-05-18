@@ -11,6 +11,8 @@
 
 class Obstacle : virtual public PhysicalObject{
 public:
+    Obstacle(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
+
     enum Blocking{
         VIEW = 1,
         MOVEMENT = 2,

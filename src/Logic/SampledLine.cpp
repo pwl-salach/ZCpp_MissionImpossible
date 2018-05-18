@@ -8,14 +8,14 @@
 SampledLine::SampledLine(const Point &beginning, const Point &end, uint16_t samplesCount) {
     if(beginning.sameXCoordinate(end)){
         for (int i = 0; i < samplesCount; i++) {
-            double yStep = fabs(end.getY() - beginning.getY())/samplesCount;
+            float yStep = std::fabs(end.getY() - beginning.getY())/samplesCount;
             Point temp = Point(beginning.getX(), beginning.getY() + i*yStep);
             samples.push_back(temp);
         }
     } else {
         calculateFactorA(beginning, end);
         calculateFactorB(beginning, end);
-        double xStep = (end.getX() - beginning.getX())/samplesCount;
+        float xStep = (end.getX() - beginning.getX())/samplesCount;
         for (int i = 0; i < samplesCount; i++) {
             auto x = beginning.getX() + i*xStep;
             auto y = calculate(x);
