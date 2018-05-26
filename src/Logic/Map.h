@@ -28,12 +28,16 @@ public:
     bool isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const;
     bool overlappingRectangles(const std::vector<Point> &firstRectVer,
                                const std::vector<Point> &secondRectVer);
-    bool checkCollisions(Person *person);
+    PhysicalObject * checkCollisions(Person *person);
     bool isPointThePlayerPosition(const Point &point) const;
 
     bool checkVictoryCondition();
 
     bool isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const;
+
+    float calculateDistance(const Point &some, const Point &other) const;
+
+    bool isAccessible(const Point &point);
 
 private:
     std::vector<Obstacle*> obstacles;
@@ -75,6 +79,8 @@ private:
     uint16_t recalculateRotation(uint16_t r);
 
     bool areClose(const Point &point, PhysicalObject *object) const;
+
+    bool areClose(const Point &point, const Point &other, float threshold) const;
 };
 
 

@@ -9,7 +9,7 @@ uint16_t PhysicalObject::getRotation() const {
     return rotation;
 }
 
-std::vector<Point>&  PhysicalObject::getVerticesPosition() {
+std::vector<Point>& PhysicalObject::getVerticesPosition() {
     return vertices;
 }
 
@@ -20,7 +20,7 @@ const std::string &PhysicalObject::getImageName() const {
 }
 
 uint16_t PhysicalObject::getDiagonalLength() {
-    return static_cast<uint16_t>(sqrt(sizeX * sizeX + sizeY * sizeY));
+    return static_cast<uint16_t>(std::sqrt(sizeX * sizeX + sizeY * sizeY));
 }
 
 std::vector<Point> PhysicalObject::getCustomVerticesPosition(Point pos, uint16_t rot) {
@@ -45,7 +45,7 @@ const Point &PhysicalObject::getPosition() const {
 
 void PhysicalObject::setInitialOrientation(const Point &pPosition, uint16_t pRotation) {
     if(position.isSet()){
-        throw "Initial position already set!";
+        throw std::runtime_error( "Initial position already set!");
     }
     position = pPosition;
     rotation = pRotation;

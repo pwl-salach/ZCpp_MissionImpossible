@@ -11,6 +11,8 @@
 class Fence: public Obstacle {
 public:
     Fence(Point pPosition, uint16_t pSizeX, uint16_t pRotation);
+
+    bool canBePassed() override;
 };
 
 #endif //ZCPP_MISSIONIMPOSSIBLE_FENCE_H

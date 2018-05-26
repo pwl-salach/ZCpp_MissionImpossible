@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <stdexcept>
 #include "Point.h"
 
 Point::Point(float x, float y) : x(x), y(y) {
@@ -11,13 +12,13 @@ Point::Point(float x, float y) : x(x), y(y) {
 
 float Point::getX() const {
     if(!isSet())
-        throw "This point is not properly initiated!";
+        throw std::runtime_error( "This point is not properly initiated!");
     return x;
 }
 
 float Point::getY() const {
     if(!isSet())
-        throw "This point is not properly initiated!";
+        throw std::runtime_error( "This point is not properly initiated!");
     return y;
 }
 
@@ -39,8 +40,4 @@ Point::Point() {
 
 bool Point::isSet() const {
     return set;
-}
-
-bool Point::closeTo(Point const &other, float threshold) const{
-    return std::fabs(getX() - other.getX()) < threshold && std::fabs(getY() - other.getY()) < threshold;
 }

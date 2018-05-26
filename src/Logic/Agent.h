@@ -26,22 +26,28 @@ public:
     void updatePlayerPosition(const Point &newPosition);
     void updateOrders(const Point &destination);
     void addDestination(const Point &point);
+    Point calculateNewPosition(uint16_t rot) override;
     void update();
-    bool emptyPathStack();
+    bool isPathStackEmpty();
     bool catchPlayer(Player *player);
     void setHeadquarters(Headquarters *headquarters);
-
     void lookAround(const Map *map);
+    void moveAwayFrom(PhysicalObject *pObject);
+    bool seesPlayer() const;
+
+    Point getNextDestination();
 
 private:
-    void goToNextDestination();
-    void findOtherWay();
+    void findOtherWay(const Map *map, Obstacle *obstacle);
+    double getAlpha(float xDistance, float yDistance) const;
+    void reportPlayerPosition(Point &position);
+
     Scanner scanner;
     std::stack<Point> pathStack;
     Headquarters *headquarters;
-    Point playerPosition;
-
-    void reportPlayerPosition(Point &position);
+    bool visiblePlayer;
+    Obstacle *passingObstacle;
+    float speed;
 };
 
 

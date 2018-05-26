@@ -13,3 +13,15 @@ Obstacle::Obstacle(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t p
     rotation = pRotation;
     calculateVerticesPosition();
 }
+
+bool Obstacle::blockingMovement() {
+    return blocks == Blocking::MOVEMENT || blocks == Blocking::BOTH;
+}
+
+bool Obstacle::blockingView() {
+    return blocks == Blocking::VIEW || blocks == Blocking::BOTH;
+}
+
+bool Obstacle::canBePassed() {
+    return true;
+}

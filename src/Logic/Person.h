@@ -24,9 +24,12 @@ public:
     };
     Person();
 
+    uint8_t getMovementSpeed() const;
+
     ~Person() override;
     void move();
-    Point calculateNewPosition(uint16_t rot);
+    Point calculateNewPosition(uint16_t rot, float speed);
+    virtual Point calculateNewPosition(uint16_t rot);
     uint16_t calculateNewRotation();
 
     void setMovement(Movement movement);

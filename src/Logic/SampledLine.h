@@ -20,6 +20,9 @@ public:
 
 private:
     std::vector<Point> samples;
+    float step;
+public:
+    float getStep() const;
 };
 
 

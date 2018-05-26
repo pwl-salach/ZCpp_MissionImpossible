@@ -21,16 +21,18 @@ public:
 
     void broadcastPlayerPosition();
     void planSearching();
-    void sendOrder(Point locationToCheck, Agent *agent);
-
+    void planSearching(Agent *agent);
     std::vector<Agent*>* getAgents() const;
-
     void acceptThePositionReport(Point &position);
 
 private:
+    bool isPlayerSeen();
     std::vector<Agent*> *agents;
     Point playerPosition;
+    Point lastPlayerPosition;
     Map* map;
+
+    bool checkedAlready(Point point, float threshold);
 };
 
 

@@ -30,7 +30,7 @@ Game::Game(Settings *pSettings, std::vector<Agent *> pAgents) : settings(pSettin
                                                                 agents(std::move(pAgents)),
                                                                 headquarters(Headquarters(&agents, &map)),
                                                                 map(Map(&player, &agents, settings->getMapNumber())){
-    updatesPerSecond = 30;
+    updatesPerSecond = 25;
 }
 
 Player &Game::getPlayer() {
@@ -75,11 +75,15 @@ void Game::update() {
     for(auto agent : agents){
         agent->lookAround(&map);
         agent->update();
-        //if(!map.checkCollisions(agent)){
+        auto obstacle = map.checkCollisions(agent);
+        if(obstacle == nullptr){
             agent->move();
-        //}
+        } else {
+            agent->moveAwayFrom(obstacle);
+        }
         if(agent->catchPlayer(&player)){
             state = State::LOSE;
         }
     }
+    headquarters.planSearching();
 }

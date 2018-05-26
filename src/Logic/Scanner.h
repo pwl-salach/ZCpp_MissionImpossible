@@ -25,7 +25,7 @@ class Agent;
 class Scanner {
 public:
     Scanner(uint16_t pRange, uint8_t pAngle);
-    std::vector<Obstacle *> searchForObstacles(const Map *map, Agent *agent, Point &playerPosition);
+    std::vector<Obstacle *> search(const Map *map, Agent *agent, Point &playerPosition);
 private:
     Point position;
     Point centralMaxRangePoint;

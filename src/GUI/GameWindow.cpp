@@ -125,7 +125,7 @@ void GameWindow::renderFrame() {
             displayLoseScreen();
             break;
         default:
-            throw "Unknown game state!";
+            throw std::runtime_error( "Unknown game state!");
     }
 }
 

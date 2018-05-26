@@ -18,7 +18,6 @@ public:
     bool isSet() const;
     bool sameXCoordinate(const Point &other) const;
     bool sameYCoordinate(const Point &other) const;
-    bool closeTo(Point const &other, float threshold) const;
 
 private:
     float x; // TODO: zmienic wszedzie double na float

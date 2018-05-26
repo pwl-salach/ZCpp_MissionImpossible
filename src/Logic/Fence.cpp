@@ -6,4 +6,9 @@
 
 Fence::Fence(Point pPosition, uint16_t pSizeX, uint16_t pRotation):Obstacle(pPosition, pSizeX, 10, pRotation) {
     imageName = "fence.png";
+    blocks = Blocking::MOVEMENT;
+}
+
+bool Fence::canBePassed() {
+    return false;
 }

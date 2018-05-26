@@ -7,11 +7,12 @@
 
 SampledLine::SampledLine(const Point &beginning, const Point &end, uint16_t samplesCount) {
     if(beginning.sameXCoordinate(end)){
+        float yStep = std::fabs(end.getY() - beginning.getY())/samplesCount;
         for (int i = 0; i < samplesCount; i++) {
-            float yStep = std::fabs(end.getY() - beginning.getY())/samplesCount;
             Point temp = Point(beginning.getX(), beginning.getY() + i*yStep);
             samples.push_back(temp);
         }
+        step = yStep;
     } else {
         calculateFactorA(beginning, end);
         calculateFactorB(beginning, end);
@@ -22,6 +23,7 @@ SampledLine::SampledLine(const Point &beginning, const Point &end, uint16_t samp
             Point temp = Point(x, y);
             samples.push_back(temp);
         }
+        step = calculate(xStep);
     }
 }
 
@@ -31,4 +33,8 @@ Point SampledLine::getNthSample(uint16_t n) {
 
 const std::vector<Point> &SampledLine::getSamples() const {
     return samples;
+}
+
+float SampledLine::getStep() const {
+    return step;
 }

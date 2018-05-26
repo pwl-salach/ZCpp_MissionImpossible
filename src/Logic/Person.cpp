@@ -32,10 +32,14 @@ Point Person::calculateNewPosition() {
     return calculateNewPosition(rotation);
 }
 
-Point Person::calculateNewPosition(uint16_t rot) {
+Point Person::calculateNewPosition(uint16_t rotation) {
+    auto speed = (movement == Movement::FORWARD) ? movementSpeed : movementSpeed/2;
+    return calculateNewPosition(rotation, speed);
+}
+
+Point Person::calculateNewPosition(uint16_t rot, float speed) {
     if (movement == Movement::NONE)
         return position;
-    auto speed = (movement == Movement::FORWARD) ? movementSpeed : movementSpeed/2;
     auto xStep = static_cast<float>(speed * sin(rot * M_PI / 180));
     auto yStep = static_cast<float>(speed * cos(rot * M_PI / 180));
     if(movement == Movement::FORWARD){
@@ -56,3 +60,9 @@ uint16_t Person::calculateNewRotation() {
         return (rotation < 360) ? rotation + turningSpeed : turningSpeed;
     }
 }
+
+uint8_t Person::getMovementSpeed() const {
+    return movementSpeed;
+}
+
+
