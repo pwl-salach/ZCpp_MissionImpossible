@@ -159,14 +159,14 @@ bool Map::areClose(PhysicalObject *firstObject, PhysicalObject *secondObject) {
     if(firstObject == secondObject)
         return false;
     auto minDistance = firstObject->getDiagonalLength()/2 + secondObject->getDiagonalLength()/2;
-    auto xDistance = abs(firstObject->getPosition().getX() - secondObject->getPosition().getX());
-    auto yDistance = abs(firstObject->getPosition().getY() - secondObject->getPosition().getY());
+    auto xDistance = std::fabs(firstObject->getPosition().getX() - secondObject->getPosition().getX());
+    auto yDistance = std::fabs(firstObject->getPosition().getY() - secondObject->getPosition().getY());
     return xDistance <= minDistance && yDistance <= minDistance;
 }
 
 bool Map::areClose(const Point &point, PhysicalObject *object) const{
-    auto xDistance = abs(object->getPosition().getX() - point.getX());
-    auto yDistance = abs(object->getPosition().getY() - point.getY());
+    auto xDistance = std::fabs(object->getPosition().getX() - point.getX());
+    auto yDistance = std::fabs(object->getPosition().getY() - point.getY());
     return object->getSizeX()/2 <= xDistance && object->getSizeY()/2 <= yDistance;
 }
 
@@ -174,6 +174,17 @@ bool Map::areClose(const Point &point, const Point &other, float threshold) cons
     bool xClose = std::fabs(point.getX() - other.getX()) < threshold;
     bool yClose = std::fabs(point.getY() - other.getY()) < threshold;
     return xClose && yClose;
+}
+
+Point Map::getClosePoint(const Point &point, const std::vector<Point> &outline, float threshold) const{
+    for(auto other : outline) {
+        bool xClose = std::fabs(point.getX() - other.getX()) < threshold;
+        bool yClose = std::fabs(point.getY() - other.getY()) < threshold;
+        if(xClose && yClose){
+            return other;
+        }
+    }
+    return Point();
 }
 
 bool Map::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
@@ -293,5 +304,9 @@ bool Map::isAccessible(const Point &point) {
         }
     }
     return true;
+}
+
+bool Map::blocksTheWay(Agent *agent, std::vector<Point> obstacleOutline)const {
+    return false;
 }
 

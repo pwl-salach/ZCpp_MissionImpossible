@@ -41,14 +41,6 @@ Map &Game::getMap(){
     return map;
 }
 
-Headquarters Game::getHeadquarters() const {
-    return headquarters;
-}
-
-std::vector<Agent *> Game::getAgents() const {
-    return agents;
-}
-
 Game::State Game::getState() const {
     return state;
 }

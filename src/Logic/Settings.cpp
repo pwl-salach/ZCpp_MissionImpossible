@@ -6,7 +6,7 @@
 
 Settings::Settings() {
     mapNumber = 1;
-    numberOfAgents = 2;
+    numberOfAgents = 1;
     rangeOfView = 100;
     angleOfView = 40;
     debug = false;

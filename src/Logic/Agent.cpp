@@ -53,6 +53,9 @@ void Agent::update() {
         }
     } else {
         pathStack.pop();
+        if(passingPoint.isSet()){
+            passingPoint = Point();
+        }
         update();
     }
 }
@@ -82,9 +85,14 @@ void Agent::lookAround(const Map *map) {
     } else {
         visiblePlayer = false;
     }
-    for (auto obstacle : obstacles) {
-        if (obstacle != passingObstacle) {
+    for (const auto &obstacle : obstacles) {
+        if (map->blocksTheWay(this, obstacle)) {
             findOtherWay(map, obstacle);
+        } else if (passingPoint.isSet()){
+            auto closestPoint = map->getClosePoint(passingPoint, obstacle, 30);
+            if(closestPoint.isSet()){
+                updateTheWayAround(closestPoint);
+            }
         }
     }
 }
@@ -107,67 +115,39 @@ bool Agent::catchPlayer(Player *player) {
     return std::sqrt(xDistance * xDistance + yDistance * yDistance) <= this->sizeY;
 }
 
-void Agent::findOtherWay(const Map *map, Obstacle *obstacle) {
+void Agent::findOtherWay(const Map *map, std::vector<Point> obstacle) {
     auto nextDest = getNextDestination();
-    Point closestPoint;
-    uint8_t closestPointIndex = 0;
-    uint8_t index = 0;
     float minDistance = map->getSizeX();
-    for (auto vertex: obstacle->getVerticesPosition()) {
+    for (auto vertex: obstacle) {
         auto posVerDist = map->calculateDistance(position, vertex);
         auto verDestDist = map->calculateDistance(vertex, nextDest);
         auto distance = posVerDist + verDestDist;
         if (distance <= minDistance) {
             minDistance = distance;
-            closestPoint = vertex;
-            closestPointIndex = index;
+            passingPoint = vertex;
         }
-        index++;
     }
-    auto xDist = closestPoint.getX() - position.getX();
-    Line line = Line(position, closestPoint);
-    float x = (xDist > 0) ? 1 : ((xDist < 0) ? -1 : 0);
-    x = closestPoint.getX() - x * 10;
-    auto y = line.calculate(x);
-    if (map->isPointInsideObstacle({x, y}, obstacle)) {
-        minDistance = map->getSizeX();
-        auto prev = static_cast<uint8_t>((closestPointIndex != 0) ? closestPointIndex - 1 : 3);
-        auto next = static_cast<uint8_t>((closestPointIndex != 3) ? closestPointIndex + 1 : 0);
-        uint8_t indexes[] = {prev, next};
-        auto vertices = obstacle->getVerticesPosition();
-        for (auto index: indexes) {
-            auto vertex = vertices.at(index);
-            auto posVerDist = map->calculateDistance(position, vertex);
-            auto verDestDist = map->calculateDistance(vertex, nextDest);
-            auto distance = posVerDist + verDestDist;
-            if (distance <= minDistance) {
-                minDistance = distance;
-                closestPoint = vertex;
-            }
-        }
-        line = Line(position, nextDest);
-    }
+    Line line = Line(position, nextDest);
     float correction = 60;
     float xCorrection = 0;
     float yCorrection = 0;
-    if (closestPoint.getY() >= line.calculate(closestPoint.getX())) {
-        if (closestPoint.getY() >= position.getY() && closestPoint.getY() >= nextDest.getY()) {
+    if (passingPoint.getY() >= line.calculate(passingPoint.getX())) {
+        if (passingPoint.getY() >= position.getY() && passingPoint.getY() >= nextDest.getY()) {
             yCorrection = correction;
         }
     } else {
-        if (closestPoint.getY() <= position.getY() && closestPoint.getY() <= nextDest.getY()) {
+        if (passingPoint.getY() <= position.getY() && passingPoint.getY() <= nextDest.getY()) {
             yCorrection = correction;
         }
     }
     if (yCorrection == 0) {
-        if (closestPoint.getX() >= position.getX()) {
+        if (passingPoint.getX() >= position.getX()) {
             xCorrection = correction;
         } else {
             xCorrection = -correction;
         }
     }
-    Point newDest = Point(closestPoint.getX() + xCorrection, closestPoint.getY() + yCorrection);
-    passingObstacle = obstacle;
+    Point newDest = Point(passingPoint.getX() + xCorrection, passingPoint.getY() + yCorrection);
     pathStack.push(newDest);
 }
 
@@ -197,4 +177,12 @@ Point Agent::getNextDestination() {
 
 bool Agent::seesPlayer() const {
     return visiblePlayer;
+}
+
+void Agent::updateTheWayAround(const Point &newPassingPoint) {
+    auto xDistance = newPassingPoint.getX() - passingPoint.getX();
+    auto yDistance = newPassingPoint.getY() - passingPoint.getY();
+    auto dest = pathStack.top();
+    pathStack.pop();
+    pathStack.push({dest.getX()+xDistance, dest.getY()+yDistance});
 }

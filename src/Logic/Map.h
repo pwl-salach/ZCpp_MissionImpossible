@@ -39,6 +39,12 @@ public:
 
     bool isAccessible(const Point &point);
 
+    bool areClose(const Point &point, const Point &other, float threshold) const;
+
+    bool blocksTheWay(Agent *agent, std::vector<Point> obstacleOutline)const;
+
+    Point getClosePoint(const Point &point, const std::vector<Point> &outline, float threshold) const;
+
 private:
     std::vector<Obstacle*> obstacles;
     std::vector<Agent*> *agents;
@@ -80,7 +86,6 @@ private:
 
     bool areClose(const Point &point, PhysicalObject *object) const;
 
-    bool areClose(const Point &point, const Point &other, float threshold) const;
 };
 
 

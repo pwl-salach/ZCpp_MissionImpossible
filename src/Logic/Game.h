@@ -33,13 +33,9 @@ public:
     void update();
     void pause();
     void quit();
-
+    State getState() const;
     Player &getPlayer();
     Map &getMap();
-    Headquarters getHeadquarters() const;
-    std::vector<Agent *>getAgents() const;
-
-    State getState() const;
 
 private:
     State state;

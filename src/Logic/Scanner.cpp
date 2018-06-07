@@ -14,85 +14,64 @@ Scanner::Scanner(uint16_t pRange, uint8_t pAngle) {
     angle = pAngle;
 }
 
-std::vector<Obstacle *> Scanner::search(const Map *map, Agent *agent, Point &playerPosition) {
+std::vector<std::vector<Point>> Scanner::search(const Map *map, Agent *agent, Point &playerPosition) {
     recalculateAttachmentPosition(agent);
-    recalculateCentralMaxRangePoint(agent->getRotation());
-    recalculateRightMaxRangePoint(agent->getRotation());
-    recalculateLeftMaxRangePoint(agent->getRotation());
     auto steps = static_cast<uint16_t>(range / 3);
-    SampledLine centralLine = SampledLine(position, centralMaxRangePoint, steps);
-    SampledLine leftLine = SampledLine(position, leftMaxRangePoint, steps);
-    SampledLine rightLine = SampledLine(position, rightMaxRangePoint, steps);
-    std::vector<Obstacle*> foundObstacles;
-    std::vector<Obstacle*> blockingObstacles;
+    std::vector<std::vector<Point> > foundObstacles;
+    std::vector<Point> obstacleOutline;
+    Point prevPoint;
     bool playerFound = false;
-    for(uint16_t i = 1; i < steps; i++){
-        Point centralSample = centralLine.getNthSample(i);
-        Point leftSample = leftLine.getNthSample(i);
-        Point rightSample = rightLine.getNthSample(i);
-        auto stepSamplesCount = static_cast<uint16_t>(2 + i/3);
-
-        auto findPlayerPosition = [&](Point &otherPoint)->bool{
-            SampledLine scanLine = SampledLine(centralSample, otherPoint, stepSamplesCount);
-            uint16_t  index = 0;
-            for(auto point : scanLine.getSamples()){
-                for(auto obstacle : map->getObstacles()){
-                    if(obstacle == agent || !obstacle->canBePassed()) {
-                        continue;
+    for (int act = -angle / 2; act <= angle / 2; act++) {
+        Point maxRangePoint = calculateMaxRangePoint(position, agent->getRotation() + act);
+        auto ray = SampledLine(position, maxRangePoint, steps);
+        for (auto point : ray.getSamples()) {
+            bool visibilityBlocked = false;
+            for (auto obstacle : map->getObstacles()) {
+                if (map->isPointInsideObstacle(point, obstacle)) {
+                    bool obstacleFound = false;
+                    if (obstacle->blockingView()) {
+                        visibilityBlocked = true;
+                        obstacleFound = true;
                     }
-                    if(std::find(foundObstacles.begin(), foundObstacles.end(), obstacle) != foundObstacles.end()) {
-                        continue;
-                    }
-                    if (map->isPointInsideObstacle(point, obstacle)) {
-                        foundObstacles.push_back(obstacle);
-                        if(index*scanLine.getStep() <= agent->getSizeX()/2){
-                            blockingObstacles.push_back(obstacle);
+                    if (obstacle->blockingMovement()) {
+                        if (prevPoint.isSet() && !map->areClose(prevPoint, point, 30.0)) {
+                            foundObstacles.push_back(obstacleOutline);
+                            obstacleOutline.clear();
                         }
+                        obstacleOutline.push_back(point);
+                        obstacleFound = true;
+                    }
+                    if (obstacleFound) {
+                        break;
                     }
                 }
-                if (!playerFound) {
-                    if (map->isPointThePlayerPosition(point)) {
-                        playerPosition = point;
-                        playerFound = true;
-                    }
-                }
-                index++;
             }
-        };
-        findPlayerPosition(leftSample);
-        findPlayerPosition(rightSample);
+            if (!playerFound) {
+                if (map->isPointThePlayerPosition(point)) {
+                    playerPosition = point;
+                    playerFound = true;
+                }
+            }
+            if (visibilityBlocked) {
+                break;
+            }
+            prevPoint = point;
+        }
     }
-    return blockingObstacles;
+    foundObstacles.push_back(obstacleOutline);
+    return foundObstacles;
 }
 
-void Scanner::recalculateCentralMaxRangePoint(uint16_t rotation) {
-    centralMaxRangePoint = calculateMaxRangePoint(position, rotation);
-}
-
-void Scanner::recalculateLeftMaxRangePoint(uint16_t rotation) {
-    uint16_t leftAngle = rotation - angle;
-    if(rotation < angle){
-        leftAngle = (uint16_t)360 - (angle - rotation);
-    }
-    leftMaxRangePoint = calculateMaxRangePoint(position, leftAngle);
-}
-
-void Scanner::recalculateRightMaxRangePoint(uint16_t rotation) {
-    uint16_t rightAngle = rotation + angle;
-    if(rotation > 360 - angle){
-        rightAngle = angle - rotation;
-    }
-    rightMaxRangePoint = calculateMaxRangePoint(position, rightAngle);
-}
-
-Point Scanner::calculateMaxRangePoint(const Point &beginning, uint16_t rotation){
-    auto finalXCoord = beginning.getX() + range * sin(rotation * M_PI / 180);
-    auto finalYCoord = beginning.getY() - range * cos(rotation * M_PI / 180);
-    return Point(finalXCoord, finalYCoord);
+Point Scanner::calculateMaxRangePoint(const Point &beginning, int rotation) {
+    auto finalXCoord = beginning.getX() + range * std::sin(static_cast<float>(rotation * M_PI) / 180);
+    auto finalYCoord = beginning.getY() - range * std::cos(static_cast<float>(rotation * M_PI) / 180);
+    return {finalXCoord, finalYCoord};
 }
 
 void Scanner::recalculateAttachmentPosition(Agent *agent) {
-    auto finalXCoord = (float)(agent->getPosition().getX() + agent->getSizeY() / 2 * sin(agent->getRotation() * M_PI / 180));
-    auto finalYCoord = (float)(agent->getPosition().getY() - agent->getSizeY() / 2 * cos(agent->getRotation() * M_PI / 180));
+    auto finalXCoord = (agent->getPosition().getX() +
+                        agent->getSizeY() / 2 * std::sin(static_cast<float>(agent->getRotation() * M_PI ) / 180));
+    auto finalYCoord = (agent->getPosition().getY() -
+                        agent->getSizeY() / 2 * std::cos(static_cast<float>(agent->getRotation() * M_PI ) / 180));
     position = Point(finalXCoord, finalYCoord);
 }

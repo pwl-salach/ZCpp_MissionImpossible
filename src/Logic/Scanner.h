@@ -25,19 +25,13 @@ class Agent;
 class Scanner {
 public:
     Scanner(uint16_t pRange, uint8_t pAngle);
-    std::vector<Obstacle *> search(const Map *map, Agent *agent, Point &playerPosition);
+    std::vector<std::vector<Point>> search(const Map *map, Agent *agent, Point &playerPosition);
 private:
     Point position;
-    Point centralMaxRangePoint;
-    Point leftMaxRangePoint;
-    Point rightMaxRangePoint;
     uint16_t range;
     uint8_t angle;
 
-    void recalculateCentralMaxRangePoint(uint16_t rotation);
-    void recalculateLeftMaxRangePoint(uint16_t rotation);
-    void recalculateRightMaxRangePoint(uint16_t rotation);
-    Point calculateMaxRangePoint(const Point &beginning, uint16_t rotation);
+    Point calculateMaxRangePoint(const Point &beginning, int rotation);
 
     void recalculateAttachmentPosition(Agent *agent);
 };

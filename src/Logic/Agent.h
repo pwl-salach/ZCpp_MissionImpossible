@@ -34,11 +34,10 @@ public:
     void lookAround(const Map *map);
     void moveAwayFrom(PhysicalObject *pObject);
     bool seesPlayer() const;
-
     Point getNextDestination();
 
 private:
-    void findOtherWay(const Map *map, Obstacle *obstacle);
+    void findOtherWay(const Map *map, std::vector<Point> obstacle);
     double getAlpha(float xDistance, float yDistance) const;
     void reportPlayerPosition(Point &position);
 
@@ -46,8 +45,10 @@ private:
     std::stack<Point> pathStack;
     Headquarters *headquarters;
     bool visiblePlayer;
-    Obstacle *passingObstacle;
+    Point passingPoint;
     float speed;
+
+    void updateTheWayAround(const Point &newPassingPoint);
 };
 
 
