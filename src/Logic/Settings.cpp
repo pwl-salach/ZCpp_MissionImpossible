@@ -6,10 +6,10 @@
 
 Settings::Settings() {
     mapNumber = 1;
-    numberOfAgents = 1;
-    rangeOfView = 100;
-    angleOfView = 40;
-    debug = false;
+    numberOfAgents = 5;
+    rangeOfView = 120;
+    angleOfView = 60;
+    debug = true;
 
     minManNumber = 1;
     maxManNumber = 2;

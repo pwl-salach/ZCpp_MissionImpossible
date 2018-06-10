@@ -25,7 +25,6 @@ public:
     Agent(uint16_t rangeOfView, uint8_t angleOfView);
     void updatePlayerPosition(const Point &newPosition);
     void updateOrders(const Point &destination);
-    void addDestination(const Point &point);
     Point calculateNewPosition(uint16_t rot) override;
     void update();
     bool isPathStackEmpty();
@@ -35,9 +34,14 @@ public:
     void moveAwayFrom(PhysicalObject *pObject);
     bool seesPlayer() const;
     Point getNextDestination();
+    float getSpeed() const;
+    const Scanner &getScanner() const;
+
+    const Point &getPassingPoint() const;
 
 private:
     void findOtherWay(const Map *map, std::vector<Point> obstacle);
+    void updateTheWayAround(const Point &newPassingPoint);
     double getAlpha(float xDistance, float yDistance) const;
     void reportPlayerPosition(Point &position);
 
@@ -47,8 +51,6 @@ private:
     bool visiblePlayer;
     Point passingPoint;
     float speed;
-
-    void updateTheWayAround(const Point &newPassingPoint);
 };
 
 

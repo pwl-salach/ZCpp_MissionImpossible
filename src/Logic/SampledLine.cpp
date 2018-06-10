@@ -7,7 +7,7 @@
 
 SampledLine::SampledLine(const Point &beginning, const Point &end, uint16_t samplesCount) {
     if(beginning.sameXCoordinate(end)){
-        float yStep = std::fabs(end.getY() - beginning.getY())/samplesCount;
+        float yStep = (end.getY() - beginning.getY())/samplesCount;
         for (int i = 0; i < samplesCount; i++) {
             Point temp = Point(beginning.getX(), beginning.getY() + i*yStep);
             samples.push_back(temp);

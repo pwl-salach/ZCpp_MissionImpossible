@@ -12,16 +12,14 @@ Agent::Agent(uint16_t rangeOfView, uint8_t angleOfView) : scanner(Scanner(rangeO
     turningSpeed = 5;
     imageName = "agent.png";
     visiblePlayer = false;
-}
-
-void Agent::addDestination(const Point &point) {
-    pathStack.push(point);
+    blocks = Blocking::BOTH;
 }
 
 void Agent::updateOrders(const Point &destination) {
     while (!pathStack.empty()) {
         pathStack.pop();
     }
+    passingPoint = Point();
     pathStack.push(destination);
 }
 
@@ -31,8 +29,16 @@ void Agent::update() {
     auto yDistance = nextDestination.getY() - position.getY();
     auto alpha = getAlpha(xDistance, yDistance);
     auto distance = std::sqrt(xDistance * xDistance + yDistance * yDistance);
-    if (distance > movementSpeed) {
-        if (std::fabs(rotation - alpha) < 90) {
+    double difference = 0;
+    if (rotation > 280 && alpha < 80) {
+        difference = alpha - (360 - rotation);
+    } else if (rotation < 80 && alpha > 280) {
+        difference = rotation - (360 - alpha);
+    } else {
+        difference = rotation - alpha;
+    }
+    if (distance > sizeY / 2) {
+        if (difference < 90) {
             movement = Movement::FORWARD;
         } else {
             movement = Movement::NONE;
@@ -43,17 +49,18 @@ void Agent::update() {
                 return;
             }
         }
-        speed = static_cast<float>((180 - std::fabs(rotation - alpha)) * movementSpeed / 180);
-        if (rotation - alpha > turningSpeed) {
+
+        speed = static_cast<float>((180 - std::fabs(difference)) * movementSpeed / 180);
+        if (difference > turningSpeed) {
             turning = Movement::TURN_LEFT;
-        } else if (alpha - rotation > turningSpeed) {
+        } else if ( -difference > turningSpeed) {
             turning = Movement::TURN_RIGHT;
         } else {
             turning = Movement::NONE;
         }
     } else {
         pathStack.pop();
-        if(passingPoint.isSet()){
+        if (passingPoint.isSet()) {
             passingPoint = Point();
         }
         update();
@@ -88,9 +95,9 @@ void Agent::lookAround(const Map *map) {
     for (const auto &obstacle : obstacles) {
         if (map->blocksTheWay(this, obstacle)) {
             findOtherWay(map, obstacle);
-        } else if (passingPoint.isSet()){
+        } else if (passingPoint.isSet()) {
             auto closestPoint = map->getClosePoint(passingPoint, obstacle, 30);
-            if(closestPoint.isSet()){
+            if (closestPoint.isSet()) {
                 updateTheWayAround(closestPoint);
             }
         }
@@ -118,7 +125,8 @@ bool Agent::catchPlayer(Player *player) {
 void Agent::findOtherWay(const Map *map, std::vector<Point> obstacle) {
     auto nextDest = getNextDestination();
     float minDistance = map->getSizeX();
-    for (auto vertex: obstacle) {
+    std::vector<Point> vertices = {obstacle.at(0), obstacle.at(obstacle.size() - 1)};
+    for (auto vertex: vertices) {
         auto posVerDist = map->calculateDistance(position, vertex);
         auto verDestDist = map->calculateDistance(vertex, nextDest);
         auto distance = posVerDist + verDestDist;
@@ -127,8 +135,8 @@ void Agent::findOtherWay(const Map *map, std::vector<Point> obstacle) {
             passingPoint = vertex;
         }
     }
+    float correction = 45;
     Line line = Line(position, nextDest);
-    float correction = 60;
     float xCorrection = 0;
     float yCorrection = 0;
     if (passingPoint.getY() >= line.calculate(passingPoint.getX())) {
@@ -148,6 +156,9 @@ void Agent::findOtherWay(const Map *map, std::vector<Point> obstacle) {
         }
     }
     Point newDest = Point(passingPoint.getX() + xCorrection, passingPoint.getY() + yCorrection);
+    if (!map->isAccessible(newDest)) {
+        newDest = Point(passingPoint.getX() - xCorrection, passingPoint.getY() - yCorrection);
+    }
     pathStack.push(newDest);
 }
 
@@ -183,6 +194,19 @@ void Agent::updateTheWayAround(const Point &newPassingPoint) {
     auto xDistance = newPassingPoint.getX() - passingPoint.getX();
     auto yDistance = newPassingPoint.getY() - passingPoint.getY();
     auto dest = pathStack.top();
+    passingPoint = newPassingPoint;
     pathStack.pop();
-    pathStack.push({dest.getX()+xDistance, dest.getY()+yDistance});
+    pathStack.push({dest.getX() + xDistance, dest.getY() + yDistance});
+}
+
+float Agent::getSpeed() const {
+    return speed;
+}
+
+const Scanner &Agent::getScanner() const {
+    return scanner;
+}
+
+const Point &Agent::getPassingPoint() const {
+    return passingPoint;
 }

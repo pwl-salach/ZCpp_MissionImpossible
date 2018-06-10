@@ -10,14 +10,16 @@ void Line::calculateFactorA(const Point &first, const Point &second) {
 }
 
 void Line::calculateFactorB(const Point &first, const Point &second) {
-    b = first.getY() - first.getX()*onlyCalculateA(first, second);
+    b = first.getY() - first.getX()*a;
 }
 
 float Line::onlyCalculateA(const Point &first, const Point &second) const {
+    int correction = 0;
     if(first.sameXCoordinate(second)){
-        throw std::runtime_error( "X coordinates are the same for those points");
+        correction = 1;
+        //throw std::runtime_error( "X coordinates are the same for those points");
     }
-    return (first.getY() - second.getY())/(first.getX() - second.getX());
+    return (first.getY() - second.getY())/(first.getX() - second.getX() + correction);
 }
 
 float Line::calculate(float x) {

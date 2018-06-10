@@ -25,8 +25,8 @@ void Headquarters::planSearching(Agent *agent) {
         std::random_device rd;
         std::mt19937 mt(rd());
         if (lastPlayerPosition.isSet()) {
-            std::uniform_int_distribution<uint32_t> range(20, 150);
             do {
+                std::uniform_int_distribution<uint32_t> range(20, 150);
                 for (uint8_t i = 0; i < 5; i++) {
                     auto x = lastPlayerPosition.getX() + range(mt);
                     auto y = lastPlayerPosition.getY() + range(mt);
@@ -39,9 +39,9 @@ void Headquarters::planSearching(Agent *agent) {
             } while (!map->isAccessible(point));
 
         } else {
-            std::uniform_int_distribution<uint32_t> xRange(0, map->getSizeX());
-            std::uniform_int_distribution<uint32_t> yRange(0, map->getSizeY());
             do {
+                std::uniform_int_distribution<uint32_t> xRange(0, map->getSizeX());
+                std::uniform_int_distribution<uint32_t> yRange(0, map->getSizeY());
                 auto x = xRange(mt);
                 auto y = yRange(mt);
                 point = Point(x, y);

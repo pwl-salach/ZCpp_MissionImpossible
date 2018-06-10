@@ -134,7 +134,7 @@ void GameWindow::displayPauseManu() {
 }
 
 void GameWindow::renderGameScreen() {
-    SDL_SetRenderDrawColor(renderer, 50, 160, 60, 200);
+
     for(auto sprite : sprites) {
         SDL_Texture *spriteTexture = SDL_CreateTextureFromSurface(renderer, sprite->getSurface());
         SDL_RenderCopyEx(renderer, spriteTexture, nullptr, &sprite->getVerticesPositions(), sprite->getAngle(),
@@ -142,6 +142,26 @@ void GameWindow::renderGameScreen() {
                          SDL_FLIP_NONE);
         SDL_DestroyTexture(spriteTexture);
     }
+    if(game->getSettings()->isDebug()){
+        for(auto agent : game->getAgents()){
+            if(!agent->isPathStackEmpty()){
+                SDL_SetRenderDrawColor(renderer, 250, 250, 0, 200);
+                SDL_RenderSetScale(renderer, 6, 6);
+                auto dest = agent->getNextDestination();
+                SDL_RenderDrawPoint(renderer, dest.getX()/6, dest.getY()/6);
+            }
+            if(agent->getPassingPoint().isSet()){
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 200);
+                SDL_RenderDrawPoint(renderer, agent->getPassingPoint().getX()/6, agent->getPassingPoint().getY()/6);
+            }
+            SDL_RenderSetScale(renderer, 1, 1);
+            SDL_SetRenderDrawColor(renderer, 255, 100, 185, 200);
+            for(auto point : agent->getScanner().getScannedPoint()){
+                SDL_RenderDrawPoint(renderer, point.getX(), point.getY());
+            }
+        }
+    }
+    SDL_SetRenderDrawColor(renderer, 50, 160, 60, 200);
 }
 
 void GameWindow::displayVictoryScreen() {

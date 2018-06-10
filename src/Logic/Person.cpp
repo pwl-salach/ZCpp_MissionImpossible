@@ -64,5 +64,3 @@ uint16_t Person::calculateNewRotation() {
 uint8_t Person::getMovementSpeed() const {
     return movementSpeed;
 }
-
-

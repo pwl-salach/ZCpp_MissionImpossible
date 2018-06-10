@@ -31,7 +31,6 @@ public:
     Point calculateNewPosition(uint16_t rot, float speed);
     virtual Point calculateNewPosition(uint16_t rot);
     uint16_t calculateNewRotation();
-
     void setMovement(Movement movement);
     void setTurning(Movement turning);
 

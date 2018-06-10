@@ -8,6 +8,7 @@
 #include "Map.h"
 #include <cmath>
 #include <algorithm>
+#include <mutex>
 
 Scanner::Scanner(uint16_t pRange, uint8_t pAngle) {
     range = pRange;
@@ -15,6 +16,8 @@ Scanner::Scanner(uint16_t pRange, uint8_t pAngle) {
 }
 
 std::vector<std::vector<Point>> Scanner::search(const Map *map, Agent *agent, Point &playerPosition) {
+    std::mutex guiLock;
+    scannedPoint.clear();
     recalculateAttachmentPosition(agent);
     auto steps = static_cast<uint16_t>(range / 3);
     std::vector<std::vector<Point> > foundObstacles;
@@ -24,24 +27,27 @@ std::vector<std::vector<Point>> Scanner::search(const Map *map, Agent *agent, Po
     for (int act = -angle / 2; act <= angle / 2; act++) {
         Point maxRangePoint = calculateMaxRangePoint(position, agent->getRotation() + act);
         auto ray = SampledLine(position, maxRangePoint, steps);
+        bool outlineFound = false;
         for (auto point : ray.getSamples()) {
+            scannedPoint.push_back(point);
             bool visibilityBlocked = false;
             for (auto obstacle : map->getObstacles()) {
+                if(obstacle == agent){
+                    break;
+                }
                 if (map->isPointInsideObstacle(point, obstacle)) {
-                    bool obstacleFound = false;
                     if (obstacle->blockingView()) {
                         visibilityBlocked = true;
-                        obstacleFound = true;
                     }
-                    if (obstacle->blockingMovement()) {
+                    if (obstacle->blockingMovement() && !outlineFound) {
                         if (prevPoint.isSet() && !map->areClose(prevPoint, point, 30.0)) {
                             foundObstacles.push_back(obstacleOutline);
-                            obstacleOutline.clear();
+                            obstacleOutline = std::vector<Point>();
                         }
                         obstacleOutline.push_back(point);
-                        obstacleFound = true;
+                        outlineFound = true;
                     }
-                    if (obstacleFound) {
+                    if (outlineFound || visibilityBlocked) {
                         break;
                     }
                 }
@@ -74,4 +80,8 @@ void Scanner::recalculateAttachmentPosition(Agent *agent) {
     auto finalYCoord = (agent->getPosition().getY() -
                         agent->getSizeY() / 2 * std::cos(static_cast<float>(agent->getRotation() * M_PI ) / 180));
     position = Point(finalXCoord, finalYCoord);
+}
+
+const std::vector<Point> &Scanner::getScannedPoint() const {
+    return scannedPoint;
 }

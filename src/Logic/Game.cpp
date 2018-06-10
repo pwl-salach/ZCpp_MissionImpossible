@@ -79,3 +79,11 @@ void Game::update() {
     }
     headquarters.planSearching();
 }
+
+Settings *Game::getSettings() const {
+    return settings;
+}
+
+const std::vector<Agent *> &Game::getAgents() const {
+    return agents;
+}

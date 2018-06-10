@@ -36,6 +36,8 @@ public:
     State getState() const;
     Player &getPlayer();
     Map &getMap();
+    Settings *getSettings() const;
+    const std::vector<Agent *> &getAgents() const;
 
 private:
     State state;
