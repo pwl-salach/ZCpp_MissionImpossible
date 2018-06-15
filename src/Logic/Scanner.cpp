@@ -5,7 +5,7 @@
 #include "Scanner.h"
 #include "SampledLine.h"
 #include "Agent.h"
-#include "Map.h"
+#include "Environment.h"
 #include <cmath>
 #include <algorithm>
 #include <mutex>
@@ -15,7 +15,7 @@ Scanner::Scanner(uint16_t pRange, uint8_t pAngle) {
     angle = pAngle;
 }
 
-std::vector<std::vector<Point>> Scanner::search(const Map *map, Agent *agent, Point &playerPosition) {
+std::vector<std::vector<Point>> Scanner::search(const Environment *environment, Agent *agent, Point &playerPosition) {
     std::mutex guiLock;
     scannedPoint.clear();
     recalculateAttachmentPosition(agent);
@@ -31,16 +31,16 @@ std::vector<std::vector<Point>> Scanner::search(const Map *map, Agent *agent, Po
         for (auto point : ray.getSamples()) {
             scannedPoint.push_back(point);
             bool visibilityBlocked = false;
-            for (auto obstacle : map->getObstacles()) {
+            for (auto obstacle : environment->getObstacles()) {
                 if(obstacle == agent){
                     break;
                 }
-                if (map->isPointInsideObstacle(point, obstacle)) {
+                if (environment->isPointInsideObstacle(point, obstacle)) {
                     if (obstacle->blockingView()) {
                         visibilityBlocked = true;
                     }
                     if (obstacle->blockingMovement() && !outlineFound) {
-                        if (prevPoint.isSet() && !map->areClose(prevPoint, point, 30.0)) {
+                        if (prevPoint.isSet() && !environment->areClose(prevPoint, point, 30.0)) {
                             foundObstacles.push_back(obstacleOutline);
                             obstacleOutline = std::vector<Point>();
                         }
@@ -53,7 +53,7 @@ std::vector<std::vector<Point>> Scanner::search(const Map *map, Agent *agent, Po
                 }
             }
             if (!playerFound) {
-                if (map->isPointThePlayerPosition(point)) {
+                if (environment->isPointThePlayerPosition(point)) {
                     playerPosition = point;
                     playerFound = true;
                 }

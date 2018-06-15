@@ -30,6 +30,9 @@ private:
     void renderFrame() override;
     void preparePauseMenuElements();
     void prepareSprites();
+    void renderGameScreen();
+    void displayVictoryScreen();
+    void displayLoseScreen();
     void displayPauseManu();
     void chooseOption();
     void moveCursorUp();
@@ -43,12 +46,8 @@ private:
     std::vector<MenuElement*> pauseMenuElements;
     std::vector<Sprite*> sprites;
     uint8_t selectedElementIndex;
-
-    void renderGameScreen();
-
-    void displayVictoryScreen();
-
-    void displayLoseScreen();
+    ImageElement grass;
+    SDL_Texture *grassTexture;
 };
 
 

@@ -2,8 +2,8 @@
 // Created by salach on 3/1/18.
 //
 
-#ifndef ZCPP_MISSIONIMPOSSIBLE_MAP_H
-#define ZCPP_MISSIONIMPOSSIBLE_MAP_H
+#ifndef ZCPP_MISSIONIMPOSSIBLE_environment_H
+#define ZCPP_MISSIONIMPOSSIBLE_environment_H
 
 
 #include <vector>
@@ -13,11 +13,11 @@
 #include "PhysicalObject.h"
 #include "Obstacle.h"
 
-class Map {
+class Environment {
 public:
-    Map(Player *player, std::vector<Agent *> *agents, uint8_t mapFileID);
+    Environment(Player *player, std::vector<Agent *> *agents, uint8_t environmentFileID);
 
-    ~Map();
+    ~Environment();
 
     uint16_t getSizeX() const;
 
@@ -89,4 +89,4 @@ private:
 };
 
 
-#endif //ZCPP_MISSIONIMPOSSIBLE_MAP_H
+#endif //ZCPP_MISSIONIMPOSSIBLE_environment_H

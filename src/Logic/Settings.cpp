@@ -5,7 +5,7 @@
 #include "Settings.h"
 
 Settings::Settings() {
-    mapNumber = 1;
+    environmentNumber = 1;
     numberOfAgents = 5;
     rangeOfView = 120;
     angleOfView = 60;
@@ -16,9 +16,9 @@ Settings::Settings() {
     minNumberOfAgents = 1;
     maxNumberOfAgents = 6;
     minRangeOfView = 50;
-    maxRangeOfView = 300;
+    maxRangeOfView = 200;
     minAngleOfView = 20;
-    maxAngleOfView = 120;
+    maxAngleOfView = 90;
 }
 
 uint8_t Settings::getNumberOfAgents() const {
@@ -53,8 +53,8 @@ void Settings::setDebug(bool debug) {
     Settings::debug = debug;
 }
 
-uint8_t Settings::getMapNumber() const {
-    return mapNumber;
+uint8_t Settings::getEnvironmentNumber() const {
+    return environmentNumber;
 }
 
 uint8_t Settings::getMinNumberOfAgents() const {

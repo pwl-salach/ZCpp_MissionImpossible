@@ -12,7 +12,7 @@ class Dictionary {
 public:
     static const std::string START_GAME;
     static const std::string SETTINGS;
-    static const std::string MAP_NUMBER;
+    static const std::string environment_NUMBER;
     static const std::string NUMBER_OF_AGENTS;
     static const std::string RANGE_OF_VIEW;
     static const std::string ANGLE_OF_VIEW;

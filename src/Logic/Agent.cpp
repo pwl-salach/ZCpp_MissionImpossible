@@ -83,9 +83,9 @@ bool Agent::isPathStackEmpty() {
     return pathStack.empty();
 }
 
-void Agent::lookAround(const Map *map) {
+void Agent::lookAround(const Environment *environment) {
     Point playerPos;
-    auto obstacles = scanner.search(map, this, playerPos);
+    auto obstacles = scanner.search(environment, this, playerPos);
     if (playerPos.isSet()) {
         reportPlayerPosition(playerPos);
         visiblePlayer = true;
@@ -93,10 +93,10 @@ void Agent::lookAround(const Map *map) {
         visiblePlayer = false;
     }
     for (const auto &obstacle : obstacles) {
-        if (map->blocksTheWay(this, obstacle)) {
-            findOtherWay(map, obstacle);
+        if (environment->blocksTheWay(this, obstacle)) {
+            findOtherWay(environment, obstacle);
         } else if (passingPoint.isSet()) {
-            auto closestPoint = map->getClosePoint(passingPoint, obstacle, 30);
+            auto closestPoint = environment->getClosePoint(passingPoint, obstacle, 30);
             if (closestPoint.isSet()) {
                 updateTheWayAround(closestPoint);
             }
@@ -122,13 +122,13 @@ bool Agent::catchPlayer(Player *player) {
     return std::sqrt(xDistance * xDistance + yDistance * yDistance) <= this->sizeY;
 }
 
-void Agent::findOtherWay(const Map *map, std::vector<Point> obstacle) {
+void Agent::findOtherWay(const Environment *environment, std::vector<Point> obstacle) {
     auto nextDest = getNextDestination();
-    float minDistance = map->getSizeX();
+    float minDistance = environment->getSizeX();
     std::vector<Point> vertices = {obstacle.at(0), obstacle.at(obstacle.size() - 1)};
     for (auto vertex: vertices) {
-        auto posVerDist = map->calculateDistance(position, vertex);
-        auto verDestDist = map->calculateDistance(vertex, nextDest);
+        auto posVerDist = environment->calculateDistance(position, vertex);
+        auto verDestDist = environment->calculateDistance(vertex, nextDest);
         auto distance = posVerDist + verDestDist;
         if (distance <= minDistance) {
             minDistance = distance;
@@ -156,7 +156,7 @@ void Agent::findOtherWay(const Map *map, std::vector<Point> obstacle) {
         }
     }
     Point newDest = Point(passingPoint.getX() + xCorrection, passingPoint.getY() + yCorrection);
-    if (!map->isAccessible(newDest)) {
+    if (!environment->isAccessible(newDest)) {
         newDest = Point(passingPoint.getX() - xCorrection, passingPoint.getY() - yCorrection);
     }
     pathStack.push(newDest);

@@ -26,7 +26,7 @@ private:
     enum MenuButtons{
         START_GAME = 0,
         SETTINGS = 1,
-        MAP_NUMBER = 2,
+        environment_NUMBER = 2,
         NUMBER_OF_AGENTS = 3,
         RANGE_OF_VIEW = 4,
         ANGLE_OF_VIEW = 5,

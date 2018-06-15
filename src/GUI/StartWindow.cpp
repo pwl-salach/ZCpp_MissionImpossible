@@ -42,17 +42,17 @@ void StartWindow::prepareSettingsMenuElements() {
     auto topMargin = uint16_t(2 * resolutionY / 5);
     auto bottomMargin = uint16_t(resolutionY / 4);
     std::map<uint8_t, std::string> elementsBasicData{
-            {MenuButtons::MAP_NUMBER, Dictionary::MAP_NUMBER},
+            {MenuButtons::environment_NUMBER, Dictionary::environment_NUMBER},
             {MenuButtons::NUMBER_OF_AGENTS, Dictionary::NUMBER_OF_AGENTS},
             {MenuButtons::RANGE_OF_VIEW,    Dictionary::RANGE_OF_VIEW},
             {MenuButtons::ANGLE_OF_VIEW,    Dictionary::ANGLE_OF_VIEW},
             {MenuButtons::DEBUG,            Dictionary::DEBUG}
     };
     std::vector<SDL_Rect> menuElementsPositions = calculateMenuElementsCoordinates(elementsBasicData, topMargin, bottomMargin);
-    settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::MAP_NUMBER,
-                                                                     Dictionary::MAP_NUMBER,
+    settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::environment_NUMBER,
+                                                                     Dictionary::environment_NUMBER,
                                                                      menuElementsPositions.at(0),
-                                                                     settings->getMapNumber()));
+                                                                     settings->getEnvironmentNumber()));
     settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::NUMBER_OF_AGENTS,
                                                                      Dictionary::NUMBER_OF_AGENTS,
                                                                      menuElementsPositions.at(1),
@@ -228,7 +228,7 @@ void StartWindow::clearSelection() {
 }
 
 void StartWindow::saveSettings() {
-    settings->setNumberOfAgents(getSettingValueAndApproveIt<uint8_t>(MenuButtons::MAP_NUMBER));
+    settings->setNumberOfAgents(getSettingValueAndApproveIt<uint8_t>(MenuButtons::environment_NUMBER));
     settings->setNumberOfAgents(getSettingValueAndApproveIt<uint8_t>(MenuButtons::NUMBER_OF_AGENTS));
     settings->setRangeOfView(getSettingValueAndApproveIt<uint16_t>(MenuButtons::RANGE_OF_VIEW));
     settings->setAngleOfView(getSettingValueAndApproveIt<uint8_t>(MenuButtons::ANGLE_OF_VIEW));
@@ -246,7 +246,7 @@ void StartWindow::cancelChanges(){
 void StartWindow::handleLeftKeyboardButton() {
     MenuElement *element = visibleElements->at(selectedElementIndex);
     switch (element->getId()){
-        case MenuButtons::MAP_NUMBER :
+        case MenuButtons::environment_NUMBER :
             castMenuElementToSetting<uint8_t>(element)->decreaseSettingValue(settings->getMinManNumber());
             break;
         case MenuButtons::NUMBER_OF_AGENTS :
@@ -270,7 +270,7 @@ void StartWindow::handleLeftKeyboardButton() {
 void StartWindow::handleRightKeyboardButton() {
     MenuElement *element = visibleElements->at(selectedElementIndex);
     switch (element->getId()){
-        case MenuButtons::MAP_NUMBER :
+        case MenuButtons::environment_NUMBER :
             castMenuElementToSetting<uint8_t>(element)->increaseSettingValue(settings->getMaxManNumber());
             break;
         case MenuButtons::NUMBER_OF_AGENTS :

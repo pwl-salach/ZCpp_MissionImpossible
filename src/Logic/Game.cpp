@@ -28,8 +28,8 @@ void Game::pause() {
 
 Game::Game(Settings *pSettings, std::vector<Agent *> pAgents) : settings(pSettings),
                                                                 agents(std::move(pAgents)),
-                                                                headquarters(Headquarters(&agents, &map)),
-                                                                map(Map(&player, &agents, settings->getMapNumber())){
+                                                                headquarters(Headquarters(&agents, &environment)),
+                                                                environment(Environment(&player, &agents, settings->getEnvironmentNumber())){
     updatesPerSecond = 25;
 }
 
@@ -37,8 +37,8 @@ Player &Game::getPlayer() {
     return player;
 }
 
-Map &Game::getMap(){
-    return map;
+Environment &Game::getEnvironment(){
+    return environment;
 }
 
 Game::State Game::getState() const {
@@ -57,17 +57,17 @@ void Game::loop() {
 }
 
 void Game::update() {
-    if(!map.checkCollisions(&player)) {
+    if(!environment.checkCollisions(&player)) {
         player.move();
-        bool victory = map.checkVictoryCondition();
+        bool victory = environment.checkVictoryCondition();
         if(victory){
             state = State::VICTORY;
         }
     }
     for(auto agent : agents){
-        agent->lookAround(&map);
+        agent->lookAround(&environment);
         agent->update();
-        auto obstacle = map.checkCollisions(agent);
+        auto obstacle = environment.checkCollisions(agent);
         if(obstacle == nullptr){
             agent->move();
         } else {

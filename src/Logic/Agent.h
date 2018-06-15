@@ -30,7 +30,7 @@ public:
     bool isPathStackEmpty();
     bool catchPlayer(Player *player);
     void setHeadquarters(Headquarters *headquarters);
-    void lookAround(const Map *map);
+    void lookAround(const Environment *environment);
     void moveAwayFrom(PhysicalObject *pObject);
     bool seesPlayer() const;
     Point getNextDestination();
@@ -40,7 +40,7 @@ public:
     const Point &getPassingPoint() const;
 
 private:
-    void findOtherWay(const Map *map, std::vector<Point> obstacle);
+    void findOtherWay(const Environment *environment, std::vector<Point> obstacle);
     void updateTheWayAround(const Point &newPassingPoint);
     double getAlpha(float xDistance, float yDistance) const;
     void reportPlayerPosition(Point &position);

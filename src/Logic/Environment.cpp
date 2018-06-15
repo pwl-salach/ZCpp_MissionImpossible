@@ -5,7 +5,7 @@
 #include <map>
 #include <cmath>
 #include "../Utils/FileManager.h"
-#include "Map.h"
+#include "Environment.h"
 #include "Lake.h"
 #include "Box.h"
 #include "Fence.h"
@@ -13,11 +13,11 @@
 #include "SampledLine.h"
 
 
-Map::Map(Player *player, std::vector<Agent *> *agents, uint8_t mapFileID) : player(player), agents(agents) {
+Environment::Environment(Player *player, std::vector<Agent *> *agents, uint8_t environmentFileID) : player(player), agents(agents) {
     std::string fileName = "map_";
-    fileName += std::to_string(mapFileID) + ".txt";
-    std::string mapConfig = FileManager::readTextFile(fileName);
-    std::vector<std::string> configMainParts = Dictionary::splitString(mapConfig, '\n');
+    fileName += std::to_string(environmentFileID) + ".txt";
+    std::string environmentConfig = FileManager::readTextFile(fileName);
+    std::vector<std::string> configMainParts = Dictionary::splitString(environmentConfig, '\n');
     for (auto line : configMainParts) {
         if (Dictionary::stringStartsWith(line, "size:")) {
             Dictionary::cutString(line, "size:");
@@ -48,13 +48,13 @@ Map::Map(Player *player, std::vector<Agent *> *agents, uint8_t mapFileID) : play
     }
 }
 
-void Map::loadSizeFromFileContent(const std::string &configString) {
-    std::vector<std::string> mapSize = Dictionary::splitString(configString, 'x');
-    sizeX = uint16_t(std::atoi(mapSize.at(0).c_str()));
-    sizeY = uint16_t(std::atoi(mapSize.at(1).c_str()));
+void Environment::loadSizeFromFileContent(const std::string &configString) {
+    std::vector<std::string> environmentSize = Dictionary::splitString(configString, 'x');
+    sizeX = uint16_t(std::atoi(environmentSize.at(0).c_str()));
+    sizeY = uint16_t(std::atoi(environmentSize.at(1).c_str()));
 }
 
-void Map::loadPlayerStartingPosition(const std::string &configString) {
+void Environment::loadPlayerStartingPosition(const std::string &configString) {
     std::vector<std::string> params = Dictionary::splitString(configString, ',');
     auto x = std::atoi(params.at(0).c_str());
     auto y = std::atoi(params.at(1).c_str());
@@ -64,7 +64,7 @@ void Map::loadPlayerStartingPosition(const std::string &configString) {
     player->setInitialOrientation(Point(x, y), r);
 }
 
-void Map::loadAgentsPositions(const std::string &configString) {
+void Environment::loadAgentsPositions(const std::string &configString) {
     std::vector<std::string> parts = Dictionary::splitString(configString, ';');
     if (agents->size() > parts.size()) {
         throw std::runtime_error("Not enough agents initial positions in the config file!");
@@ -85,7 +85,7 @@ void Map::loadAgentsPositions(const std::string &configString) {
     }
 }
 
-void Map::loadFinishPoint(const std::string &configString) {
+void Environment::loadFinishPoint(const std::string &configString) {
     std::vector<std::string> params = Dictionary::splitString(configString, ',');
     auto x = std::atoi(params.at(0).c_str());
     auto y = std::atoi(params.at(1).c_str());
@@ -96,12 +96,12 @@ void Map::loadFinishPoint(const std::string &configString) {
     finishPointRadius = radius;
     checkInitPosition(x, y);
     if (x != 0 && y != 0 && x != sizeX && y != sizeY) {
-        throw std::runtime_error("Finish point has to be on the border of the map!");
+        throw std::runtime_error("Finish point has to be on the border of the environment!");
     }
     finishPoint = Point(x, y);
 }
 
-void Map::createFence() {
+void Environment::createFence() {
     Fence *topFence = new Fence(Point(sizeX / 2, 0), sizeX, 0);
     Fence *rightFence = new Fence(Point(sizeX, sizeY / 2), sizeY, 90);
     Fence *bottomFence = new Fence(Point(sizeX / 2, sizeY), sizeX, 0);
@@ -109,7 +109,6 @@ void Map::createFence() {
     if (finishPoint.getY() == 0 || finishPoint.getY() == sizeY) {
         if (finishPoint.getX() > finishPointRadius
             && sizeX - finishPoint.getX() > finishPointRadius) {
-
             float tempFenceSizeX = finishPoint.getX() - finishPointRadius;
             Fence *&temp = (finishPoint.getY() == 0) ? topFence : bottomFence;
             delete temp;
@@ -126,19 +125,19 @@ void Map::createFence() {
     obstacles.push_back(leftFence);
 }
 
-uint16_t Map::getSizeX() const {
+uint16_t Environment::getSizeX() const {
     return sizeX;
 }
 
-uint16_t Map::getSizeY() const {
+uint16_t Environment::getSizeY() const {
     return sizeY;
 }
 
-const std::vector<Obstacle *> &Map::getObstacles() const {
+const std::vector<Obstacle *> &Environment::getObstacles() const {
     return obstacles;
 }
 
-PhysicalObject *Map::checkCollisions(Person *person) {
+PhysicalObject *Environment::checkCollisions(Person *person) {
     uint16_t newRot = person->calculateNewRotation();
     Point newPos = person->calculateNewPosition(newRot, person->getMovementSpeed());
     if (newPos == person->getPosition() && person->getRotation() == newRot) {
@@ -155,7 +154,7 @@ PhysicalObject *Map::checkCollisions(Person *person) {
     return nullptr;
 }
 
-bool Map::areClose(PhysicalObject *firstObject, PhysicalObject *secondObject) {
+bool Environment::areClose(PhysicalObject *firstObject, PhysicalObject *secondObject) {
     if (firstObject == secondObject)
         return false;
     auto minDistance = firstObject->getDiagonalLength() / 2 + secondObject->getDiagonalLength() / 2;
@@ -164,19 +163,19 @@ bool Map::areClose(PhysicalObject *firstObject, PhysicalObject *secondObject) {
     return xDistance <= minDistance && yDistance <= minDistance;
 }
 
-bool Map::areClose(const Point &point, PhysicalObject *object) const {
+bool Environment::areClose(const Point &point, PhysicalObject *object) const {
     auto xDistance = std::fabs(object->getPosition().getX() - point.getX());
     auto yDistance = std::fabs(object->getPosition().getY() - point.getY());
     return object->getSizeX() / 2 <= xDistance && object->getSizeY() / 2 <= yDistance;
 }
 
-bool Map::areClose(const Point &point, const Point &other, float threshold) const {
+bool Environment::areClose(const Point &point, const Point &other, float threshold) const {
     bool xClose = std::fabs(point.getX() - other.getX()) < threshold;
     bool yClose = std::fabs(point.getY() - other.getY()) < threshold;
     return xClose && yClose;
 }
 
-Point Map::getClosePoint(const Point &point, const std::vector<Point> &outline, float threshold) const {
+Point Environment::getClosePoint(const Point &point, const std::vector<Point> &outline, float threshold) const {
     for (auto other : outline) {
         bool xClose = std::fabs(point.getX() - other.getX()) < threshold;
         bool yClose = std::fabs(point.getY() - other.getY()) < threshold;
@@ -187,7 +186,7 @@ Point Map::getClosePoint(const Point &point, const std::vector<Point> &outline, 
     return Point();
 }
 
-bool Map::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
+bool Environment::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
     auto overlaps = [this](const std::vector<Point> &some, const std::vector<Point> &other) -> bool {
         for (const auto &vertex : some) {
             bool overlapping = isPointInsideRectangle(other, vertex);
@@ -202,7 +201,7 @@ bool Map::overlappingRectangles(const std::vector<Point> &firstRectVer, const st
     return firstOverlappingSecond || secondOverlappingFirst;
 }
 
-bool Map::isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const {
+bool Environment::isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const {
     int counter = 0;
     float xMin = rectVertices.at(0).getX();
     float yMin = rectVertices.at(0).getY();
@@ -238,26 +237,26 @@ bool Map::isPointInsideRectangle(const std::vector<Point> &rectVertices, const P
         return false;
 }
 
-Map::~Map() {
+Environment::~Environment() {
     for (auto it: obstacles) {
         delete it;
     }
     obstacles.clear();
 }
 
-bool Map::checkVictoryCondition() {
+bool Environment::checkVictoryCondition() {
     bool playerOutside = objectOutsideBoundaries(player);
     bool closeToExitPoint = areClose(player->getPosition(), finishPoint, finishPointRadius);
     return playerOutside && closeToExitPoint;
 }
 
-bool Map::objectOutsideBoundaries(PhysicalObject *object) {
+bool Environment::objectOutsideBoundaries(PhysicalObject *object) {
     auto x = object->getPosition().getX();
     auto y = object->getPosition().getY();
     return 0 > x || x > sizeX || 0 > y || y > sizeY;
 }
 
-void Map::checkInitPosition(float x, float y) const {
+void Environment::checkInitPosition(float x, float y) const {
     if (x < 0 && sizeX < x) {
         throw std::runtime_error("X-coordinate out of range!");
     }
@@ -266,7 +265,7 @@ void Map::checkInitPosition(float x, float y) const {
     }
 }
 
-uint16_t Map::recalculateRotation(uint16_t r) {
+uint16_t Environment::recalculateRotation(uint16_t r) {
     int period = 0;
     if (abs(r) > 360) {
         period = (r / 360) * 360;
@@ -276,7 +275,7 @@ uint16_t Map::recalculateRotation(uint16_t r) {
     return r;
 }
 
-bool Map::isPointThePlayerPosition(const Point &point) const {
+bool Environment::isPointThePlayerPosition(const Point &point) const {
     if (areClose(point, player->getPosition(), 30)) {
         std::vector<Point> playerVertices = player->getVerticesPosition();
         return isPointInsideRectangle(playerVertices, point);
@@ -284,20 +283,20 @@ bool Map::isPointThePlayerPosition(const Point &point) const {
     return false;
 }
 
-bool Map::isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const {
+bool Environment::isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const {
     if (!areClose(point, pObstacle)) {
         return isPointInsideRectangle(pObstacle->getVerticesPosition(), point);
     }
     return false;
 }
 
-float Map::calculateDistance(const Point &some, const Point &other) const {
+float Environment::calculateDistance(const Point &some, const Point &other) const {
     auto xDiff = some.getX() - other.getX();
     auto yDiff = some.getY() - other.getY();
     return std::sqrt(xDiff * xDiff + yDiff * yDiff);
 }
 
-bool Map::isAccessible(const Point &point)const {
+bool Environment::isAccessible(const Point &point)const {
     for (auto obstacle: obstacles) {
         if (isPointInsideObstacle(point, obstacle)) {
             return false;
@@ -306,7 +305,7 @@ bool Map::isAccessible(const Point &point)const {
     return true;
 }
 
-bool Map::blocksTheWay(Agent *agent, const std::vector<Point> &obstacleOutline) const {
+bool Environment::blocksTheWay(Agent *agent, const std::vector<Point> &obstacleOutline) const {
     if(agent->isPathStackEmpty()){
         return false;
     }

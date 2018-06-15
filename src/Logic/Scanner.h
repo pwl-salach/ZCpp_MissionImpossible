@@ -15,7 +15,7 @@
 #include <vector>
 #include "Obstacle.h"
 
-class Map;
+class Environment;
 class Agent;
 
 /*!
@@ -25,7 +25,7 @@ class Agent;
 class Scanner {
 public:
     Scanner(uint16_t pRange, uint8_t pAngle);
-    std::vector<std::vector<Point>> search(const Map *map, Agent *agent, Point &playerPosition);
+    std::vector<std::vector<Point>> search(const Environment *environment, Agent *agent, Point &playerPosition);
 
     const std::vector<Point> &getScannedPoint() const;
 

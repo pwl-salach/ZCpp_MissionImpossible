@@ -27,7 +27,7 @@ public:
 
     void setDebug(bool debug);
 
-    uint8_t getMapNumber() const;
+    uint8_t getEnvironmentNumber() const;
 
     uint8_t getMinNumberOfAgents() const;
 
@@ -46,7 +46,7 @@ public:
     uint8_t getMaxManNumber() const;
 
 private:
-    uint8_t mapNumber;
+    uint8_t environmentNumber;
     uint8_t numberOfAgents;
     uint16_t rangeOfView;
     uint8_t angleOfView;

@@ -14,24 +14,29 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7fb39d-88c0-4136-9e15-24157092021c" name="Default" comment="">
+    <list default="true" id="ff7fb39d-88c0-4136-9e15-24157092021c" name="Default" comment="Almost finished.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lake.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lake.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/map_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/map_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GameWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GameWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GameWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GameWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/StartWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/StartWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Agent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Agent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Agent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Game.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Game.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Headquarters.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Headquarters.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Line.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Line.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Person.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Person.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Person.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Person.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/SampledLine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/SampledLine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logic/Headquarters.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Headquarters.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logic/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Environment.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logic/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Environment.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Scanner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Scanner.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Scanner.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Scanner.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Settings.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Settings.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logic/Settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Settings.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Dictionary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Dictionary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Dictionary.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Dictionary.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,102 +52,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Map.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Map.cpp">
+      <file leaf-file-name="Environment.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Environment.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Agent.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Agent.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="127" selection-start-line="127" selection-end-line="127" />
+            <state relative-caret-position="1496">
+              <caret line="88" selection-start-line="88" selection-end-line="88" />
               <folding>
-                <element signature="e#39#55#0" expanded="true" />
-                <marker date="1528646835022" expanded="true" signature="1159:1851" ph="{...}" />
+                <element signature="e#39#53#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Line.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Line.cpp">
+      <file leaf-file-name="GameWindow.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+            <state relative-caret-position="2788">
+              <caret line="164" selection-start-line="164" selection-end-line="164" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Game.cpp">
+      <file leaf-file-name="Window.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Window.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="73" column="40" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="40" />
+            <state relative-caret-position="493">
+              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
               <folding>
-                <element signature="e#43#60#0" expanded="true" />
+                <element signature="e#124#145#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Agent.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Agent.h">
+      <file leaf-file-name="Point.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Point.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+            <state relative-caret-position="561">
+              <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Person.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Person.cpp">
+      <file leaf-file-name="Point.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Point.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="493">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PhysicalObject.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.cpp">
+      <file leaf-file-name="Headquarters.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Headquarters.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
+            <state relative-caret-position="281">
+              <caret line="28" column="67" lean-forward="true" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Map.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Map.h">
+      <file leaf-file-name="GameWindow.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+            <state relative-caret-position="408">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Scanner.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Scanner.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="22" column="52" lean-forward="true" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
-              <folding>
-                <element signature="e#39#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Obstacle.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Obstacle.cpp">
+      <file leaf-file-name="Settings.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Settings.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Environment.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Environment.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="e#131#148#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageElement.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -151,13 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>update(</find>
-      <find>throw</find>
-      <find>closestPoint</find>
-      <find>This point is not properly initiated!</find>
-      <find>spe</find>
-      <find>getMovem</find>
-      <find>Debug</find>
       <find>renderGameScreen</find>
       <find>setting</find>
       <find>X coordinates are the same for those points</find>
@@ -181,12 +178,15 @@
       <find>obstacles</find>
       <find>moveawa</find>
       <find>movemen</find>
+      <find>map</find>
+      <find>getenvironment</find>
+      <find>&lt;environment&gt;</find>
+      <find>std::environment&lt;</find>
+      <find>No finish point. This game would be pointless!</find>
+      <find>.txt</find>
+      <find>sett</find>
     </findStrings>
     <replaceStrings>
-      <replace>/</replace>
-      <replace>verticesPosition</replace>
-      <replace>decrease</replace>
-      <replace>min</replace>
       <replace>&gt;</replace>
       <replace>--</replace>
       <replace>increaseSettingValue</replace>
@@ -213,6 +213,10 @@
       <replace>float</replace>
       <replace>throw std::runtime_error(</replace>
       <replace>passingPoint</replace>
+      <replace>environment</replace>
+      <replace>getEnvironment</replace>
+      <replace>&lt;map&gt;</replace>
+      <replace>std::map&lt;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -226,24 +230,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Utils/FileManager.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/MenuElement.h" />
         <option value="$PROJECT_DIR$/src/GUI/SettingElement.h" />
         <option value="$PROJECT_DIR$/src/GUI/Window.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/GameWindow.h" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/GUI/Sprite.h" />
         <option value="$PROJECT_DIR$/src/Logic/Player.cpp" />
         <option value="$PROJECT_DIR$/src/GUI/Sprite.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/Window.h" />
         <option value="$PROJECT_DIR$/src/Utils/Line.h" />
         <option value="$PROJECT_DIR$/src/Utils/Line.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/FieldOfView.h" />
         <option value="$PROJECT_DIR$/src/Logic/Scaner.h" />
         <option value="$PROJECT_DIR$/src/GUI/MenuElement.cpp" />
         <option value="$PROJECT_DIR$/src/GUI/StartWindow.h" />
-        <option value="$PROJECT_DIR$/src/GUI/StartWindow.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Box.h" />
         <option value="$PROJECT_DIR$/src/Logic/Lake.h" />
         <option value="$PROJECT_DIR$/src/Logic/Line.h" />
@@ -262,21 +261,26 @@
         <option value="$PROJECT_DIR$/src/Logic/Headquarters.h" />
         <option value="$PROJECT_DIR$/src/Logic/PhysicalObject.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Point.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Map.h" />
         <option value="$PROJECT_DIR$/src/Logic/Person.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Person.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Game.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Game.h" />
         <option value="$PROJECT_DIR$/src/Logic/Agent.h" />
         <option value="$PROJECT_DIR$/src/Logic/Scanner.h" />
         <option value="$PROJECT_DIR$/src/Logic/SampledLine.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Headquarters.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Line.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/GameWindow.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Settings.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Scanner.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Agent.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Map.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Map.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Environment.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Game.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Game.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/Window.h" />
+        <option value="$PROJECT_DIR$/src/GUI/StartWindow.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Environment.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/GameWindow.h" />
+        <option value="$PROJECT_DIR$/src/GUI/GameWindow.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Settings.cpp" />
       </list>
     </option>
   </component>
@@ -291,9 +295,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1920" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -323,7 +328,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -352,12 +356,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -475,7 +481,9 @@
       <workItem from="1528397765081" duration="1094000" />
       <workItem from="1528552915326" duration="10581000" />
       <workItem from="1528568107610" duration="13244000" />
-      <workItem from="1528635978847" duration="6379000" />
+      <workItem from="1528635978847" duration="12488000" />
+      <workItem from="1528904318667" duration="619000" />
+      <workItem from="1529009039464" duration="727000" />
     </task>
     <task id="LOCAL-00001" summary="Working threads for both platforms. Simple Player control added.">
       <created>1521217656908</created>
@@ -533,11 +541,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528400482185</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Almost finished.">
+      <created>1528648147576</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1528648147576</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417163000" />
+    <option name="totallyTimeSpent" value="424618000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -549,33 +564,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="PlantUML" order="3" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.19989339" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32934782" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32352942" />
+      <window_info anchor="bottom" id="Statistic" order="12" weight="0.32897604" />
       <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.32934782" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50479746" side_tool="true" weight="0.3152174" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49707174" weight="0.32608697" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49520257" weight="0.20479302" />
+      <window_info anchor="right" id="Structure" order="4" sideWeight="0.5021739" side_tool="true" visible="true" weight="0.15618336" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32897604" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.19722815" />
-      <window_info anchor="bottom" id="Statistic" order="12" weight="0.32897604" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3278867" />
-      <window_info anchor="right" id="Structure" order="4" sideWeight="0.5021739" side_tool="true" visible="true" weight="0.15778251" />
       <window_info id="Favorites" order="1" sideWeight="0.51449275" side_tool="true" weight="0.1854058" />
-      <window_info active="true" anchor="bottom" x="444" y="272" width="441" height="527" id="Debug" order="3" visible="true" weight="0.36056644" />
+      <window_info anchor="bottom" x="444" y="272" width="441" height="527" id="Debug" order="3" weight="0.36056644" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32352942" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3278867" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.32934782" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49520257" visible="true" weight="0.20652173" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.21055438" />
       <window_info anchor="right" id="Structure" order="4" sideWeight="0.5021739" visible="true" weight="0.17217484" />
@@ -583,10 +599,9 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32934782" />
       <window_info anchor="right" id="PlantUML" order="3" />
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.32934782" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32934782" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49520257" visible="true" weight="0.20652173" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32934782" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32934782" />
       <window_info anchor="bottom" x="444" y="272" width="441" height="527" id="Debug" order="3" weight="0.2630435" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32934782" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50479746" side_tool="true" weight="0.3152174" />
@@ -613,21 +628,12 @@
     <MESSAGE value="Nawet nie pamiętam" />
     <MESSAGE value="Agents can now find the way then they encounter a obstacle. Headquarters gives simple search orders." />
     <MESSAGE value="Reimplemented Scanner." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reimplemented Scanner." />
+    <MESSAGE value="Almost finished." />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost finished." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Logic/Point.cpp</url>
-          <line>20</line>
-          <option name="timeStamp" value="280" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Logic/Point.cpp</url>
-          <line>14</line>
-          <option name="timeStamp" value="281" />
-        </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Logic/Agent.cpp</url>
           <line>161</line>
@@ -644,25 +650,15 @@
           <option name="timeStamp" value="302" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/GUI/GameWindow.cpp</url>
-          <line>150</line>
-          <option name="timeStamp" value="305" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/GUI/GameWindow.cpp</url>
-          <line>163</line>
-          <option name="timeStamp" value="306" />
+          <url>file://$PROJECT_DIR$/src/Logic/Environment.cpp</url>
+          <line>88</line>
+          <option name="timeStamp" value="326" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <default-breakpoints>
-        <breakpoint enabled="true" type="CidrExceptionBreakpoint">
-          <properties />
-        </breakpoint>
-      </default-breakpoints>
-      <option name="time" value="326" />
+      <option name="time" value="327" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -735,13 +731,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Logic/Player.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/MinGW-w64/x86_64-7.2.0-posix-seh/mingw64/lib/gcc/x86_64-w64-mingw32/7.2.0/include/c++/vector">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -812,20 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1876">
-          <caret line="54" column="75" lean-forward="true" selection-start-line="54" selection-start-column="75" selection-end-line="54" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Point.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -906,27 +881,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Game.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding>
-            <element signature="e#176#193#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/Cpp/SDL2/x86_64-w64-mingw32/include/SDL2/SDL_render.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="637" column="28" selection-start-line="637" selection-start-column="28" selection-end-line="637" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -951,20 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -986,37 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Point.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="158" column="68" lean-forward="true" selection-start-line="158" selection-start-column="68" selection-end-line="158" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Headquarters.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="28" column="67" lean-forward="true" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
-          <folding>
-            <element signature="e#39#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Settings.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.h">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1034,27 +947,14 @@
     <entry file="file://$PROJECT_DIR$/src/Logic/Agent.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Game.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="73" column="40" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="40" />
-          <folding>
-            <element signature="e#43#60#0" expanded="true" />
-          </folding>
+          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Scanner.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="22" column="52" lean-forward="true" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
-          <folding>
-            <element signature="e#39#59#0" expanded="true" />
-          </folding>
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -1064,7 +964,7 @@
           <caret line="127" selection-start-line="127" selection-end-line="127" />
           <folding>
             <element signature="e#39#55#0" expanded="true" />
-            <marker date="1528646835022" expanded="true" signature="1159:1851" ph="{...}" />
+            <marker date="1528648614762" expanded="true" signature="1159:1851" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1072,7 +972,7 @@
     <entry file="file://$PROJECT_DIR$/src/Logic/Line.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -1090,17 +990,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Map.h">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Game.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        <state relative-caret-position="331">
+          <caret line="46" column="27" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Map.cpp">
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="44" column="78" lean-forward="true" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Game.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
-          <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="82" />
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Window.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding>
+            <element signature="e#124#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Environment.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <element signature="e#39#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Environment.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#131#148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Settings.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2788">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Point.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Point.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Headquarters.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="28" column="67" lean-forward="true" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
         </state>
       </provider>
     </entry>

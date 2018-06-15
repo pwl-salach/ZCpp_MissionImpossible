@@ -36,16 +36,16 @@ void Headquarters::planSearching(Agent *agent) {
                         break;
                     }
                 }
-            } while (!map->isAccessible(point));
+            } while (!environment->isAccessible(point));
 
         } else {
             do {
-                std::uniform_int_distribution<uint32_t> xRange(0, map->getSizeX());
-                std::uniform_int_distribution<uint32_t> yRange(0, map->getSizeY());
+                std::uniform_int_distribution<uint32_t> xRange(0, environment->getSizeX());
+                std::uniform_int_distribution<uint32_t> yRange(0, environment->getSizeY());
                 auto x = xRange(mt);
                 auto y = yRange(mt);
                 point = Point(x, y);
-            } while (!map->isAccessible(point));
+            } while (!environment->isAccessible(point));
         }
         agent->updateOrders(point);
     }
@@ -63,7 +63,7 @@ void Headquarters::broadcastPlayerPosition() {
     }
 }
 
-Headquarters::Headquarters(std::vector<Agent *> *agents, Map *map) : agents(agents), map(map) {
+Headquarters::Headquarters(std::vector<Agent *> *agents, Environment *environment) : agents(agents), environment(environment) {
     for(auto agent : *agents){
         agent->setHeadquarters(this);
     }
@@ -82,10 +82,10 @@ bool Headquarters::isPlayerSeen() {
 
 bool Headquarters::checkedAlready(Point point, float threshold) {
     for(auto agent: *agents){
-        auto pointAgentPosDist = map->calculateDistance(point, agent->getPosition());
+        auto pointAgentPosDist = environment->calculateDistance(point, agent->getPosition());
         bool checked = pointAgentPosDist <= threshold;
         if (!agent->isPathStackEmpty()){
-            auto pointAgentDestDist = map->calculateDistance(point, agent->getNextDestination());
+            auto pointAgentDestDist = environment->calculateDistance(point, agent->getNextDestination());
             checked = checked || pointAgentDestDist <= threshold;
         }
         if(checked){

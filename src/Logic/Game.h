@@ -11,7 +11,7 @@
 
 #include <thread>
 #include "../GUI/StartWindow.h"
-#include "Map.h"
+#include "Environment.h"
 #include "Headquarters.h"
 
 /*!
@@ -35,7 +35,7 @@ public:
     void quit();
     State getState() const;
     Player &getPlayer();
-    Map &getMap();
+    Environment &getEnvironment();
     Settings *getSettings() const;
     const std::vector<Agent *> &getAgents() const;
 
@@ -44,7 +44,7 @@ private:
     Player player;
     Settings *settings;
     std::vector<Agent*>agents;
-    Map map;
+    Environment environment;
     Headquarters headquarters;
     std::thread updateLoop;
     uint8_t updatesPerSecond;

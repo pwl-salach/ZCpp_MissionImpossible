@@ -13,11 +13,11 @@
 
 #include "Point.h"
 #include "Agent.h"
-#include "Map.h"
+#include "Environment.h"
 
 class Headquarters {
 public:
-    Headquarters(std::vector<Agent *> *agents, Map *map);
+    Headquarters(std::vector<Agent *> *agents, Environment *environment);
 
     void broadcastPlayerPosition();
     void planSearching();
@@ -30,7 +30,7 @@ private:
     std::vector<Agent*> *agents;
     Point playerPosition;
     Point lastPlayerPosition;
-    Map* map;
+    Environment* environment;
 
     bool checkedAlready(Point point, float threshold);
 };
