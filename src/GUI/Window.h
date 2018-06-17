@@ -7,6 +7,7 @@
 
 #include "SDL2/SDL.h"
 #include "ImageElement.h"
+#include "MenuElement.h"
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <map>
@@ -28,6 +29,8 @@ protected:
     uint16_t getElementWidth(std::string text, uint16_t elementHeight);
 
     SDL_Texture *logoTexture;
+    TTF_Font *font;
+    std::vector<MenuElement*> *visibleElements;
     ImageElement logo;
     SDL_Window *window;
     SDL_Renderer *renderer;

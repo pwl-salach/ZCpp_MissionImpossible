@@ -39,6 +39,8 @@ public:
     Settings *getSettings() const;
     const std::vector<Agent *> &getAgents() const;
 
+    void resume();
+
 private:
     State state;
     Player player;

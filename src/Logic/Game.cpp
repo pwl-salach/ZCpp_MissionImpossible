@@ -22,6 +22,8 @@ void Game::quit() {
 }
 
 void Game::pause() {
+    player.setMovement(Player::Movement::NONE);
+    player.setTurning(Player::Movement::NONE);
     state = State::PAUSE;
     updateLoop.join();
 }
@@ -86,4 +88,9 @@ Settings *Game::getSettings() const {
 
 const std::vector<Agent *> &Game::getAgents() const {
     return agents;
+}
+
+void Game::resume() {
+    state = State::RUNNING;
+    updateLoop = std::thread(&Game::loop, this);
 }

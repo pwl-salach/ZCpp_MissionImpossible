@@ -1,4 +1,4 @@
-//
+//            visibleElements = &endGameElements;
 // Created by Salach on 03.03.2018.
 //
 

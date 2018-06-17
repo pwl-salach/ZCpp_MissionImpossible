@@ -7,7 +7,6 @@
 
 
 #include "Window.h"
-#include "MenuElement.h"
 #include "../Logic/Settings.h"
 #include "SettingElement.h"
 #include <vector>
@@ -71,9 +70,7 @@ private:
     Settings *settings;
     std::vector<MenuElement*> mainMenuElements;
     std::vector<MenuElement*> settingsMenuElements;
-    std::vector<MenuElement*> *visibleElements;
     uint8_t selectedElementIndex;
-    TTF_Font *font;
 
     void startGame();
 };

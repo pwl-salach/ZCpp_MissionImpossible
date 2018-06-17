@@ -33,7 +33,7 @@ private:
     void renderGameScreen();
     void displayVictoryScreen();
     void displayLoseScreen();
-    void displayPauseManu();
+    void displayPauseMenu();
     void chooseOption();
     void moveCursorUp();
     void moveCursorDown();
@@ -44,10 +44,15 @@ private:
 
     Game *game;
     std::vector<MenuElement*> pauseMenuElements;
+    std::vector<MenuElement*> endGameElements;
     std::vector<Sprite*> sprites;
     uint8_t selectedElementIndex;
     ImageElement grass;
     SDL_Texture *grassTexture;
+
+    void prepareEndGameElements();
+
+    void prepareMenuElements(std::map<uint8_t, std::string> elementsData, std::vector<MenuElement *> &container);
 };
 
 
