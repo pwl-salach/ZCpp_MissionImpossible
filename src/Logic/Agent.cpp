@@ -53,7 +53,7 @@ void Agent::update() {
         speed = static_cast<float>((180 - std::fabs(difference)) * movementSpeed / 180);
         if (difference > turningSpeed) {
             turning = Movement::TURN_LEFT;
-        } else if ( -difference > turningSpeed) {
+        } else if (-difference > turningSpeed) {
             turning = Movement::TURN_RIGHT;
         } else {
             turning = Movement::NONE;
@@ -197,10 +197,6 @@ void Agent::updateTheWayAround(const Point &newPassingPoint) {
     passingPoint = newPassingPoint;
     pathStack.pop();
     pathStack.push({dest.getX() + xDistance, dest.getY() + yDistance});
-}
-
-float Agent::getSpeed() const {
-    return speed;
 }
 
 const Scanner &Agent::getScanner() const {

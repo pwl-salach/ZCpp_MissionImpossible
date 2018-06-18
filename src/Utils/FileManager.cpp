@@ -8,7 +8,7 @@
 
 
 TTF_Font *FileManager::loadFont(const std::string &fileName, uint8_t size) {
-    if (!TTF_WasInit()){
+    if (!TTF_WasInit()) {
         TTF_Init();
     }
     std::string filePath = FileManager::concatenateFilePath(fileName);
@@ -28,10 +28,8 @@ std::string FileManager::readTextFile(const std::string &fileName) {
     std::string ret, line;
     std::string filePath = FileManager::concatenateFilePath(fileName);
     std::ifstream file(filePath);
-    if (file.is_open())
-    {
-        while ( getline (file,line) )
-        {
+    if (file.is_open()) {
+        while (getline(file, line)) {
             ret += line + "\n";
         }
         file.close();
@@ -40,7 +38,7 @@ std::string FileManager::readTextFile(const std::string &fileName) {
 }
 
 std::string FileManager::concatenateFilePath(const std::string &fileName) {
-    std::string filePath= "../resources/";
+    std::string filePath = "../resources/";
     filePath += fileName;
     return filePath;
 }

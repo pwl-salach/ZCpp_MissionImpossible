@@ -12,17 +12,16 @@
 #include <vector>
 #include <map>
 
-class StartWindow : public Window{
+class StartWindow : public Window {
 public:
     StartWindow(uint16_t resX, uint16_t resY, Settings *pSettings);
 
     virtual ~StartWindow();
 
     void show() override;
-    void disappear() override;
 
 private:
-    enum MenuButtons{
+    enum MenuButtons {
         START_GAME = 0,
         SETTINGS = 1,
         environment_NUMBER = 2,
@@ -34,26 +33,37 @@ private:
         ACCEPT = 8,
         QUIT = 9
     };
+
     void prepareMainMenuElements();
+
     void prepareSettingsMenuElements();
+
     void loop() override;
+
     void renderFrame() override;
+
     void handleKeyboardEvent(SDL_Event &event) override;
-    void moveCursorUp();
-    void moveCursorDown();
+
     void chooseOption();
+
     void goToSettings();
+
     void goToMainMenu();
-    void selectFirstElement();
-    void clearSelection();
+
     void handleLeftKeyboardButton();
+
     void handleRightKeyboardButton();
+
     void saveSettings();
+
     void cancelChanges();
 
-    template <typename T> T getSettingValueAndApproveIt(uint8_t settingElementID){
+private:
+
+    template<typename T>
+    T getSettingValueAndApproveIt(uint8_t settingElementID) {
         uint8_t index = 0;
-        for(auto element : settingsMenuElements){
+        for (auto element : settingsMenuElements) {
             if (element->getId() == settingElementID)
                 break;
             index++;
@@ -63,14 +73,14 @@ private:
         return element->getSetting();
     }
 
-    template <typename T> SettingElement<T>* castMenuElementToSetting(MenuElement *element) {
-        return dynamic_cast<SettingElement<T>*>(element);
+    template<typename T>
+    SettingElement<T> *castMenuElementToSetting(MenuElement *element) {
+        return dynamic_cast<SettingElement<T> *>(element);
     }
 
     Settings *settings;
-    std::vector<MenuElement*> mainMenuElements;
-    std::vector<MenuElement*> settingsMenuElements;
-    uint8_t selectedElementIndex;
+    std::vector<MenuElement *> mainMenuElements;
+    std::vector<MenuElement *> settingsMenuElements;
 
     void startGame();
 };

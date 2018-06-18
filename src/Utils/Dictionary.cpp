@@ -34,7 +34,7 @@ std::vector<std::string> Dictionary::splitString(std::string text, char delimite
 
 void Dictionary::cutString(std::string &text, const std::string &partToBeCut) {
     std::string::size_type position = text.find(partToBeCut);
-    if (position == std::string::npos){
+    if (position == std::string::npos) {
         throw std::runtime_error("String: " + text + " doesn't contain :" + partToBeCut);
     }
     text.erase(position, partToBeCut.length());

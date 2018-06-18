@@ -17,22 +17,22 @@ Scanner::Scanner(uint16_t pRange, uint8_t pAngle) {
 
 std::vector<std::vector<Point>> Scanner::search(const Environment *environment, Agent *agent, Point &playerPosition) {
     std::mutex guiLock;
-    scannedPoint.clear();
+    scannedPoints.clear();
     recalculateAttachmentPosition(agent);
-    auto steps = static_cast<uint16_t>(range / 3);
+    auto steps = static_cast<uint16_t>(range / 4);
     std::vector<std::vector<Point> > foundObstacles;
     std::vector<Point> obstacleOutline;
     Point prevPoint;
     bool playerFound = false;
-    for (int act = -angle / 2; act <= angle / 2; act++) {
+    for (int act = -angle / 2; act <= angle / 2; act += 2) {
         Point maxRangePoint = calculateMaxRangePoint(position, agent->getRotation() + act);
         auto ray = SampledLine(position, maxRangePoint, steps);
         bool outlineFound = false;
         for (auto point : ray.getSamples()) {
-            scannedPoint.push_back(point);
+            scannedPoints.push_back(point);
             bool visibilityBlocked = false;
             for (auto obstacle : environment->getObstacles()) {
-                if(obstacle == agent){
+                if (obstacle == agent) {
                     break;
                 }
                 if (environment->isPointInsideObstacle(point, obstacle)) {
@@ -82,6 +82,6 @@ void Scanner::recalculateAttachmentPosition(Agent *agent) {
     position = Point(finalXCoord, finalYCoord);
 }
 
-const std::vector<Point> &Scanner::getScannedPoint() const {
-    return scannedPoint;
+const std::vector<Point> &Scanner::getScannedPoints() const {
+    return scannedPoints;
 }

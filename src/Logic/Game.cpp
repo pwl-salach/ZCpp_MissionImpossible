@@ -4,8 +4,6 @@
 
 #include "Game.h"
 
-#include <utility>
-
 
 void Game::start() {
     state = State::RUNNING;
@@ -14,10 +12,10 @@ void Game::start() {
 }
 
 void Game::quit() {
-    pause();
-    for(auto agent : agents){
-        delete agent;
+    if (state != State::PAUSE) {
+        pause();
     }
+    environment.clearObstacles();
     agents.clear();
 }
 
@@ -31,7 +29,8 @@ void Game::pause() {
 Game::Game(Settings *pSettings, std::vector<Agent *> pAgents) : settings(pSettings),
                                                                 agents(std::move(pAgents)),
                                                                 headquarters(Headquarters(&agents, &environment)),
-                                                                environment(Environment(&player, &agents, settings->getEnvironmentNumber())){
+                                                                environment(Environment(&player, &agents,
+                                                                                        settings->getEnvironmentNumber())) {
     updatesPerSecond = 25;
 }
 
@@ -39,7 +38,7 @@ Player &Game::getPlayer() {
     return player;
 }
 
-Environment &Game::getEnvironment(){
+Environment &Game::getEnvironment() {
     return environment;
 }
 
@@ -48,34 +47,34 @@ Game::State Game::getState() const {
 }
 
 void Game::loop() {
-    while(state == State::RUNNING) {
+    while (state == State::RUNNING) {
         auto begin = std::chrono::high_resolution_clock::now();
         update();
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-        auto stepDuration = std::chrono::milliseconds(1000/updatesPerSecond);
+        auto stepDuration = std::chrono::milliseconds(1000 / updatesPerSecond);
         std::this_thread::sleep_for(stepDuration - duration);
     }
 }
 
 void Game::update() {
-    if(!environment.checkCollisions(&player)) {
+    if (!environment.checkCollisions(&player)) {
         player.move();
         bool victory = environment.checkVictoryCondition();
-        if(victory){
+        if (victory) {
             state = State::VICTORY;
         }
     }
-    for(auto agent : agents){
+    for (auto agent : agents) {
         agent->lookAround(&environment);
         agent->update();
         auto obstacle = environment.checkCollisions(agent);
-        if(obstacle == nullptr){
+        if (obstacle == nullptr) {
             agent->move();
         } else {
             agent->moveAwayFrom(obstacle);
         }
-        if(agent->catchPlayer(&player)){
+        if (agent->catchPlayer(&player)) {
             state = State::LOSE;
         }
     }

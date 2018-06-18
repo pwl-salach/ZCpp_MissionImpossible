@@ -9,21 +9,20 @@
 #include "PhysicalObject.h"
 #include "Player.h"
 
-class Obstacle : virtual public PhysicalObject{
+class Obstacle : virtual public PhysicalObject {
 public:
-    Obstacle(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
-
-    bool blockingMovement();
-    bool blockingView();
-
-    Obstacle();
-    enum Blocking{
+    enum Blocking {
         VIEW = 1,
         MOVEMENT = 2,
         BOTH = 3
     };
+    Obstacle(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
 
-    virtual bool canBePassed();
+    bool blockingMovement();
+
+    bool blockingView();
+
+    Obstacle();
 
 protected:
     Blocking blocks;

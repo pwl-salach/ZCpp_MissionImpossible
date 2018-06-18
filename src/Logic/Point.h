@@ -11,16 +11,23 @@
 class Point {
 public:
     Point();
+
     Point(float x, float y);
+
     bool operator==(const Point &other) const;
+
     float getX() const;
+
     float getY() const;
+
     bool isSet() const;
+
     bool sameXCoordinate(const Point &other) const;
+
     bool sameYCoordinate(const Point &other) const;
 
 private:
-    float x; // TODO: zmienic wszedzie double na float
+    float x;
     float y;
     bool set;
 };

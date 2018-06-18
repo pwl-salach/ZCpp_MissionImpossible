@@ -11,6 +11,7 @@ class Settings {
 
 public:
     Settings();
+
     uint8_t getNumberOfAgents() const;
 
     uint16_t getRangeOfView() const;
@@ -51,7 +52,6 @@ private:
     uint16_t rangeOfView;
     uint8_t angleOfView;
     bool debug;
-
     uint8_t minManNumber;
     uint8_t maxManNumber;
     uint8_t minNumberOfAgents;

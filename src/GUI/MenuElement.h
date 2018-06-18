@@ -15,10 +15,13 @@ public:
     virtual ~MenuElement();
 
     uint8_t getId() const;
+
     bool isSelected() const;
 
     virtual const std::string getText() const;
+
     const SDL_Rect &getVerticesPositions() const;
+
     void setSelected(bool pSelected);
 
 protected:

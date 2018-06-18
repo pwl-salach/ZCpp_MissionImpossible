@@ -13,7 +13,8 @@
 #include "SampledLine.h"
 
 
-Environment::Environment(Player *player, std::vector<Agent *> *agents, uint8_t environmentFileID) : player(player), agents(agents) {
+Environment::Environment(Player *player, std::vector<Agent *> *agents, uint8_t environmentFileID) : player(player),
+                                                                                                    agents(agents) {
     std::string fileName = "map_";
     fileName += std::to_string(environmentFileID) + ".txt";
     std::string environmentConfig = FileManager::readTextFile(fileName);
@@ -74,9 +75,9 @@ void Environment::loadAgentsPositions(const std::string &configString) {
         auto info = parts.at(index);
         /// TODO warto byloby ten fragment uogolnic ****
         std::vector<std::string> params = Dictionary::splitString(info, ',');
-        auto x = std::atoi(params.at(0).c_str());
-        auto y = std::atoi(params.at(1).c_str());
-        auto r = uint16_t(std::atoi(params.at(2).c_str()));
+        int x = std::atoi(params.at(0).c_str());
+        int y = std::atoi(params.at(1).c_str());
+        int r = std::atoi(params.at(2).c_str());
         checkInitPosition(x, y);
         r = recalculateRotation(r);
         /// ****
@@ -87,13 +88,13 @@ void Environment::loadAgentsPositions(const std::string &configString) {
 
 void Environment::loadFinishPoint(const std::string &configString) {
     std::vector<std::string> params = Dictionary::splitString(configString, ',');
-    auto x = std::atoi(params.at(0).c_str());
-    auto y = std::atoi(params.at(1).c_str());
-    auto radius = uint8_t(std::atoi(params.at(2).c_str()));
+    int x = std::atoi(params.at(0).c_str());
+    int y = std::atoi(params.at(1).c_str());
+    int radius = std::atoi(params.at(2).c_str());
     if (radius < player->getSizeX() * 1.5 && radius < player->getSizeY() * 1.5) {
         throw std::runtime_error("Finish Point radius less then 0");
     }
-    finishPointRadius = radius;
+    finishPointRadius = static_cast<uint8_t>(radius);
     checkInitPosition(x, y);
     if (x != 0 && y != 0 && x != sizeX && y != sizeY) {
         throw std::runtime_error("Finish point has to be on the border of the environment!");
@@ -107,8 +108,7 @@ void Environment::createFence() {
     Fence *bottomFence = new Fence(Point(sizeX / 2, sizeY), sizeX, 0);
     Fence *leftFence = new Fence(Point(0, sizeY / 2), sizeY, 90);
     if (finishPoint.getY() == 0 || finishPoint.getY() == sizeY) {
-        if (finishPoint.getX() > finishPointRadius
-            && sizeX - finishPoint.getX() > finishPointRadius) {
+        if (finishPoint.getX() > finishPointRadius && sizeX - finishPoint.getX() > finishPointRadius) {
             float tempFenceSizeX = finishPoint.getX() - finishPointRadius;
             Fence *&temp = (finishPoint.getY() == 0) ? topFence : bottomFence;
             delete temp;
@@ -186,7 +186,8 @@ Point Environment::getClosePoint(const Point &point, const std::vector<Point> &o
     return Point();
 }
 
-bool Environment::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
+bool
+Environment::overlappingRectangles(const std::vector<Point> &firstRectVer, const std::vector<Point> &secondRectVer) {
     auto overlaps = [this](const std::vector<Point> &some, const std::vector<Point> &other) -> bool {
         for (const auto &vertex : some) {
             bool overlapping = isPointInsideRectangle(other, vertex);
@@ -296,7 +297,7 @@ float Environment::calculateDistance(const Point &some, const Point &other) cons
     return std::sqrt(xDiff * xDiff + yDiff * yDiff);
 }
 
-bool Environment::isAccessible(const Point &point)const {
+bool Environment::isAccessible(const Point &point) const {
     for (auto obstacle: obstacles) {
         if (isPointInsideObstacle(point, obstacle)) {
             return false;
@@ -306,7 +307,7 @@ bool Environment::isAccessible(const Point &point)const {
 }
 
 bool Environment::blocksTheWay(Agent *agent, const std::vector<Point> &obstacleOutline) const {
-    if(agent->isPathStackEmpty()){
+    if (agent->isPathStackEmpty()) {
         return false;
     }
     auto nextDest = agent->getNextDestination();
@@ -326,4 +327,11 @@ bool Environment::blocksTheWay(Agent *agent, const std::vector<Point> &obstacleO
         }
     }
     return false;
+}
+
+void Environment::clearObstacles() {
+    for (auto obstacle : obstacles) {
+        delete obstacle;
+    }
+    obstacles.clear();
 }

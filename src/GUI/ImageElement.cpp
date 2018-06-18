@@ -13,11 +13,11 @@ ImageElement::ImageElement(const char *fileName, const SDL_Rect &verticesPositio
 }
 
 void ImageElement::calculateCenter() {
-    center.x = verticesPositions.x + verticesPositions.w/2;
-    center.y = verticesPositions.y + verticesPositions.h/2;
+    center.x = verticesPositions.x + verticesPositions.w / 2;
+    center.y = verticesPositions.y + verticesPositions.h / 2;
 }
 
-const SDL_Rect & ImageElement::getVerticesPositions() {
+const SDL_Rect &ImageElement::getVerticesPositions() {
     return verticesPositions;
 }
 
@@ -25,7 +25,7 @@ SDL_Surface *ImageElement::getSurface() const {
     return surface;
 }
 
-const SDL_Point & ImageElement::getCenter() {
+const SDL_Point &ImageElement::getCenter() {
     return center;
 }
 

@@ -11,14 +11,14 @@ Point::Point(float x, float y) : x(x), y(y) {
 }
 
 float Point::getX() const {
-    if(!isSet())
-        throw std::runtime_error( "This point is not properly initiated!");
+    if (!isSet())
+        throw std::runtime_error("This point is not properly initiated!");
     return x;
 }
 
 float Point::getY() const {
-    if(!isSet())
-        throw std::runtime_error( "This point is not properly initiated!");
+    if (!isSet())
+        throw std::runtime_error("This point is not properly initiated!");
     return y;
 }
 
@@ -30,7 +30,7 @@ bool Point::sameXCoordinate(const Point &other) const {
     return std::fabs(getX() - other.getX()) < std::fabs(getX()) * 0.001 || getX() == other.getX();
 }
 
-bool Point::sameYCoordinate(const Point &other) const{
+bool Point::sameYCoordinate(const Point &other) const {
     return std::fabs(getY() - other.getY()) < std::fabs(getY()) * 0.001 || getY() == other.getY();
 }
 

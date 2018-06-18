@@ -8,11 +8,12 @@
 #include "MenuElement.h"
 #include "../Utils/Dictionary.h"
 
-template <typename T> class SettingElement: public MenuElement{
+template<typename T>
+class SettingElement : public MenuElement {
 
 public:
     SettingElement(uint8_t id, const std::string &text, const SDL_Rect &verticesPosition, T setting)
-            :MenuElement(id, text, verticesPosition), setting(setting) {
+            : MenuElement(id, text, verticesPosition), setting(setting) {
         backedUpValue = setting;
     }
 
@@ -20,8 +21,8 @@ public:
         return text + ": " + getSettingText();
     }
 
-    const std::string getSettingText() const{
-        if (std::is_same<T, bool>::value){
+    const std::string getSettingText() const {
+        if (std::is_same<T, bool>::value) {
             return setting ? Dictionary::YES : Dictionary::NO;
         }
         return std::to_string(setting);
@@ -31,31 +32,31 @@ public:
         return setting;
     }
 
-    void increaseSettingValue(T limit){
-        if (std::is_same<T, bool>::value){
+    void increaseSettingValue(T limit) {
+        if (std::is_same<T, bool>::value) {
             setting = true;
             return;
         }
-        if (setting < limit){
+        if (setting < limit) {
             setting = setting + 1;
         }
     }
 
-    void decreaseSettingValue(T limit){
-        if (std::is_same<T, bool>::value){
+    void decreaseSettingValue(T limit) {
+        if (std::is_same<T, bool>::value) {
             setting = false;
             return;
         }
-        if (setting > limit){
+        if (setting > limit) {
             setting = setting - 1;
         }
     }
 
-    void saveChanges(){
+    void saveChanges() {
         backedUpValue = setting;
     }
 
-    void resetValue(){
+    void resetValue() {
         setting = backedUpValue;
     }
 

@@ -6,10 +6,10 @@
 
 Settings::Settings() {
     environmentNumber = 1;
-    numberOfAgents = 5;
+    numberOfAgents = 3;
     rangeOfView = 120;
     angleOfView = 60;
-    debug = true;
+    debug = false;
 
     minManNumber = 1;
     maxManNumber = 2;

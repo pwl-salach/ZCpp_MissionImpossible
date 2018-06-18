@@ -13,8 +13,6 @@ class Box: public Obstacle{
 public:
     Box(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
 
-private:
-    float friction;
 };
 
 

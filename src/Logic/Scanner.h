@@ -16,6 +16,7 @@
 #include "Obstacle.h"
 
 class Environment;
+
 class Agent;
 
 /*!
@@ -25,14 +26,17 @@ class Agent;
 class Scanner {
 public:
     Scanner(uint16_t pRange, uint8_t pAngle);
+
     std::vector<std::vector<Point>> search(const Environment *environment, Agent *agent, Point &playerPosition);
 
-    const std::vector<Point> &getScannedPoint() const;
+    const std::vector<Point> &getScannedPoints() const;
 
 private:
     Point calculateMaxRangePoint(const Point &beginning, int rotation);
+
     void recalculateAttachmentPosition(Agent *agent);
-    std::vector<Point> scannedPoint;
+
+    std::vector<Point> scannedPoints;
     Point position;
     uint16_t range;
     uint8_t angle;

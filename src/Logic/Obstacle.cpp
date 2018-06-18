@@ -21,7 +21,3 @@ bool Obstacle::blockingMovement() {
 bool Obstacle::blockingView() {
     return blocks == Blocking::VIEW || blocks == Blocking::BOTH;
 }
-
-bool Obstacle::canBePassed() {
-    return true;
-}

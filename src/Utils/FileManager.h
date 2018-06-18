@@ -13,14 +13,19 @@
 class FileManager {
 public:
     static TTF_Font *loadFont(const std::string &fileName, uint8_t size);
-    static SDL_Surface* loadImage(const std::string &fileName);
+
+    static SDL_Surface *loadImage(const std::string &fileName);
+
     static std::string readTextFile(const std::string &fileName);
+
 private:
-    template <typename T> static void check(T* pointer, const std::string &fileName){
-        if (pointer == nullptr){
+    template<typename T>
+    static void check(T *pointer, const std::string &fileName) {
+        if (pointer == nullptr) {
             throw std::runtime_error("Couldn't open file: " + std::string(fileName));
         }
     }
+
     static std::string concatenateFilePath(const std::string &fileName);
 };
 

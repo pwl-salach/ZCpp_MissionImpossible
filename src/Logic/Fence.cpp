@@ -8,7 +8,3 @@ Fence::Fence(Point pPosition, uint16_t pSizeX, uint16_t pRotation):Obstacle(pPos
     imageName = "fence.png";
     blocks = Blocking::MOVEMENT;
 }
-
-bool Fence::canBePassed() {
-    return false;
-}

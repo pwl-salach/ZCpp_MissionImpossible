@@ -5,12 +5,8 @@
 #include "Headquarters.h"
 #include <random>
 
-std::vector<Agent *>* Headquarters::getAgents() const {
-    return agents;
-}
-
 void Headquarters::planSearching() {
-    for(auto agent : *agents) {
+    for (auto agent : *agents) {
         if (agent->isPathStackEmpty()) {
             planSearching(agent);
         }
@@ -58,20 +54,21 @@ void Headquarters::acceptThePositionReport(Point &position) {
 }
 
 void Headquarters::broadcastPlayerPosition() {
-    for(auto agent : *agents){
+    for (auto agent : *agents) {
         agent->updatePlayerPosition(playerPosition);
     }
 }
 
-Headquarters::Headquarters(std::vector<Agent *> *agents, Environment *environment) : agents(agents), environment(environment) {
-    for(auto agent : *agents){
+Headquarters::Headquarters(std::vector<Agent *> *agents, Environment *environment) : agents(agents),
+                                                                                     environment(environment) {
+    for (auto agent : *agents) {
         agent->setHeadquarters(this);
     }
 }
 
 bool Headquarters::isPlayerSeen() {
-    for (auto agent: *agents){
-        if(agent->seesPlayer()){
+    for (auto agent: *agents) {
+        if (agent->seesPlayer()) {
             return true;
         }
     }
@@ -81,17 +78,16 @@ bool Headquarters::isPlayerSeen() {
 }
 
 bool Headquarters::checkedAlready(Point point, float threshold) {
-    for(auto agent: *agents){
+    for (auto agent: *agents) {
         auto pointAgentPosDist = environment->calculateDistance(point, agent->getPosition());
         bool checked = pointAgentPosDist <= threshold;
-        if (!agent->isPathStackEmpty()){
+        if (!agent->isPathStackEmpty()) {
             auto pointAgentDestDist = environment->calculateDistance(point, agent->getNextDestination());
             checked = checked || pointAgentDestDist <= threshold;
         }
-        if(checked){
-            return  true;
+        if (checked) {
+            return true;
         }
     }
     return false;
 }
-

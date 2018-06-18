@@ -10,20 +10,20 @@
 #include "../Logic/PhysicalObject.h"
 #include "ImageElement.h"
 
-class Sprite : public ImageElement{
+class Sprite : public ImageElement {
 public:
     Sprite(PhysicalObject *pObject);
 
-    const SDL_Point & getCenter() override;
+    const SDL_Point &getCenter() override;
 
-    const SDL_Rect & getVerticesPositions() override;
+    const SDL_Rect &getVerticesPositions() override;
 
     float getAngle() const override;
 
 private:
     void calculateVerticesPositions();
-    PhysicalObject *object;
 
+    PhysicalObject *object;
 };
 
 
