@@ -19,7 +19,7 @@ public:
     /*!
      * @brief Wykorzystywany konstruktor.
      * @param pPosition pozycja centralnego punktu obiektu w środowisku
-     * @param pSizeX rozwiar wzdłuż osi X
+     * @param pSizeX rozmiar wzdłuż osi X
      * @param pRotation rotacja w przestrzeni
      */
     Fence(Point pPosition, uint16_t pSizeX, uint16_t pRotation);

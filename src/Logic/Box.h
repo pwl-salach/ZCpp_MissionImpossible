@@ -20,8 +20,8 @@ public:
     /*!
      * @brief Wykorzystywany konstruktor.
      * @param pPosition pozycja centralnego punktu obiektu w środowisku
-     * @param pSizeX rozwiar wzdłuż osi X
-     * @param pSizeY rozwiar wzdłuż osi Y
+     * @param pSizeX rozmiar wzdłuż osi X
+     * @param pSizeY rozmiar wzdłuż osi Y
      * @param pRotation rotacja w przestrzeni
      */
     Box(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation);
