@@ -7,7 +7,7 @@
 #include "Headquarters.h"
 #include "Line.h"
 
-Agent::Agent(uint16_t rangeOfView, uint8_t angleOfView) : scanner(Scanner(rangeOfView, angleOfView)) {
+Agent::Agent(uint16_t rangeOfView, uint8_t angleOfView) : scanner(Scanner(rangeOfView, angleOfView, this)) {
     movementSpeed = 3;
     turningSpeed = 5;
     imageName = "agent.png";
@@ -85,7 +85,7 @@ bool Agent::isPathStackEmpty() {
 
 void Agent::lookAround(const Environment *environment) {
     Point playerPos;
-    auto obstacles = scanner.search(environment, this, playerPos);
+    auto obstacles = scanner.search(environment, playerPos);
     if (playerPos.isSet()) {
         reportPlayerPosition(playerPos);
         visiblePlayer = true;
@@ -166,9 +166,9 @@ Point Agent::calculateNewPosition(uint16_t rot) {
     return Person::calculateNewPosition(rot, speed);
 }
 
-void Agent::moveAwayFrom(PhysicalObject *pObject) {
-    auto xDistance = pObject->getPosition().getX() - position.getX();
-    auto yDistance = pObject->getPosition().getY() - position.getY();
+void Agent::moveAwayFrom(Obstacle *obstacle) {
+    auto xDistance = obstacle->getPosition().getX() - position.getX();
+    auto yDistance = obstacle->getPosition().getY() - position.getY();
     auto alpha = getAlpha(xDistance, yDistance);
     if (rotation >= alpha) {
         turning = Movement::TURN_RIGHT;

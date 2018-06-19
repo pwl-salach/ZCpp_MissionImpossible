@@ -8,7 +8,7 @@
 
 const std::string Dictionary::START_GAME = "New Game";
 const std::string Dictionary::SETTINGS = "Settings";
-const std::string Dictionary::environment_NUMBER = "Environment number";
+const std::string Dictionary::ENVIRONMENT_NUMBER = "Environment number";
 const std::string Dictionary::NUMBER_OF_AGENTS = "Number of Agent";
 const std::string Dictionary::RANGE_OF_VIEW = "Range of view";
 const std::string Dictionary::ANGLE_OF_VIEW = "Angle of view";

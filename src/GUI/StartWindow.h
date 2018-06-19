@@ -2,6 +2,10 @@
 // Created by Salach on 18.02.2018.
 //
 
+/*!
+ * @file StartWindow.h
+ * @brief Deklaracja klasy StartWindow
+ */
 #ifndef ZCPP_MISSIONIMPOSSIBLE_STARTWINDOW_H
 #define ZCPP_MISSIONIMPOSSIBLE_STARTWINDOW_H
 
@@ -12,12 +16,25 @@
 #include <vector>
 #include <map>
 
+/*!
+ * @brief Okno startowe gry
+ */
 class StartWindow : public Window {
 public:
+    /*!
+     * @brief Wykorzystywany konstruktor.
+     * @param resX rozdzielczość wzdłuż osi X
+     * @param resY rozdzielczość wzdłuż osi Y
+     * @param pSettings ustawienia gry
+     */
     StartWindow(uint16_t resX, uint16_t resY, Settings *pSettings);
 
-    virtual ~StartWindow();
+    ~StartWindow();
 
+    /*!
+     * @brief Nadpisana funkcjaz klasy bazowej
+     * @see Window.h
+     */
     void show() override;
 
 private:

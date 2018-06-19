@@ -1,7 +1,10 @@
 //
 // Created by salach on 3/1/18.
 //
-
+/*!
+ * @file GameWindow.h
+ * @brief Deklaracja klasy GameWindow
+ */
 #ifndef ZCPP_MISSIONIMPOSSIBLE_GAMEWINDOW_H
 #define ZCPP_MISSIONIMPOSSIBLE_GAMEWINDOW_H
 
@@ -9,11 +12,22 @@
 #include "../Logic/Game.h"
 #include "Sprite.h"
 
+/*!
+ * @brief Głowne okno gry, prezentuje przebieg rozgrywki i oddziaływuje z użytkownikiem.
+ */
 class GameWindow : public Window {
-
 public:
+    /*!
+     * @brief Wykorzystywany konstruktor.
+     * @param pGame wskaźnik do bobiektu gry
+     * @param startWindow wskaźnik do okna startowego, dający możliwość powrotu do menu
+     */
     GameWindow(Game *pGame, StartWindow *startWindow);
 
+    /*!
+     * @brief Nadpisana funkcjaz klasy bazowej
+     * @see Window.h
+     */
     void show() override;
 
 private:

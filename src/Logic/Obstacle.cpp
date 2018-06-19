@@ -4,8 +4,6 @@
 
 #include "Obstacle.h"
 
-Obstacle::Obstacle() {}
-
 Obstacle::Obstacle(Point pPosition, uint16_t pSizeX, uint16_t pSizeY, uint16_t pRotation) {
     position = pPosition;
     sizeX = pSizeX;

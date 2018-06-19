@@ -1,7 +1,10 @@
 //
 // Created by salach on 3/1/18.
 //
-
+/*!
+ * @file Environment.h
+ * @brief Deklaracja klasy Environment
+ */
 #ifndef ZCPP_MISSIONIMPOSSIBLE_environment_H
 #define ZCPP_MISSIONIMPOSSIBLE_environment_H
 
@@ -13,42 +16,129 @@
 #include "PhysicalObject.h"
 #include "Obstacle.h"
 
+/*!
+ * @brief Klasa reprezentująca przestrzeń w jakiej przemieszczają się wszystkie fizyczne obiekty w grze.
+ */
 class Environment {
 public:
+    /*!
+     * @brief Wykorzystywany konstruktor.
+     * @param player wskaźnik na obiekt gracza
+     * @param agents wskaźnik na wektor agentów
+     * @param environmentFileID indeks pliku z konfiguracją mapy gry
+     */
     Environment(Player *player, std::vector<Agent *> *agents, uint8_t environmentFileID);
 
+    /*!
+     * @brief Domyślny dekonstruktor
+     */
     ~Environment();
 
-    uint16_t getSizeX() const;
-
-    uint16_t getSizeY() const;
-
-    const std::vector<Obstacle *> &getObstacles() const;
-
+    /*!
+     * @brief Sprawdza czy podany punkt znajduje się wewnątrz prostokątnego obszaru
+     * @param rectVertices wierzchołki osprawdzanego obszaru
+     * @param point sprawdzany punkt
+     * @return prawdę jeżeli punkt jest wewnątrz wskazanego obszaru, w przeciwnym wypadku fałsz
+     */
     bool isPointInsideRectangle(const std::vector<Point> &rectVertices, const Point &point) const;
 
+    /*!
+     * @brief Sprawdza czy podany punkt znajduje się wewnątrz wskazanej przeszkody
+     * @param point sprawdzany punkt
+     * @param obstacle sprawdzana przeszkoda
+     * @return prawdę jeżeli punkt jest wewnątrz wskazanej przeszkody, w przeciwnym wypadku fałsz
+     */
+    bool isPointInsideObstacle(const Point &point, Obstacle *obstacle) const;
+
+    /*!
+     * @brief Sprawdza czy podane wielokąty nachodzą na siebie
+     * @param firstRectVer wierzchołki pierwszego wieloboku
+     * @param secondRectVer wierzchołki drugiego wieloboku
+     * @return wynik sprawdzenia czy wielokąty posiadają punkty wspólne
+     */
     bool overlappingRectangles(const std::vector<Point> &firstRectVer,
                                const std::vector<Point> &secondRectVer);
 
-    PhysicalObject *checkCollisions(Person *person);
+    /*!
+     * @brief Sprawdza przewidywaną kolizję osoby przy jej aktualnym ruchu
+     * @param person wskaźnik na obiekty klasy Person
+     * @return wskaźnik na kolidujący obiekt
+     */
+    Obstacle* checkCollisions(Person *person);
 
+    /*!
+     * @brief Sprawdza czy w podanym punkcje znajduje się gracz
+     * @param point sprawdzany punkt
+     * @return status sprawdzenia przynależności punktu do obwodu postaci gracza
+     */
     bool isPointThePlayerPosition(const Point &point) const;
 
+    /*!
+     * @brief Sprawdza warunek pozytywnego zakończenia rozgrywki
+     * @return status sprawdzenia odległości gracza od punktu końcowego
+     */
     bool checkVictoryCondition();
 
-    bool isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const;
-
+    /*!
+     * @brief Oblicza odległość między dwoma punktami
+     * @param some pierwszy punkt przekazany przez referencję
+     * @param other drugi punkt przekazany przez referencję
+     * @return odległość między punktami
+     */
     float calculateDistance(const Point &some, const Point &other) const;
 
+    /*!
+     * @brief Sprawdza czy jest osiągalny do dojścia do niego
+     * @param point sprawdzany punk
+     * @return status sprawdzenia czy dany punkt nie znajduje się wewnątrz żadnej przeszkody
+     */
     bool isAccessible(const Point &point) const;
 
+    /*!
+     * @brief Sprawdza czy dwa punkty znajdują się blisko siebie
+     * @param point pierwszy punkt przekazany przez referencję
+     * @param other drugi punkt przekazany przez referencję
+     * @param threshold próg odniesienia
+     * @return prawdę jeżeli rożnice obu współrzędnych są mniejsza niż podana wartość
+     */
     bool areClose(const Point &point, const Point &other, float threshold) const;
 
+    /*!
+     * @brief Wybiera z grupy punktów jeden spełniający warunek na odległość
+     * @param point sprawdzany punkt odniesienia
+     * @param outline wektor z punktami do sprawdzenia
+     * @param threshold próg odniesienia
+     * @return zwraca punkt spełniający warunek bliskości lub niezainicjowany punkt
+     */
     Point getClosePoint(const Point &point, const std::vector<Point> &outline, float threshold) const;
 
+    /*!
+     * @brief Sprawdza czy podana chmura punktw blokuje przejście agentowi
+     * @param agent sprawdzany agent
+     * @param obstacleOutline wektor zawierający frag,emt obwodu przeszkody
+     * @return prawdę jeżeli przynajmniej jeden z punktów znajduje się na bezpośredniej drodze między agentem a jego celem
+     */
     bool blocksTheWay(Agent *agent, const std::vector<Point> &obstacleOutline) const;
 
+    /*!
+     * @brief Usuwa wektor przeszkód
+     */
     void clearObstacles();
+
+    /*!
+     * @return wektor ze wskaźnikami na przeszkody
+     */
+    const std::vector<Obstacle *> &getObstacles() const;
+
+    /*!
+     * @return rozmiar otoczenia w zdłuż osi X
+     */
+    uint16_t getSizeX() const;
+
+    /*!
+    * @return rozmiar otoczenia w zdłuż osi Y
+    */
+    uint16_t getSizeY() const;
 
 private:
     void loadSizeFromFileContent(const std::string &configString);
@@ -83,11 +173,11 @@ private:
 
     bool areClose(PhysicalObject *firstObject, PhysicalObject *secondObject);
 
+    bool areClose(const Point &point, PhysicalObject *object) const;
+
     bool objectOutsideBoundaries(PhysicalObject *object);
 
     uint16_t recalculateRotation(uint16_t r);
-
-    bool areClose(const Point &point, PhysicalObject *object) const;
 
     std::vector<Obstacle *> obstacles;
     std::vector<Agent *> *agents;

@@ -137,7 +137,7 @@ const std::vector<Obstacle *> &Environment::getObstacles() const {
     return obstacles;
 }
 
-PhysicalObject *Environment::checkCollisions(Person *person) {
+Obstacle * Environment::checkCollisions(Person *person) {
     uint16_t newRot = person->calculateNewRotation();
     Point newPos = person->calculateNewPosition(newRot, person->getMovementSpeed());
     if (newPos == person->getPosition() && person->getRotation() == newRot) {
@@ -284,9 +284,9 @@ bool Environment::isPointThePlayerPosition(const Point &point) const {
     return false;
 }
 
-bool Environment::isPointInsideObstacle(const Point &point, Obstacle *pObstacle) const {
-    if (!areClose(point, pObstacle)) {
-        return isPointInsideRectangle(pObstacle->getVerticesPosition(), point);
+bool Environment::isPointInsideObstacle(const Point &point, Obstacle *obstacle) const {
+    if (!areClose(point, obstacle)) {
+        return isPointInsideRectangle(obstacle->getVerticesPosition(), point);
     }
     return false;
 }

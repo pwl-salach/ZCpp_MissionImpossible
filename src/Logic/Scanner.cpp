@@ -10,12 +10,13 @@
 #include <algorithm>
 #include <mutex>
 
-Scanner::Scanner(uint16_t pRange, uint8_t pAngle) {
+Scanner::Scanner(uint16_t pRange, uint8_t pAngle, Agent *pAgent) {
     range = pRange;
     angle = pAngle;
+    agent = pAgent;
 }
 
-std::vector<std::vector<Point>> Scanner::search(const Environment *environment, Agent *agent, Point &playerPosition) {
+std::vector<std::vector<Point>> Scanner::search(const Environment *environment, Point &playerPosition) {
     std::mutex guiLock;
     scannedPoints.clear();
     recalculateAttachmentPosition(agent);

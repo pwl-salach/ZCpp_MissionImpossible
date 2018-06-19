@@ -11,6 +11,11 @@ void Game::start() {
     headquarters.planSearching();
 }
 
+void Game::resume() {
+    state = State::RUNNING;
+    updateLoop = std::thread(&Game::loop, this);
+}
+
 void Game::quit() {
     if (state != State::PAUSE) {
         pause();
@@ -89,7 +94,3 @@ const std::vector<Agent *> &Game::getAgents() const {
     return agents;
 }
 
-void Game::resume() {
-    state = State::RUNNING;
-    updateLoop = std::thread(&Game::loop, this);
-}

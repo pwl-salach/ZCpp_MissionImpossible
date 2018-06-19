@@ -43,7 +43,7 @@ void StartWindow::prepareSettingsMenuElements() {
     auto topMargin = uint16_t(2 * resolutionY / 5);
     auto bottomMargin = uint16_t(resolutionY / 4);
     std::map<uint8_t, std::string> elementsBasicData{
-            {MenuButtons::environment_NUMBER, Dictionary::environment_NUMBER},
+            {MenuButtons::environment_NUMBER, Dictionary::ENVIRONMENT_NUMBER},
             {MenuButtons::NUMBER_OF_AGENTS,   Dictionary::NUMBER_OF_AGENTS},
             {MenuButtons::RANGE_OF_VIEW,      Dictionary::RANGE_OF_VIEW},
             {MenuButtons::ANGLE_OF_VIEW,      Dictionary::ANGLE_OF_VIEW},
@@ -52,7 +52,7 @@ void StartWindow::prepareSettingsMenuElements() {
     std::vector<SDL_Rect> menuElementsPositions = calculateMenuElementsCoordinates(elementsBasicData, topMargin,
                                                                                    bottomMargin);
     settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::environment_NUMBER,
-                                                               Dictionary::environment_NUMBER,
+                                                               Dictionary::ENVIRONMENT_NUMBER,
                                                                menuElementsPositions.at(0),
                                                                settings->getEnvironmentNumber()));
     settingsMenuElements.push_back(new SettingElement<uint8_t>(MenuButtons::NUMBER_OF_AGENTS,
@@ -274,6 +274,8 @@ void StartWindow::startGame() {
     auto *game = new Game(settings, agents);
     auto *gameWindow = new GameWindow(game, this);
     gameWindow->show();
+    delete gameWindow;
+    delete game;
 }
 
 StartWindow::~StartWindow() {

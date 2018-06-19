@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/Logic/PhysicalObject.h" line="13" />
+    <bookmark url="file://$PROJECT_DIR$/src/Logic/PhysicalObject.h" line="20" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
@@ -14,51 +14,43 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7fb39d-88c0-4136-9e15-24157092021c" name="Default" comment="Reformatted code. Pause and end game menus added.">
+    <list default="true" id="ff7fb39d-88c0-4136-9e15-24157092021c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/dox/Doxyfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/grass.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GameWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GameWindow.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GameWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GameWindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ImageElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ImageElement.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ImageElement.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ImageElement.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/MenuElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MenuElement.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/MenuElement.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MenuElement.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/SettingElement.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SettingElement.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Sprite.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Sprite.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Sprite.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Sprite.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/StartWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartWindow.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/StartWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartWindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Window.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Window.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Agent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Agent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Agent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Box.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Box.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Environment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Environment.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Environment.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Environment.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Fence.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Fence.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Fence.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Fence.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Game.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Game.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Headquarters.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Headquarters.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Headquarters.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Headquarters.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Lake.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Lake.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Line.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Line.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Line.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Line.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Obstacle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Obstacle.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Obstacle.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Obstacle.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Person.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Person.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Person.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Person.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/PhysicalObject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/PhysicalObject.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/PhysicalObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/PhysicalObject.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Point.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Point.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logic/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Player.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Point.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Point.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/SampledLine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/SampledLine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/SampledLine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/SampledLine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Scanner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Scanner.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Scanner.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Scanner.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Settings.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Settings.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logic/Settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Settings.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/Dictionary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Dictionary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/FileManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/FileManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Dictionary.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Dictionary.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/FileManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/FileManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
@@ -76,38 +68,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Sprite.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.cpp">
+      <file leaf-file-name="Settings.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Settings.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+            <state relative-caret-position="221">
+              <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Game.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PhysicalObject.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sprite.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.h">
+      <file leaf-file-name="Settings.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Settings.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
-              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+              <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -115,62 +89,11 @@
       <file leaf-file-name="Environment.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Logic/Environment.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="168" column="50" selection-start-line="168" selection-start-column="50" selection-end-line="168" selection-end-column="50" />
+            <state relative-caret-position="378">
+              <caret line="309" column="36" lean-forward="true" selection-start-line="309" selection-start-column="36" selection-end-line="309" selection-end-column="36" />
               <folding>
                 <element signature="e#39#53#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartWindow.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="267" column="20" selection-start-line="267" selection-start-column="20" selection-end-line="267" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartWindow.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-624">
-              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-              <folding>
-                <element signature="e#135#154#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Window.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Window.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Window.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Window.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-              <folding>
-                <element signature="e#124#145#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dictionary.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/Dictionary.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -179,17 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>moveAwa</find>
-      <find>update()</find>
-      <find>upda</find>
-      <find>moveA</find>
-      <find>obstacles</find>
-      <find>moveawa</find>
-      <find>movemen</find>
-      <find>map</find>
-      <find>getenvironment</find>
-      <find>&lt;environment&gt;</find>
-      <find>std::environment&lt;</find>
       <find>No finish point. This game would be pointless!</find>
       <find>.txt</find>
       <find>sett</find>
@@ -207,11 +119,21 @@
       <find>selectFirstElement</find>
       <find>try</find>
       <find>This point is not properly initiated!</find>
-      <find>quit</find>
       <find>setSe</find>
+      <find>\file</find>
+      <find>vektor</find>
+      <find>Line</find>
+      <find>calculateNewPosition</find>
+      <find>forward de</find>
+      <find>quit</find>
+      <find>startG</find>
+      <find>klasy SDL_Rect</find>
+      <find>obiektu SDL_Rect</find>
+      <find>getVerticesPositions</find>
+      <find>przeci</find>
+      <find>over</find>
     </findStrings>
     <replaceStrings>
-      <replace>&gt;</replace>
       <replace>--</replace>
       <replace>increaseSettingValue</replace>
       <replace>MAX</replace>
@@ -241,6 +163,7 @@
       <replace>getEnvironment</replace>
       <replace>&lt;map&gt;</replace>
       <replace>std::map&lt;</replace>
+      <replace>@file</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -254,57 +177,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Logic/Scaner.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Box.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Lake.cpp" />
         <option value="$PROJECT_DIR$/doc/html/_obstacle_8h_source.html" />
         <option value="$PROJECT_DIR$/src/Logic/Map.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Map.h" />
-        <option value="$PROJECT_DIR$/src/main.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Settings.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Box.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Agent.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Agent.h" />
         <option value="$PROJECT_DIR$/src/Logic/Environment.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Environment.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Headquarters.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Fence.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Point.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/SampledLine.cpp" />
+        <option value="$PROJECT_DIR$/src/Utils/Dictionary.cpp" />
+        <option value="$PROJECT_DIR$/src/Utils/FileManager.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/GameWindow.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/ImageElement.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/MenuElement.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/Sprite.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/Window.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Box.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Fence.h" />
         <option value="$PROJECT_DIR$/src/Logic/Game.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Game.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Headquarters.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Environment.h" />
         <option value="$PROJECT_DIR$/src/Logic/Headquarters.h" />
         <option value="$PROJECT_DIR$/src/Logic/Lake.h" />
         <option value="$PROJECT_DIR$/src/Logic/Line.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Line.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Obstacle.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Fence.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Fence.cpp" />
         <option value="$PROJECT_DIR$/src/Logic/Obstacle.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Obstacle.h" />
         <option value="$PROJECT_DIR$/src/Logic/Person.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Person.h" />
         <option value="$PROJECT_DIR$/src/Logic/PhysicalObject.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/PhysicalObject.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Point.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Point.h" />
-        <option value="$PROJECT_DIR$/src/Logic/SampledLine.h" />
-        <option value="$PROJECT_DIR$/src/Logic/SampledLine.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Player.h" />
         <option value="$PROJECT_DIR$/src/Logic/Scanner.cpp" />
-        <option value="$PROJECT_DIR$/src/Logic/Scanner.h" />
-        <option value="$PROJECT_DIR$/src/Logic/Settings.h" />
-        <option value="$PROJECT_DIR$/src/Utils/Dictionary.cpp" />
-        <option value="$PROJECT_DIR$/src/Utils/FileManager.cpp" />
+        <option value="$PROJECT_DIR$/src/Logic/Agent.cpp" />
         <option value="$PROJECT_DIR$/src/Utils/FileManager.h" />
-        <option value="$PROJECT_DIR$/src/GUI/GameWindow.cpp" />
+        <option value="$PROJECT_DIR$/src/Utils/Dictionary.h" />
         <option value="$PROJECT_DIR$/src/GUI/GameWindow.h" />
-        <option value="$PROJECT_DIR$/src/GUI/ImageElement.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/ImageElement.h" />
-        <option value="$PROJECT_DIR$/src/GUI/MenuElement.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/MenuElement.h" />
         <option value="$PROJECT_DIR$/src/GUI/SettingElement.h" />
-        <option value="$PROJECT_DIR$/src/GUI/Sprite.cpp" />
-        <option value="$PROJECT_DIR$/src/GUI/Sprite.h" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/src/GUI/StartWindow.cpp" />
         <option value="$PROJECT_DIR$/src/GUI/StartWindow.h" />
+        <option value="$PROJECT_DIR$/src/GUI/MenuElement.h" />
         <option value="$PROJECT_DIR$/src/GUI/Window.h" />
-        <option value="$PROJECT_DIR$/src/GUI/Window.cpp" />
+        <option value="$PROJECT_DIR$/src/GUI/ImageElement.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Agent.h" />
+        <option value="$PROJECT_DIR$/src/GUI/Sprite.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Person.h" />
+        <option value="$PROJECT_DIR$/src/Logic/PhysicalObject.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Point.h" />
+        <option value="$PROJECT_DIR$/src/Logic/SampledLine.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Scanner.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Settings.h" />
+        <option value="$PROJECT_DIR$/src/Logic/Settings.cpp" />
       </list>
     </option>
   </component>
@@ -318,8 +241,8 @@
     <packageJsonPaths />
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1928" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
@@ -341,25 +264,23 @@
             <path>
               <item name="ZCpp_MissionImpossible" type="b2602c69:ProjectViewProjectNode" />
               <item name="ZCpp_MissionImpossible" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="dox" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ZCpp_MissionImpossible" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ZCpp_MissionImpossible" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ZCpp_MissionImpossible" type="b2602c69:ProjectViewProjectNode" />
               <item name="ZCpp_MissionImpossible" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ZCpp_MissionImpossible" type="b2602c69:ProjectViewProjectNode" />
               <item name="ZCpp_MissionImpossible" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Logic" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ZCpp_MissionImpossible" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ZCpp_MissionImpossible" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -368,6 +289,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Documents/Workspace/CLionProjects/ZCpp_MissionImpossible/src/Logic/Settings.h" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -497,7 +419,9 @@
       <workItem from="1529264448945" duration="108000" />
       <workItem from="1529269409265" duration="5237000" />
       <workItem from="1529336003536" duration="5084000" />
-      <workItem from="1529341311746" duration="5955000" />
+      <workItem from="1529341311746" duration="16270000" />
+      <workItem from="1529421782273" duration="10434000" />
+      <workItem from="1529437900850" duration="6508000" />
     </task>
     <task id="LOCAL-00001" summary="Working threads for both platforms. Simple Player control added.">
       <created>1521217656908</created>
@@ -569,11 +493,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529250732162</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Reformatted code. Pause and end game menus added.">
+      <created>1529348434387</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1529348434387</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="446394000" />
+    <option name="totallyTimeSpent" value="473651000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -585,23 +516,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="PlantUML" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3224401" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32071713" />
       <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.32934782" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50479746" side_tool="true" weight="0.3152174" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49707174" weight="0.32461873" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49520257" weight="0.20152505" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49520257" visible="true" weight="0.18326694" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32897604" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.17217484" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.17537314" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.3278867" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32570806" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.35557768" />
       <window_info anchor="right" id="Structure" order="4" sideWeight="0.5021739" side_tool="true" visible="true" weight="0.12526652" />
       <window_info id="Favorites" order="1" sideWeight="0.51449275" side_tool="true" weight="0.1854058" />
-      <window_info anchor="bottom" x="444" y="272" width="441" height="527" id="Debug" order="3" weight="0.35947713" />
+      <window_info anchor="bottom" x="444" y="272" width="441" height="527" id="Debug" order="3" weight="0.35856575" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -610,8 +541,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.32934782" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49520257" visible="true" weight="0.20652173" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.21055438" />
       <window_info anchor="right" id="Structure" order="4" sideWeight="0.5021739" visible="true" weight="0.17217484" />
@@ -619,10 +551,9 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32934782" />
       <window_info anchor="right" id="PlantUML" order="3" />
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.32934782" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32934782" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49520257" visible="true" weight="0.20652173" />
       <window_info anchor="bottom" id="Statistic" order="12" weight="0.32934782" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32934782" />
       <window_info anchor="bottom" x="444" y="272" width="441" height="527" id="Debug" order="3" weight="0.2630435" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32934782" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50479746" side_tool="true" weight="0.3152174" />
@@ -639,6 +570,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Repo init. Basic implementation of StartWindow." />
     <MESSAGE value="Working threads for both platforms. Simple Player control added." />
@@ -653,6 +585,7 @@
     <MESSAGE value="Pause menu added" />
     <MESSAGE value="Reformatted code. Pause and end game menus added." />
     <option name="LAST_COMMIT_MESSAGE" value="Reformatted code. Pause and end game menus added." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -770,180 +703,76 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/MinGW-w64/x86_64-7.2.0-posix-seh/mingw64/lib/gcc/x86_64-w64-mingw32/7.2.0/include/c++/ext/new_allocator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2108">
-          <caret line="124" selection-start-line="124" selection-end-line="124" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/GUI/MenuElement.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Agent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="189" column="14" selection-start-line="189" selection-start-column="14" selection-end-line="189" selection-end-column="14" />
-          <folding>
-            <element signature="e#39#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Agent.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+        <state relative-caret-position="255">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Box.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Box.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Environment.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Game.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="102">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Headquarters.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        <state relative-caret-position="504">
+          <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Headquarters.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/resources/Bez nazwy.png" />
+    <entry file="file://$PROJECT_DIR$/resources/lake.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Lake.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Lake.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="80" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="80" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/resources/grass.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Line.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Line.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Obstacle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Fence.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Fence.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="272">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Obstacle.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Person.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-46">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Person.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+        <state relative-caret-position="513">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Player.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Player.h">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Point.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Point.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/SampledLine.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="81" selection-start-line="14" selection-start-column="81" selection-end-line="14" selection-end-column="81" />
+        <state relative-caret-position="310">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -956,170 +785,263 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Scanner.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-284">
-          <caret line="36" column="17" lean-forward="true" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+        <state relative-caret-position="204">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Scanner.h">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Agent.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="31" column="55" lean-forward="true" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Settings.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-811">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Settings.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/Dictionary.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/FileManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        <state relative-caret-position="317">
+          <caret line="95" column="56" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/FileManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="479">
+          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Utils/FileManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4381">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        <state relative-caret-position="646">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.h">
+    <entry file="file://$PROJECT_DIR$/src/Utils/Dictionary.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="991">
-          <caret line="62" column="49" lean-forward="true" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
-          <folding>
-            <element signature="e#129#155#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/MenuElement.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/MenuElement.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/SettingElement.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-301">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="267" column="20" selection-start-line="267" selection-start-column="20" selection-end-line="267" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-624">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding>
-            <element signature="e#135#154#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Window.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#124#145#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="666">
+          <caret line="53" column="50" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/Dictionary.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="527">
+          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="273" column="22" lean-forward="true" selection-start-line="273" selection-start-column="22" selection-end-line="273" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Window.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+        <state relative-caret-position="381">
+          <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Window.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="111" column="68" selection-start-line="111" selection-start-column="68" selection-end-line="111" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GameWindow.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ImageElement.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/MenuElement.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="39" column="26" lean-forward="true" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/SettingElement.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="91" column="48" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Sprite.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartWindow.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-421">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Agent.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Box.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Environment.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="155" column="4" lean-forward="true" selection-start-line="155" selection-start-column="4" selection-end-line="155" selection-end-column="4" />
+          <folding>
+            <element signature="e#5297#5306#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Game.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        <state relative-caret-position="374">
+          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Fence.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="391">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Game.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-608">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Headquarters.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Lake.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Line.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="58" column="37" lean-forward="true" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Obstacle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="47" column="65" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Person.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="724">
+          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Player.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/PhysicalObject.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="656">
+          <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Point.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="803">
+          <caret line="60" column="54" selection-start-line="60" selection-start-column="54" selection-end-line="60" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/SampledLine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Scanner.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="51" column="73" selection-start-line="51" selection-start-column="73" selection-end-line="51" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Settings.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Settings.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Environment.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="168" column="50" selection-start-line="168" selection-start-column="50" selection-end-line="168" selection-end-column="50" />
+        <state relative-caret-position="378">
+          <caret line="309" column="36" lean-forward="true" selection-start-line="309" selection-start-column="36" selection-end-line="309" selection-end-column="36" />
           <folding>
             <element signature="e#39#53#0" expanded="true" />
           </folding>

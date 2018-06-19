@@ -5,19 +5,15 @@
 #include "Line.h"
 
 void Line::calculateFactorA(const Point &first, const Point &second) {
-    a = onlyCalculateA(first, second);
-}
-
-void Line::calculateFactorB(const Point &first, const Point &second) {
-    b = first.getY() - first.getX() * a;
-}
-
-float Line::onlyCalculateA(const Point &first, const Point &second) const {
     int correction = 0;
     if (first.sameXCoordinate(second)) {
         correction = 1;
     }
-    return (first.getY() - second.getY()) / (first.getX() - second.getX() + correction);
+    a = (first.getY() - second.getY()) / (first.getX() - second.getX() + correction);
+}
+
+void Line::calculateFactorB(const Point &first, const Point &second) {
+    b = first.getY() - first.getX() * a;
 }
 
 float Line::calculate(float x) {
